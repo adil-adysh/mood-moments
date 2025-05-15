@@ -11,6 +11,8 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
+            <Button x:Name="NewEntryButton" Text="New Entry" />
+
             <CollectionView x:Name="JournalEntriesView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -18,6 +20,9 @@
                             <VerticalStackLayout>
                                 <Label Text="{Binding Date}" FontAttributes="Bold" />
                                 <Label Text="{Binding Mood}" />
+                                <Label Text="{Binding Context}" />
+                                <Label Text="{Binding Trigger}" />
+                                <Label Text="{Binding Intensity}" />
                                 <Label Text="{Binding Notes}" FontAttributes="Italic" FontSize="Small" />
                             </VerticalStackLayout>
                         </Frame>
@@ -26,5 +31,4 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
