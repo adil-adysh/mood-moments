@@ -7,9 +7,19 @@
     Shell.FlyoutBehavior="Disabled"
     Title="mood_moments">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <ShellContent
+            Title="Journal"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <!-- Add more tabs as needed -->
+        <ShellContent
+            Title="Trends"
+                ContentTemplate="{DataTemplate local:TrendsPage}"
+            Route="TrendsPage" />
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate local:ProfilePage}"
+            Route="ProfilePage" />
+    </TabBar>
 </Shell>

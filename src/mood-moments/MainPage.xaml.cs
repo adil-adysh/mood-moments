@@ -1,24 +1,27 @@
-﻿namespace mood_moments;
+namespace mood_moments;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    public MainPage()
+    {
+        InitializeComponent();
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+        // Dummy mood journal entries
+        var entries = new List<MoodJournalEntry>
+        {
+            new MoodJournalEntry { Date = "2024-06-01", Mood = "😊 Happy", Notes = "Had a great day at the park." },
+            new MoodJournalEntry { Date = "2024-06-02", Mood = "😐 Neutral", Notes = "Just an average day." },
+            new MoodJournalEntry { Date = "2024-06-03", Mood = "😔 Sad", Notes = "Felt a bit down today." }
+        };
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+        JournalEntriesView.ItemsSource = entries;
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    public class MoodJournalEntry
+    {
+        public string Date { get; set; }
+        public string Mood { get; set; }
+        public string Notes { get; set; }
+    }
 }
 
