@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using mood_moments.Models;
 
 namespace mood_moments;
 
@@ -24,24 +25,9 @@ public partial class MainPage : ContentPage
         NewEntryButton.Clicked += NewEntryButton_Clicked;
     }
 
-    private async void NewEntryButton_Clicked(object sender, EventArgs e)
+    private async void NewEntryButton_Clicked(object? sender, EventArgs e)
     {
-        var newEntryPage = new NewEntryPage();
-        newEntryPage.EntrySaved += (s, entry) =>
-        {
-            entries.Add(entry);
-        };
-        await Navigation.PushAsync(newEntryPage);
-    }
-
-    public class MoodJournalEntry
-    {
-        public string Date { get; set; }
-        public string Mood { get; set; }
-        public string Context { get; set; }
-        public string Trigger { get; set; }
-        public string Intensity { get; set; }
-        public string Notes { get; set; }
+        await DisplayAlert("Not Implemented", "New Entry Page is not implemented.", "OK");
     }
 }
 

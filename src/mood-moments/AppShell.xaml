@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:mood_moments"
+    xmlns:views="clr-namespace:mood_moments.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="mood_moments">
 
@@ -12,14 +13,13 @@
             Title="Journal"
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage" />
-        <!-- Add more tabs as needed -->
         <ShellContent
             Title="Trends"
-                ContentTemplate="{DataTemplate local:TrendsPage}"
+            ContentTemplate="{DataTemplate views:TrendsPage}"
             Route="TrendsPage" />
         <ShellContent
             Title="Profile"
-            ContentTemplate="{DataTemplate local:ProfilePage}"
+            ContentTemplate="{DataTemplate views:ProfilePage}"
             Route="ProfilePage" />
     </TabBar>
 </Shell>

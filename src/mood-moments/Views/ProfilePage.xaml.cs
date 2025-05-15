@@ -1,4 +1,4 @@
-namespace mood_moments;
+namespace mood_moments.Views;
 
 public partial class ProfilePage : ContentPage
 {
