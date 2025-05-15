@@ -1,0 +1,23 @@
+# Treat all text files as text and auto normalize line endings
+* text=auto
+
+# These files are binary and should be treated as such
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.dll binary
+*.exe binary
+*.pdf binary
+
+# Ensure C# files use LF for cross-platform compatibility
+*.cs text eol=lf
+
+# Solution and project files
+*.sln text eol=crlf
+*.csproj text eol=crlf
+*.props text eol=crlf
+*.targets text eol=crlf
+
