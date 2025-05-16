@@ -4,6 +4,15 @@
              x:Class="mood_moments.Views.MoodEntryWizard.ContextStep">
     <StackLayout>
         <Label Text="Step 6: Context" FontSize="20" FontAttributes="Bold" />
-        <Entry x:Name="ContextEntry" Placeholder="Where are you? (e.g., Home, Work)" />
+        <CollectionView x:Name="ContextOptionsView" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="8" Orientation="Vertical">
+                        <Button Text="{Binding Name}" CommandParameter="{Binding Name}" />
+                        <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentView>
