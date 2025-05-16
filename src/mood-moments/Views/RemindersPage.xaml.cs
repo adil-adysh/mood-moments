@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using mood_moments.Services;
 using Plugin.LocalNotification;
+using mood_moments.ViewModels;
 
 namespace mood_moments.Views
 {
@@ -10,15 +11,12 @@ namespace mood_moments.Views
     {
         public ObservableCollection<string> Reminders { get; set; } = new();
         private RemindersService remindersService = new();
+        private RemindersViewModel viewModel = new();
 
         public RemindersPage()
         {
             InitializeComponent();
-            RemindersList.ItemsSource = Reminders;
-            AddReminderButton.Clicked += AddReminderButton_Clicked;
-            RemindersList.SelectionChanged += RemindersList_SelectionChanged;
-            // NotificationTapped event is not available in v12+.
-            // See Plugin.LocalNotification v12 docs for tap handling.
+            BindingContext = viewModel;
         }
 
         private async void AddReminderButton_Clicked(object? sender, System.EventArgs e)

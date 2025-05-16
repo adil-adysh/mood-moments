@@ -5,18 +5,28 @@
              Title="Reminders">
     <StackLayout Padding="20">
         <Label Text="Reminders" FontSize="24" FontAttributes="Bold" />
-        <CollectionView x:Name="RemindersList" Margin="0,10,0,0">
+        <CollectionView x:Name="RemindersList" Margin="0,10,0,0" ItemsSource="{Binding Reminders}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Margin="0,4,0,4" Padding="10" BorderColor="LightGray" CornerRadius="8">
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <Label Text="⏰" FontSize="20" />
-                            <Label Text="{Binding .}" FontSize="18" />
+                            <Label Text="{Binding Display}" FontSize="18" />
+                            <Button Text="Delete" Command="{Binding BindingContext.DeleteReminderCommand, Source={x:Reference Name=RemindersPageRoot}}" CommandParameter="{Binding .}" FontSize="13" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="Add Reminder" x:Name="AddReminderButton" Margin="0,16,0,0" />
+        <StackLayout Orientation="Horizontal" Spacing="8" Margin="0,16,0,0">
+            <Entry Placeholder="Reminder text" Text="{Binding NewReminderText}" WidthRequest="160" />
+            <Picker Title="Hour" ItemsSource="{Binding Hours}" SelectedItem="{Binding Hour}" WidthRequest="60" />
+            <Picker Title="Minute" ItemsSource="{Binding Minutes}" SelectedItem="{Binding Minute}" WidthRequest="60" />
+            <StackLayout Orientation="Horizontal" Spacing="0">
+                <RadioButton Content="AM" GroupName="ampm" IsChecked="{Binding IsPm, Converter={StaticResource InverseBoolConverter}}" />
+                <RadioButton Content="PM" GroupName="ampm" IsChecked="{Binding IsPm}" />
+            </StackLayout>
+            <Button Text="Add" Command="{Binding AddReminderCommand}" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>
