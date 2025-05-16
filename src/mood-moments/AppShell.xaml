@@ -14,12 +14,8 @@
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage" />
         <ShellContent
-            Title="Trends"
-            ContentTemplate="{DataTemplate views:TrendsPage}"
-            Route="TrendsPage" />
-        <ShellContent
-            Title="Profile"
-            ContentTemplate="{DataTemplate views:ProfilePage}"
-            Route="ProfilePage" />
+            Title="Reminders"
+            ContentTemplate="{DataTemplate views:RemindersPage}"
+            Route="RemindersPage" />
     </TabBar>
 </Shell>

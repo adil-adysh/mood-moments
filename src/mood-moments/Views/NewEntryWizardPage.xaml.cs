@@ -48,78 +48,120 @@ namespace mood_moments.Views
         {
             StepContent.Children.Clear();
             BackButton.IsVisible = currentStep > 0;
-            NextButton.IsVisible = currentStep >= 3;
+            FinishButton.IsVisible = false;
 
-            switch (currentStep)
+            if (currentStep == 0)
             {
-                case 0:
-                    var coreStep = new EmotionStep();
-                    coreStep.SetEmotions("Step 1: Core Emotion", coreToMid.Keys, selectedCoreEmotion);
-                    coreStep.EmotionSelected += (s, emotion) => {
-                        selectedCoreEmotion = emotion;
-                        selectedMidEmotion = string.Empty;
-                        selectedNuancedEmotion = string.Empty;
-                        currentStep = 1;
-                        ShowStep();
-                    };
-                    coreStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
-                    StepContent.Children.Add(coreStep);
-                    break;
-                case 1:
-                    var midStep = new EmotionStep();
-                    midStep.SetEmotions("Step 2: Secondary Emotion", coreToMid[selectedCoreEmotion], selectedMidEmotion);
-                    midStep.EmotionSelected += (s, emotion) => {
-                        selectedMidEmotion = emotion;
-                        selectedNuancedEmotion = string.Empty;
-                        if (midToNuanced.ContainsKey(selectedCoreEmotion) && midToNuanced[selectedCoreEmotion].ContainsKey(emotion))
-                            currentStep = 2;
-                        else
-                            currentStep = 3;
-                        ShowStep();
-                    };
-                    midStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
-                    StepContent.Children.Add(midStep);
-                    break;
-                case 2:
-                    var nuancedStep = new EmotionStep();
-                    nuancedStep.SetEmotions("Step 3: Nuanced Emotion", midToNuanced[selectedCoreEmotion][selectedMidEmotion], selectedNuancedEmotion);
-                    nuancedStep.EmotionSelected += (s, emotion) => {
-                        selectedNuancedEmotion = emotion;
-                        currentStep = 3;
-                        ShowStep();
-                    };
-                    nuancedStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
-                    StepContent.Children.Add(nuancedStep);
-                    break;
-                case 3:
-                    var intensityStep = new IntensityStep();
-                    if (!string.IsNullOrEmpty(selectedIntensity) && int.TryParse(selectedIntensity, out var val))
-                    {
-                        // Set initial value if previously selected
-                        intensityStep.IntensitySliderControl.Value = val;
-                    }
-                    intensityStep.IntensitySelected += (s, intensity) => selectedIntensity = intensity;
-                    StepContent.Children.Add(intensityStep);
-                    break;
-                case 4:
-                    var noteStep = new NoteStep();
-                    noteStep.SetNote(personalNote);
-                    noteStep.NoteChanged += (s, note) => personalNote = note;
-                    StepContent.Children.Add(noteStep);
-                    break;
-                case 5:
-                    var contextStep = new ContextStep();
-                    contextStep.SetContext(contextValue);
-                    contextStep.ContextChanged += (s, ctx) => contextValue = ctx;
-                    StepContent.Children.Add(contextStep);
-                    break;
-                case 6:
-                    var triggerStep = new TriggerStep();
-                    triggerStep.SetTrigger(triggersValue);
-                    triggerStep.TriggerChanged += (s, trig) => triggersValue = trig;
-                    StepContent.Children.Add(triggerStep);
-                    break;
+                ShowCoreEmotionStep();
             }
+            else if (currentStep == 1)
+            {
+                ShowMidEmotionStep();
+            }
+            else if (currentStep == 2)
+            {
+                ShowNuancedEmotionStep();
+            }
+            else if (currentStep == 3)
+            {
+                ShowIntensityStep();
+            }
+            else if (currentStep == 4)
+            {
+                ShowNoteStep();
+            }
+            else if (currentStep == 5)
+            {
+                ShowContextStep();
+            }
+            else if (currentStep == 6)
+            {
+                ShowTriggerStep();
+                FinishButton.IsVisible = true;
+            }
+        }
+
+        private void ShowCoreEmotionStep()
+        {
+            var coreStep = new EmotionStep();
+            coreStep.SetEmotions("Step 1: Core Emotion", coreToMid.Keys, selectedCoreEmotion);
+            coreStep.EmotionSelected += (s, emotion) => {
+                selectedCoreEmotion = emotion;
+                selectedMidEmotion = string.Empty;
+                selectedNuancedEmotion = string.Empty;
+                currentStep = 1;
+                ShowStep();
+            };
+            coreStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
+            StepContent.Children.Add(coreStep);
+        }
+
+        private void ShowMidEmotionStep()
+        {
+            var midStep = new EmotionStep();
+            if (!string.IsNullOrEmpty(selectedCoreEmotion) && coreToMid.ContainsKey(selectedCoreEmotion))
+                midStep.SetEmotions("Step 2: Secondary Emotion", coreToMid[selectedCoreEmotion], selectedMidEmotion);
+            midStep.EmotionSelected += (s, emotion) => {
+                selectedMidEmotion = emotion;
+                selectedNuancedEmotion = string.Empty;
+                if (midToNuanced.ContainsKey(selectedCoreEmotion) && midToNuanced[selectedCoreEmotion].ContainsKey(emotion))
+                    currentStep = 2;
+                else
+                    currentStep = 3;
+                ShowStep();
+            };
+            midStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
+            StepContent.Children.Add(midStep);
+        }
+
+        private void ShowNuancedEmotionStep()
+        {
+            var nuancedStep = new EmotionStep();
+            if (!string.IsNullOrEmpty(selectedCoreEmotion) && !string.IsNullOrEmpty(selectedMidEmotion)
+                && midToNuanced.ContainsKey(selectedCoreEmotion) && midToNuanced[selectedCoreEmotion].ContainsKey(selectedMidEmotion))
+                nuancedStep.SetEmotions("Step 3: Nuanced Emotion", midToNuanced[selectedCoreEmotion][selectedMidEmotion], selectedNuancedEmotion);
+            nuancedStep.EmotionSelected += (s, emotion) => {
+                selectedNuancedEmotion = emotion;
+                currentStep = 3;
+                ShowStep();
+            };
+            nuancedStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
+            StepContent.Children.Add(nuancedStep);
+        }
+
+        private void ShowIntensityStep()
+        {
+            var intensityStep = new IntensityStep();
+            if (!string.IsNullOrEmpty(selectedIntensity) && int.TryParse(selectedIntensity, out var val))
+            {
+                intensityStep.IntensitySliderControl.Value = val;
+            }
+            intensityStep.IntensitySelected += (s, intensity) => selectedIntensity = intensity;
+            StepContent.Children.Add(intensityStep);
+        }
+
+        private void ShowNoteStep()
+        {
+            var noteStep = new NoteStep();
+            noteStep.SetNote(personalNote);
+            noteStep.NoteChanged += (s, note) => personalNote = note;
+            StepContent.Children.Add(noteStep);
+        }
+
+        private void ShowContextStep()
+        {
+            var contextStep = new ContextStep();
+            contextStep.SetContext(contextValue);
+            contextStep.ContextChanged += (s, ctx) => contextValue = ctx;
+            StepContent.Children.Add(contextStep);
+        }
+
+        private void ShowTriggerStep()
+        {
+            var triggerStep = new TriggerStep();
+            triggerStep.SetTrigger(triggersValue);
+            triggerStep.TriggerChanged += (s, trig) => triggersValue = trig;
+            StepContent.Children.Add(triggerStep);
         }
 
         private void BackButton_Clicked(object sender, EventArgs e)
@@ -143,27 +185,19 @@ namespace mood_moments.Views
             return selectedCoreEmotion;
         }
 
-        private async void NextButton_Clicked(object sender, EventArgs e)
+        private async void FinishButton_Clicked(object sender, EventArgs e)
         {
-            if (currentStep < 6)
+            var entry = new MoodJournalEntry
             {
-                currentStep++;
-                ShowStep();
-            }
-            else
-            {
-                var entry = new MoodJournalEntry
-                {
-                    Date = DateTime.Now.ToString("yyyy-MM-dd"),
-                    Mood = GetSelectedMood(),
-                    Intensity = selectedIntensity,
-                    Notes = personalNote,
-                    Context = contextValue,
-                    Trigger = triggersValue
-                };
-                EntrySaved?.Invoke(this, entry);
-                await Navigation.PopAsync();
-            }
+                Date = DateTime.Now.ToString("yyyy-MM-dd"),
+                Mood = GetSelectedMood(),
+                Intensity = selectedIntensity,
+                Notes = personalNote,
+                Context = contextValue,
+                Trigger = triggersValue
+            };
+            EntrySaved?.Invoke(this, entry);
+            await Navigation.PopAsync();
         }
     }
 }

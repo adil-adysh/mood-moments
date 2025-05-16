@@ -9,7 +9,7 @@
             <StackLayout x:Name="StepContent" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0">
                 <Button x:Name="BackButton" Text="Back" Clicked="BackButton_Clicked" IsVisible="False" />
-                <Button x:Name="NextButton" Text="Next" Clicked="NextButton_Clicked" IsVisible="False" />
+                <Button x:Name="FinishButton" Text="Finish" Clicked="FinishButton_Clicked" IsVisible="False" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
