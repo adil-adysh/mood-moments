@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mood_moments.Views.NewEntryWizardPage"
+             Title="New Mood Entry">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label x:Name="StepTitle" FontSize="24" FontAttributes="Bold" />
+            <StackLayout x:Name="StepContent" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0">
+                <Button x:Name="BackButton" Text="Back" Clicked="BackButton_Clicked" IsVisible="False" />
+                <Button x:Name="NextButton" Text="Next" Clicked="NextButton_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

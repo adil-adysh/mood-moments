@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using mood_moments.Models;
+using mood_moments.Views;
 
 namespace mood_moments;
 
@@ -27,7 +28,12 @@ public partial class MainPage : ContentPage
 
     private async void NewEntryButton_Clicked(object? sender, EventArgs e)
     {
-        await DisplayAlert("Not Implemented", "New Entry Page is not implemented.", "OK");
+        var wizardPage = new NewEntryWizardPage();
+        wizardPage.EntrySaved += (s, entry) =>
+        {
+            entries.Add(entry);
+        };
+        await Navigation.PushAsync(wizardPage);
     }
 }
 
