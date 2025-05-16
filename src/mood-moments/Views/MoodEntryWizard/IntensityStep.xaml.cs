@@ -1,26 +1,29 @@
 using Microsoft.Maui.Controls;
 using System;
-using System.Collections.Generic;
 
 namespace mood_moments.Views.MoodEntryWizard
 {
     public partial class IntensityStep : ContentView
     {
         public event EventHandler<string>? IntensitySelected;
+        private static readonly string[] IntensityLabels = { "Very Low", "Low", "Moderate", "High", "Very High" };
         public IntensityStep()
         {
             InitializeComponent();
-            IntensityPicker.SelectedIndexChanged += (s, e) =>
+            IntensitySlider.ValueChanged += (s, e) =>
             {
-                if (IntensityPicker.SelectedItem is string intensity)
-                    IntensitySelected?.Invoke(this, intensity);
+                // Snap to nearest integer value
+                var intValue = (int)Math.Round(IntensitySlider.Value);
+                IntensitySlider.Value = intValue;
+                var label = IntensityLabels[intValue - 1];
+                IntensityValueLabel.Text = $"{label} ({intValue})";
+                IntensitySelected?.Invoke(this, label);
             };
+            // Set initial label
+            IntensitySlider.Value = 3;
+            IntensityValueLabel.Text = $"{IntensityLabels[2]} (3)";
         }
-        public void SetIntensities(IEnumerable<string> intensities, string? selected = null)
-        {
-            IntensityPicker.ItemsSource = new List<string>(intensities);
-            if (!string.IsNullOrEmpty(selected))
-                IntensityPicker.SelectedItem = selected;
-        }
+
+        public Slider IntensitySliderControl => IntensitySlider;
     }
 }

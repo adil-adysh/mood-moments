@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mood_moments.Views.MoodEntryWizard.TriggerStep">
     <StackLayout>
-        <Label Text="Step 7: Triggers" FontSize="22" FontAttributes="Bold" 
+        <Label Text="Step 7: Triggers" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Triggers Step Heading" />
         <CollectionView x:Name="TriggerOptionsView" SelectionMode="Single"
@@ -14,14 +14,15 @@
                         <RadioButton IsChecked="{Binding IsSelected}" GroupName="TriggerGroup" Value="{Binding Name}"
                                      SemanticProperties.Description="{Binding Name}" />
                         <StackLayout Orientation="Vertical" Spacing="2">
-                            <Label Text="{Binding Name}" FontAttributes="Bold" 
+                            <Label Text="{Binding Name}" FontAttributes="Bold"
                                    SemanticProperties.Description="{Binding Name}" />
-                            <Label Text="{Binding Explanation}" FontSize="12" TextColor="Gray" 
+                            <Label Text="{Binding Explanation}" FontSize="12" TextColor="Gray"
                                    SemanticProperties.Hint="{Binding Explanation}" />
                         </StackLayout>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button x:Name="DoneButton" Text="Finish" Margin="0,16,0,0" HorizontalOptions="End" Clicked="OnDoneClicked" />
     </StackLayout>
 </ContentView>

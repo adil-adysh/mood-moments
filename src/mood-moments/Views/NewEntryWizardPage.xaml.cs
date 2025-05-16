@@ -9,7 +9,6 @@ namespace mood_moments.Views
     public partial class NewEntryWizardPage : ContentPage
     {
         private int currentStep = 0;
-        private readonly List<string> intensities = new() { "Low", "Medium", "High" };
         private string selectedCoreEmotion = string.Empty;
         private string selectedMidEmotion = string.Empty;
         private string selectedNuancedEmotion = string.Empty;
@@ -94,7 +93,11 @@ namespace mood_moments.Views
                     break;
                 case 3:
                     var intensityStep = new IntensityStep();
-                    intensityStep.SetIntensities(intensities, selectedIntensity);
+                    if (!string.IsNullOrEmpty(selectedIntensity) && int.TryParse(selectedIntensity, out var val))
+                    {
+                        // Set initial value if previously selected
+                        intensityStep.IntensitySliderControl.Value = val;
+                    }
                     intensityStep.IntensitySelected += (s, intensity) => selectedIntensity = intensity;
                     StepContent.Children.Add(intensityStep);
                     break;
@@ -131,6 +134,15 @@ namespace mood_moments.Views
             }
         }
 
+        private string GetSelectedMood()
+        {
+            if (!string.IsNullOrEmpty(selectedNuancedEmotion))
+                return selectedNuancedEmotion;
+            if (!string.IsNullOrEmpty(selectedMidEmotion))
+                return selectedMidEmotion;
+            return selectedCoreEmotion;
+        }
+
         private async void NextButton_Clicked(object sender, EventArgs e)
         {
             if (currentStep < 6)
@@ -143,7 +155,7 @@ namespace mood_moments.Views
                 var entry = new MoodJournalEntry
                 {
                     Date = DateTime.Now.ToString("yyyy-MM-dd"),
-                    Mood = !string.IsNullOrEmpty(selectedNuancedEmotion) ? selectedNuancedEmotion : !string.IsNullOrEmpty(selectedMidEmotion) ? selectedMidEmotion : selectedCoreEmotion,
+                    Mood = GetSelectedMood(),
                     Intensity = selectedIntensity,
                     Notes = personalNote,
                     Context = contextValue,

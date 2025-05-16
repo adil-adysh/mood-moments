@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mood_moments.Views.MoodEntryWizard.NoteStep">
     <StackLayout>
-        <Label Text="Step 5: Personal Note" FontSize="22" FontAttributes="Bold" 
+        <Label Text="Step 5: Personal Note" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Note Step Heading" />
-        <Editor x:Name="NoteEditor" Placeholder="Write your note here..." AutoSize="TextChanges" HeightRequest="100" 
+        <Editor x:Name="NoteEditor" Placeholder="Write your note here..." AutoSize="TextChanges" HeightRequest="100"
                 SemanticProperties.Description="Personal Note Editor" />
     </StackLayout>
 </ContentView>

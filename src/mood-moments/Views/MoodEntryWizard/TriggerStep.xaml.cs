@@ -58,6 +58,19 @@ namespace mood_moments.Views.MoodEntryWizard
             }
         }
 
+        private void OnDoneClicked(object sender, EventArgs e)
+        {
+            if (TriggerOptionsView.SelectedItem is TriggerOption opt)
+            {
+                TriggerChanged?.Invoke(this, opt.Name);
+            }
+            else
+            {
+                // Optionally, you could invoke with empty or show a message
+                TriggerChanged?.Invoke(this, string.Empty);
+            }
+        }
+
         public void SetTrigger(string? trigger)
         {
             foreach (var opt in Options)

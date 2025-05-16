@@ -14,13 +14,13 @@ namespace mood_moments
             InitializeComponent();
             viewModel = new MainPageViewModel();
             BindingContext = viewModel;
-            JournalEntriesView.ItemsSource = viewModel.GroupedEntries;
             AllTab.Clicked += (s, e) => SwitchTimeUnit("All");
             YearTab.Clicked += (s, e) => SwitchTimeUnit("Year");
             MonthTab.Clicked += (s, e) => SwitchTimeUnit("Month");
             WeekTab.Clicked += (s, e) => SwitchTimeUnit("Week");
             DayTab.Clicked += (s, e) => SwitchTimeUnit("Day");
             TimePicker.SelectedIndexChanged += TimePicker_SelectedIndexChanged;
+            NewEntryButton.Clicked += NewEntryButton_Clicked;
         }
 
         void SwitchTimeUnit(string unit)
@@ -67,6 +67,17 @@ namespace mood_moments
                     });
                 }
             }
+        }
+
+        private async void NewEntryButton_Clicked(object? sender, EventArgs e)
+        {
+            var wizardPage = new Views.NewEntryWizardPage();
+            wizardPage.EntrySaved += (s, entry) =>
+            {
+                viewModel.Entries.Add(entry);
+                viewModel.UpdateGrouping();
+            };
+            await Navigation.PushAsync(wizardPage);
         }
     }
 }
