@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mood_moments.Views.MoodEntryWizard.EmotionStep">
+    <StackLayout>
+        <Label x:Name="StepTitle" FontSize="20" FontAttributes="Bold" />
+        <Grid x:Name="EmotionGrid" ColumnSpacing="10" RowSpacing="10" />
+        <Button x:Name="SkipButton" Text="Skip to Intensity" />
+    </StackLayout>
+</ContentView>

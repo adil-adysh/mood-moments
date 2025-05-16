@@ -1,4 +1,5 @@
 using mood_moments.Models;
+using mood_moments.Views.MoodEntryWizard;
 using System;
 using System.Collections.Generic;
 using Microsoft.Maui.Controls;
@@ -8,7 +9,6 @@ namespace mood_moments.Views
     public partial class NewEntryWizardPage : ContentPage
     {
         private int currentStep = 0;
-        private readonly List<string> moods = new() { "😊 Happy", "😐 Neutral", "😔 Sad", "😡 Angry", "😨 Anxious" };
         private readonly List<string> intensities = new() { "Low", "Medium", "High" };
         private string selectedCoreEmotion = string.Empty;
         private string selectedMidEmotion = string.Empty;
@@ -49,120 +49,76 @@ namespace mood_moments.Views
         {
             StepContent.Children.Clear();
             BackButton.IsVisible = currentStep > 0;
-            // Only show Next button for steps after emotion selection
             NextButton.IsVisible = currentStep >= 3;
-            if (currentStep == 0 || currentStep == 1 || currentStep == 2)
-            {
-                var skipBtn = new Button { Text = "Skip to Intensity", Margin = new Thickness(0, 10, 0, 0) };
-                skipBtn.Clicked += (s, e) => { currentStep = 3; ShowStep(); };
-                StepContent.Children.Add(skipBtn);
-            }
 
             switch (currentStep)
             {
                 case 0:
-                    StepTitle.Text = "Step 1: Select Core Emotion";
-                    var coreGrid = new Grid { ColumnSpacing = 10, RowSpacing = 10 };
-                    int col = 0, row = 0;
-                    foreach (var core in coreToMid.Keys)
-                    {
-                        var btn = new Button { Text = core, BackgroundColor = (selectedCoreEmotion == core) ? Colors.LightBlue : Colors.LightGray };
-                        btn.Clicked += (s, e) => {
-                            selectedCoreEmotion = core;
-                            selectedMidEmotion = string.Empty;
-                            selectedNuancedEmotion = string.Empty;
-                            currentStep = 1;
-                            ShowStep();
-                        };
-                        coreGrid.Add(btn, col, row);
-                        col++;
-                        if (col > 2) { col = 0; row++; }
-                    }
-                    StepContent.Children.Add(coreGrid);
+                    var coreStep = new EmotionStep();
+                    coreStep.SetEmotions("Step 1: Select Core Emotion", coreToMid.Keys, selectedCoreEmotion);
+                    coreStep.EmotionSelected += (s, emotion) => {
+                        selectedCoreEmotion = emotion;
+                        selectedMidEmotion = string.Empty;
+                        selectedNuancedEmotion = string.Empty;
+                        currentStep = 1;
+                        ShowStep();
+                    };
+                    coreStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
+                    StepContent.Children.Add(coreStep);
                     break;
                 case 1:
-                    StepTitle.Text = "Step 2: Select Secondary Emotion";
-                    if (string.IsNullOrEmpty(selectedCoreEmotion))
-                    {
-                        StepContent.Children.Add(new Label { Text = "Please select a core emotion first." });
-                        break;
-                    }
-                    var midGrid = new Grid { ColumnSpacing = 10, RowSpacing = 10 };
-                    col = 0; row = 0;
-                    foreach (var mid in coreToMid[selectedCoreEmotion])
-                    {
-                        var btn = new Button { Text = mid, BackgroundColor = (selectedMidEmotion == mid) ? Colors.LightBlue : Colors.LightGray };
-                        btn.Clicked += (s, e) => {
-                            selectedMidEmotion = mid;
-                            selectedNuancedEmotion = string.Empty;
-                            // If there are nuanced emotions, go to nuanced, else go to intensity
-                            if (midToNuanced.ContainsKey(selectedCoreEmotion) && midToNuanced[selectedCoreEmotion].ContainsKey(mid))
-                                currentStep = 2;
-                            else
-                                currentStep = 3;
-                            ShowStep();
-                        };
-                        midGrid.Add(btn, col, row);
-                        col++;
-                        if (col > 2) { col = 0; row++; }
-                    }
-                    StepContent.Children.Add(midGrid);
+                    var midStep = new EmotionStep();
+                    midStep.SetEmotions("Step 2: Select Secondary Emotion", coreToMid[selectedCoreEmotion], selectedMidEmotion);
+                    midStep.EmotionSelected += (s, emotion) => {
+                        selectedMidEmotion = emotion;
+                        selectedNuancedEmotion = string.Empty;
+                        if (midToNuanced.ContainsKey(selectedCoreEmotion) && midToNuanced[selectedCoreEmotion].ContainsKey(emotion))
+                            currentStep = 2;
+                        else
+                            currentStep = 3;
+                        ShowStep();
+                    };
+                    midStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
+                    StepContent.Children.Add(midStep);
                     break;
                 case 2:
-                    StepTitle.Text = "Step 3: Select Nuanced Emotion";
-                    if (string.IsNullOrEmpty(selectedCoreEmotion) || string.IsNullOrEmpty(selectedMidEmotion) || !midToNuanced.ContainsKey(selectedCoreEmotion) || !midToNuanced[selectedCoreEmotion].ContainsKey(selectedMidEmotion))
-                    {
-                        StepContent.Children.Add(new Label { Text = "No nuanced emotions for this selection. Skipping..." });
-                        var skip = new Button { Text = "Skip to Intensity" };
-                        skip.Clicked += (s, e) => { currentStep = 3; ShowStep(); };
-                        StepContent.Children.Add(skip);
-                        break;
-                    }
-                    var nuancedGrid = new Grid { ColumnSpacing = 10, RowSpacing = 10 };
-                    col = 0; row = 0;
-                    foreach (var nuanced in midToNuanced[selectedCoreEmotion][selectedMidEmotion])
-                    {
-                        var btn = new Button { Text = nuanced, BackgroundColor = (selectedNuancedEmotion == nuanced) ? Colors.LightBlue : Colors.LightGray };
-                        btn.Clicked += (s, e) => {
-                            selectedNuancedEmotion = nuanced;
-                            currentStep = 3;
-                            ShowStep();
-                        };
-                        nuancedGrid.Add(btn, col, row);
-                        col++;
-                        if (col > 2) { col = 0; row++; }
-                    }
-                    StepContent.Children.Add(nuancedGrid);
+                    var nuancedStep = new EmotionStep();
+                    nuancedStep.SetEmotions("Step 3: Select Nuanced Emotion", midToNuanced[selectedCoreEmotion][selectedMidEmotion], selectedNuancedEmotion);
+                    nuancedStep.EmotionSelected += (s, emotion) => {
+                        selectedNuancedEmotion = emotion;
+                        currentStep = 3;
+                        ShowStep();
+                    };
+                    nuancedStep.SkipRequested += (s, e) => { currentStep = 3; ShowStep(); };
+                    StepContent.Children.Add(nuancedStep);
                     break;
                 case 3:
-                    StepTitle.Text = "Step 4: Select Intensity";
-                    var intensityPicker = new Picker { Title = "Intensity" };
-                    intensityPicker.ItemsSource = intensities;
-                    if (!string.IsNullOrEmpty(selectedIntensity))
-                        intensityPicker.SelectedItem = selectedIntensity;
-                    intensityPicker.SelectedIndexChanged += (s, e) => selectedIntensity = (string)intensityPicker.SelectedItem;
-                    StepContent.Children.Add(intensityPicker);
+                    var intensityStep = new IntensityStep();
+                    intensityStep.SetIntensities(intensities, selectedIntensity);
+                    intensityStep.IntensitySelected += (s, intensity) => selectedIntensity = intensity;
+                    StepContent.Children.Add(intensityStep);
                     break;
                 case 4:
-                    StepTitle.Text = "Step 5: Add a Personal Note";
-                    var noteEntry = new Editor { Placeholder = "Write your note here...", AutoSize = EditorAutoSizeOption.TextChanges, HeightRequest = 100, Text = personalNote };
-                    noteEntry.TextChanged += (s, e) => personalNote = e.NewTextValue;
-                    StepContent.Children.Add(noteEntry);
+                    var noteStep = new NoteStep();
+                    noteStep.SetNote(personalNote);
+                    noteStep.NoteChanged += (s, note) => personalNote = note;
+                    StepContent.Children.Add(noteStep);
                     break;
                 case 5:
-                    StepTitle.Text = "Step 6: Context";
-                    var contextEntry = new Entry { Placeholder = "Where are you? (e.g., Home, Work)", Text = contextValue };
-                    contextEntry.TextChanged += (s, e) => contextValue = e.NewTextValue;
-                    StepContent.Children.Add(contextEntry);
+                    var contextStep = new ContextStep();
+                    contextStep.SetContext(contextValue);
+                    contextStep.ContextChanged += (s, ctx) => contextValue = ctx;
+                    StepContent.Children.Add(contextStep);
                     break;
                 case 6:
-                    StepTitle.Text = "Step 7: Triggers";
-                    var triggersEntry = new Entry { Placeholder = "What triggered this mood?", Text = triggersValue };
-                    triggersEntry.TextChanged += (s, e) => triggersValue = e.NewTextValue;
-                    StepContent.Children.Add(triggersEntry);
+                    var triggerStep = new TriggerStep();
+                    triggerStep.SetTrigger(triggersValue);
+                    triggerStep.TriggerChanged += (s, trig) => triggersValue = trig;
+                    StepContent.Children.Add(triggerStep);
                     break;
             }
         }
+
         private void BackButton_Clicked(object sender, EventArgs e)
         {
             if (currentStep > 0)
@@ -174,55 +130,16 @@ namespace mood_moments.Views
                 ShowStep();
             }
         }
+
         private async void NextButton_Clicked(object sender, EventArgs e)
         {
-            // Wizard step logic
-            if (currentStep == 0 && !string.IsNullOrEmpty(selectedCoreEmotion))
+            if (currentStep < 6)
             {
-                currentStep = 1;
+                currentStep++;
                 ShowStep();
-                return;
             }
-            if (currentStep == 1 && !string.IsNullOrEmpty(selectedMidEmotion))
+            else
             {
-                if (midToNuanced.ContainsKey(selectedCoreEmotion) && midToNuanced[selectedCoreEmotion].ContainsKey(selectedMidEmotion))
-                {
-                    currentStep = 2;
-                }
-                else
-                {
-                    currentStep = 3;
-                }
-                ShowStep();
-                return;
-            }
-            if (currentStep == 2 && !string.IsNullOrEmpty(selectedNuancedEmotion))
-            {
-                currentStep = 3;
-                ShowStep();
-                return;
-            }
-            if (currentStep == 3)
-            {
-                currentStep = 4;
-                ShowStep();
-                return;
-            }
-            if (currentStep == 4)
-            {
-                currentStep = 5;
-                ShowStep();
-                return;
-            }
-            if (currentStep == 5)
-            {
-                currentStep = 6;
-                ShowStep();
-                return;
-            }
-            if (currentStep == 6)
-            {
-                // Save entry
                 var entry = new MoodJournalEntry
                 {
                     Date = DateTime.Now.ToString("yyyy-MM-dd"),
