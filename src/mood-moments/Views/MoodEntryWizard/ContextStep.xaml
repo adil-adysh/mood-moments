@@ -3,13 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mood_moments.Views.MoodEntryWizard.ContextStep">
     <StackLayout>
-        <Label Text="Step 6: Context" FontSize="20" FontAttributes="Bold" />
-        <CollectionView x:Name="ContextOptionsView" SelectionMode="Single">
+        <Label Text="Step 6: Context" FontSize="22" FontAttributes="Bold" 
+               SemanticProperties.HeadingLevel="Level1"
+               SemanticProperties.Description="Context Step Heading" />
+        <CollectionView x:Name="ContextOptionsView" SelectionMode="Single"
+                        SemanticProperties.Description="Context Options">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="8" Orientation="Vertical">
-                        <Button Text="{Binding Name}" CommandParameter="{Binding Name}" />
-                        <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" />
+                    <StackLayout Padding="8" Orientation="Horizontal" Spacing="10">
+                        <RadioButton IsChecked="{Binding IsSelected}" GroupName="ContextGroup" Value="{Binding Name}"
+                                     SemanticProperties.Description="{Binding Name}" />
+                        <StackLayout Orientation="Vertical" Spacing="2">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" 
+                                   SemanticProperties.Description="{Binding Name}" />
+                            <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" 
+                                   SemanticProperties.Hint="{Binding Description}" />
+                        </StackLayout>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -3,8 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mood_moments.Views.MoodEntryWizard.EmotionStep">
     <StackLayout>
-        <Label x:Name="StepTitle" FontSize="20" FontAttributes="Bold" />
-        <Grid x:Name="EmotionGrid" ColumnSpacing="10" RowSpacing="10" />
-        <Button x:Name="SkipButton" Text="Skip to Intensity" />
+        <!-- The parent page should set StepTitle to:
+             Core: "How are you feeling at your core?"
+             Secondary: "Can you be more specific about your feeling?"
+             Nuanced: "Is there a more precise word for your feeling?" -->
+        <Label x:Name="StepTitle" FontSize="22" FontAttributes="Bold" 
+               SemanticProperties.HeadingLevel="Level1"
+               SemanticProperties.Description="Emotion Selection" />
+        <Label x:Name="EmotionGridHeading" Text="Select one of the options below" FontSize="18" FontAttributes="Bold"
+               SemanticProperties.HeadingLevel="Level2"
+               SemanticProperties.Description="Emotion Options" />
+        <Grid x:Name="EmotionGrid" ColumnSpacing="10" RowSpacing="10" 
+              SemanticProperties.Description="Emotion Choices" />
+        <Button x:Name="SkipButton" Text="Skip to Intensity" 
+                SemanticProperties.Description="Skip to Intensity" />
     </StackLayout>
 </ContentView>

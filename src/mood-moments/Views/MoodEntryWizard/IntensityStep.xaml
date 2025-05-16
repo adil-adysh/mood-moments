@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mood_moments.Views.MoodEntryWizard.IntensityStep">
     <StackLayout>
-        <Label Text="Step 4: Select Intensity" FontSize="20" FontAttributes="Bold" />
-        <Picker x:Name="IntensityPicker" Title="Intensity" />
+        <Label Text="Step 4: Intensity" FontSize="22" FontAttributes="Bold" 
+               SemanticProperties.HeadingLevel="Level1"
+               SemanticProperties.Description="Intensity Step Heading" />
+        <Picker x:Name="IntensityPicker" Title="Intensity" 
+                SemanticProperties.Description="Intensity Picker" />
     </StackLayout>
 </ContentView>

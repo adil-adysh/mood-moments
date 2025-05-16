@@ -55,7 +55,7 @@ namespace mood_moments.Views
             {
                 case 0:
                     var coreStep = new EmotionStep();
-                    coreStep.SetEmotions("Step 1: Select Core Emotion", coreToMid.Keys, selectedCoreEmotion);
+                    coreStep.SetEmotions("Step 1: Core Emotion", coreToMid.Keys, selectedCoreEmotion);
                     coreStep.EmotionSelected += (s, emotion) => {
                         selectedCoreEmotion = emotion;
                         selectedMidEmotion = string.Empty;
@@ -68,7 +68,7 @@ namespace mood_moments.Views
                     break;
                 case 1:
                     var midStep = new EmotionStep();
-                    midStep.SetEmotions("Step 2: Select Secondary Emotion", coreToMid[selectedCoreEmotion], selectedMidEmotion);
+                    midStep.SetEmotions("Step 2: Secondary Emotion", coreToMid[selectedCoreEmotion], selectedMidEmotion);
                     midStep.EmotionSelected += (s, emotion) => {
                         selectedMidEmotion = emotion;
                         selectedNuancedEmotion = string.Empty;
@@ -83,7 +83,7 @@ namespace mood_moments.Views
                     break;
                 case 2:
                     var nuancedStep = new EmotionStep();
-                    nuancedStep.SetEmotions("Step 3: Select Nuanced Emotion", midToNuanced[selectedCoreEmotion][selectedMidEmotion], selectedNuancedEmotion);
+                    nuancedStep.SetEmotions("Step 3: Nuanced Emotion", midToNuanced[selectedCoreEmotion][selectedMidEmotion], selectedNuancedEmotion);
                     nuancedStep.EmotionSelected += (s, emotion) => {
                         selectedNuancedEmotion = emotion;
                         currentStep = 3;

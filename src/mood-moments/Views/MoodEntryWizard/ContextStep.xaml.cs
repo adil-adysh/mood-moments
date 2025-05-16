@@ -1,6 +1,8 @@
 using Microsoft.Maui.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace mood_moments.Views.MoodEntryWizard
 {
@@ -8,10 +10,18 @@ namespace mood_moments.Views.MoodEntryWizard
     {
         public event EventHandler<string>? ContextChanged;
 
-        public class ContextOption
+        public class ContextOption : INotifyPropertyChanged
         {
             public string Name { get; set; } = string.Empty;
             public string Description { get; set; } = string.Empty;
+            private bool isSelected;
+            public bool IsSelected
+            {
+                get => isSelected;
+                set { if (isSelected != value) { isSelected = value; OnPropertyChanged(); } }
+            }
+            public event PropertyChangedEventHandler? PropertyChanged;
+            protected void OnPropertyChanged([CallerMemberName] string? name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         private static readonly List<ContextOption> Options = new()
@@ -30,15 +40,25 @@ namespace mood_moments.Views.MoodEntryWizard
         {
             InitializeComponent();
             ContextOptionsView.ItemsSource = Options;
-            ContextOptionsView.SelectionChanged += (s, e) =>
+            ContextOptionsView.SelectionChanged += ContextOptionsView_SelectionChanged;
+        }
+
+        private void ContextOptionsView_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+        {
+            if (ContextOptionsView.SelectedItem is ContextOption opt)
             {
-                if (ContextOptionsView.SelectedItem is ContextOption opt)
-                    ContextChanged?.Invoke(this, opt.Name);
-            };
+                foreach (var o in Options) o.IsSelected = false;
+                opt.IsSelected = true;
+                ContextChanged?.Invoke(this, opt.Name);
+            }
         }
 
         public void SetContext(string? context)
         {
+            foreach (var opt in Options)
+            {
+                opt.IsSelected = (opt.Name == context);
+            }
             if (!string.IsNullOrEmpty(context))
             {
                 foreach (var opt in Options)
