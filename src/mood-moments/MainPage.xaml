@@ -3,32 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mood_moments.MainPage"
              Title="Mood Journal">
-
-    <ScrollView>
-        <VerticalStackLayout Padding="30,0" Spacing="25">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <VerticalStackLayout Padding="24,12,24,0" Spacing="16">
             <Label
                 Text="Mood Journal"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
-            <Button x:Name="NewEntryButton" Text="New Entry" />
-
-            <CollectionView x:Name="JournalEntriesView">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="0,5" Padding="10" BorderColor="LightGray">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Date}" FontAttributes="Bold" />
-                                <Label Text="{Binding Mood}" />
-                                <Label Text="{Binding Context}" />
-                                <Label Text="{Binding Trigger}" />
-                                <Label Text="{Binding Intensity}" />
-                                <Label Text="{Binding Notes}" FontAttributes="Italic" FontSize="Small" />
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                FontSize="28"
+                FontAttributes="Bold"
+                SemanticProperties.HeadingLevel="Level1"
+                Margin="0,0,0,8" />
+            <Border Stroke="LightGray" StrokeThickness="1" BackgroundColor="#F8F8F8" Padding="8" Margin="0,0,0,8" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Spacing="8">
+                    <Button x:Name="AllTab" Text="All" StyleClass="TabButton" />
+                    <Button x:Name="YearTab" Text="Year" StyleClass="TabButton" />
+                    <Button x:Name="MonthTab" Text="Month" StyleClass="TabButton" />
+                    <Button x:Name="WeekTab" Text="Week" StyleClass="TabButton" />
+                    <Button x:Name="DayTab" Text="Day" StyleClass="TabButton" />
+                </HorizontalStackLayout>
+            </Border>
         </VerticalStackLayout>
-    </ScrollView>
+        <!-- Secondary picker for time navigation -->
+        <HorizontalStackLayout Grid.Row="1" x:Name="TimePickerPanel" Padding="24,0,24,0" Spacing="12" IsVisible="False">
+            <Label x:Name="TimePickerLabel" Text="" FontAttributes="Bold" />
+            <Picker x:Name="TimePicker" />
+        </HorizontalStackLayout>
+        <CollectionView x:Name="JournalEntriesView" Grid.Row="2" Margin="16,0,16,0" IsGrouped="True"
+                        ItemsSource="{Binding GroupedEntries}">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding GroupTitle}" FontAttributes="Bold" FontSize="18" Padding="0,12,0,4" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" Padding="14" BorderColor="#E0E0E0" BackgroundColor="White" CornerRadius="14" HasShadow="True">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="{Binding Mood}" FontSize="20" FontAttributes="Bold" />
+                            <Label Text="{Binding Context}" FontSize="14" TextColor="#666" />
+                            <Label Text="{Binding Trigger}" FontSize="14" TextColor="#666" />
+                            <Label Text="Intensity: {Binding Intensity}" FontSize="13" TextColor="#888" />
+                            <Label Text="{Binding Notes}" FontAttributes="Italic" FontSize="13" TextColor="#888" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button x:Name="NewEntryButton" Text="＋" WidthRequest="56" HeightRequest="56" CornerRadius="28"
+                BackgroundColor="#4F8EF7" TextColor="White" FontSize="32" FontAttributes="Bold"
+                VerticalOptions="End" HorizontalOptions="End" Margin="0,0,24,24"
+                Grid.RowSpan="3"
+                AutomationId="NewEntryFAB" />
+    </Grid>
 </ContentPage>

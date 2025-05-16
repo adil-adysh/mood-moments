@@ -1,39 +1,73 @@
+using mood_moments.ViewModels;
+using mood_moments.Services;
+using System;
 using System.Collections.ObjectModel;
-using mood_moments.Models;
-using mood_moments.Views;
+using System.Linq;
 
-namespace mood_moments;
-
-public partial class MainPage : ContentPage
+namespace mood_moments
 {
-    ObservableCollection<MoodJournalEntry> entries;
-
-    public MainPage()
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
-
-        // Dummy mood journal entries
-        entries = new ObservableCollection<MoodJournalEntry>
+        private readonly MainPageViewModel viewModel;
+        public MainPage()
         {
-            new MoodJournalEntry { Date = "2024-06-01", Mood = "😊 Happy", Context = "Work", Trigger = "Meeting", Intensity = "Low", Notes = "Had a great day at the park." },
-            new MoodJournalEntry { Date = "2024-06-02", Mood = "😐 Neutral", Context = "Home", Trigger = "Routine", Intensity = "Medium", Notes = "Just an average day." },
-            new MoodJournalEntry { Date = "2024-06-03", Mood = "😔 Sad", Context = "School", Trigger = "Exam", Intensity = "High", Notes = "Felt a bit down today." }
-        };
+            InitializeComponent();
+            viewModel = new MainPageViewModel();
+            BindingContext = viewModel;
+            JournalEntriesView.ItemsSource = viewModel.GroupedEntries;
+            AllTab.Clicked += (s, e) => SwitchTimeUnit("All");
+            YearTab.Clicked += (s, e) => SwitchTimeUnit("Year");
+            MonthTab.Clicked += (s, e) => SwitchTimeUnit("Month");
+            WeekTab.Clicked += (s, e) => SwitchTimeUnit("Week");
+            DayTab.Clicked += (s, e) => SwitchTimeUnit("Day");
+            TimePicker.SelectedIndexChanged += TimePicker_SelectedIndexChanged;
+        }
 
-        JournalEntriesView.ItemsSource = entries;
-
-        // Attach event handler for New Entry button
-        NewEntryButton.Clicked += NewEntryButton_Clicked;
-    }
-
-    private async void NewEntryButton_Clicked(object? sender, EventArgs e)
-    {
-        var wizardPage = new NewEntryWizardPage();
-        wizardPage.EntrySaved += (s, entry) =>
+        void SwitchTimeUnit(string unit)
         {
-            entries.Add(entry);
-        };
-        await Navigation.PushAsync(wizardPage);
+            viewModel.CurrentTimeUnit = unit;
+            viewModel.SelectedTimeValue = null;
+            if (unit == "All")
+            {
+                TimePickerPanel.IsVisible = false;
+                viewModel.UpdateGrouping();
+            }
+            else
+            {
+                TimePickerPanel.IsVisible = true;
+                TimePickerLabel.Text = unit switch
+                {
+                    "Year" => "Select Year:",
+                    "Month" => "Select Month:",
+                    "Week" => "Select Week:",
+                    "Day" => "Select Day:",
+                    _ => "Select:"
+                };
+                var values = TimelineService.GetTimeValues(viewModel.Entries, unit);
+                TimePicker.ItemsSource = values.ToList();
+                TimePicker.SelectedIndex = 0;
+            }
+        }
+
+        void TimePicker_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            try
+            {
+                if (TimePicker.SelectedIndex < 0) return;
+                viewModel.SelectedTimeValue = TimePicker.SelectedItem as string;
+                viewModel.UpdateGrouping();
+            }
+            catch
+            {
+                if (Application.Current != null && Application.Current.MainPage != null)
+                {
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", "An error occurred while updating the timeline. Please try again.", "OK");
+                    });
+                }
+            }
+        }
     }
 }
 
