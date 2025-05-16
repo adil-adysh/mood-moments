@@ -71,13 +71,8 @@ namespace mood_moments
 
         private async void NewEntryButton_Clicked(object? sender, EventArgs e)
         {
-            var wizardPage = new Views.NewEntryWizardPage();
-            wizardPage.EntrySaved += (s, entry) =>
-            {
-                viewModel.Entries.Add(entry);
-                viewModel.UpdateGrouping();
-            };
-            await Navigation.PushAsync(wizardPage);
+            // Navigate to the wizard page. EntrySaved event is no longer used in MVVM.
+            await Navigation.PushAsync(new Views.NewEntryWizardPage());
         }
     }
 }

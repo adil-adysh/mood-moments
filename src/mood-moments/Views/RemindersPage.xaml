@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mood_moments.Views.RemindersPage"
+             x:Name="RemindersPageRoot"
              Title="Reminders">
     <StackLayout Padding="20">
         <Label Text="Reminders" FontSize="24" FontAttributes="Bold" />
@@ -18,15 +19,26 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <StackLayout Orientation="Horizontal" Spacing="8" Margin="0,16,0,0">
-            <Entry Placeholder="Reminder text" Text="{Binding NewReminderText}" WidthRequest="160" />
-            <Picker Title="Hour" ItemsSource="{Binding Hours}" SelectedItem="{Binding Hour}" WidthRequest="60" />
-            <Picker Title="Minute" ItemsSource="{Binding Minutes}" SelectedItem="{Binding Minute}" WidthRequest="60" />
-            <StackLayout Orientation="Horizontal" Spacing="0">
-                <RadioButton Content="AM" GroupName="ampm" IsChecked="{Binding IsPm, Converter={StaticResource InverseBoolConverter}}" />
-                <RadioButton Content="PM" GroupName="ampm" IsChecked="{Binding IsPm}" />
-            </StackLayout>
-            <Button Text="Add" Command="{Binding AddReminderCommand}" />
-        </StackLayout>
+        <Button Text="Add Reminder" Command="{Binding ShowAddReminderDialogCommand}" />
+        <Grid IsVisible="{Binding IsAddReminderDialogVisible}" BackgroundColor="#80000000">
+            <Frame Padding="20" BackgroundColor="White" CornerRadius="12" VerticalOptions="Center" HorizontalOptions="Center">
+                <StackLayout Orientation="Vertical" Spacing="12">
+                    <Label Text="Add Reminder" FontSize="20" FontAttributes="Bold" />
+                    <Entry Placeholder="Reminder text" Text="{Binding NewReminderText}" WidthRequest="160" />
+                    <StackLayout Orientation="Horizontal" Spacing="8">
+                        <Picker Title="Hour" ItemsSource="{Binding Hours}" SelectedItem="{Binding Hour}" WidthRequest="60" />
+                        <Picker Title="Minute" ItemsSource="{Binding Minutes}" SelectedItem="{Binding Minute}" WidthRequest="60" />
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <RadioButton Content="AM" GroupName="ampm" IsChecked="{Binding IsPm, Converter={StaticResource InverseBoolConverter}}" />
+                            <RadioButton Content="PM" GroupName="ampm" IsChecked="{Binding IsPm}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
+                        <Button Text="Cancel" Command="{Binding HideAddReminderDialogCommand}" />
+                        <Button Text="Add" Command="{Binding AddReminderCommand}" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
     </StackLayout>
 </ContentPage>

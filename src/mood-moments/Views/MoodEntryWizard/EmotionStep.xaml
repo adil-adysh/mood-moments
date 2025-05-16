@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
              x:Class="mood_moments.Views.MoodEntryWizard.EmotionStep">
+    <ContentView.BindingContext>
+        <viewModels:NewEntryWizardViewModel />
+    </ContentView.BindingContext>
     <StackLayout>
         <!-- The parent page should set StepTitle to:
              Core: "How are you feeling at your core?"
              Secondary: "Can you be more specific about your feeling?"
              Nuanced: "Is there a more precise word for your feeling?" -->
-        <Label x:Name="StepTitle" FontSize="22" FontAttributes="Bold"
+        <Label Text="{Binding StepTitle}" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Emotion Selection" />
-        <Label x:Name="EmotionGridHeading" Text="Select one of the options below" FontSize="18" FontAttributes="Bold"
+        <Label Text="Select one of the options below" FontSize="18" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level2"
                SemanticProperties.Description="Emotion Options" />
-        <Grid x:Name="EmotionGrid" ColumnSpacing="10" RowSpacing="10"
-              SemanticProperties.Description="Emotion Choices" />
-        <Button x:Name="SkipButton" Text="Skip to Intensity"
-                SemanticProperties.Description="Skip to Intensity" />
+        <CollectionView ItemsSource="{Binding CoreEmotions}" SelectionMode="Single"
+                        IsVisible="{Binding CurrentStep, Converter={StaticResource StepToVisibilityConverter}, ConverterParameter=0}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Button Text="{Binding .}" Command="{Binding BindingContext.SelectCoreEmotionCommand, Source={x:Reference Name=EmotionStepRoot}}" CommandParameter="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <CollectionView ItemsSource="{Binding MidEmotions}" SelectionMode="Single"
+                        IsVisible="{Binding CurrentStep, Converter={StaticResource StepToVisibilityConverter}, ConverterParameter=1}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Button Text="{Binding .}" Command="{Binding BindingContext.SelectMidEmotionCommand, Source={x:Reference Name=EmotionStepRoot}}" CommandParameter="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <CollectionView ItemsSource="{Binding NuancedEmotions}" SelectionMode="Single"
+                        IsVisible="{Binding CurrentStep, Converter={StaticResource StepToVisibilityConverter}, ConverterParameter=2}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Button Text="{Binding .}" Command="{Binding BindingContext.SelectNuancedEmotionCommand, Source={x:Reference Name=EmotionStepRoot}}" CommandParameter="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentView>

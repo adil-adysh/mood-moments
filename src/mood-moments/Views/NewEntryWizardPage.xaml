@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
              x:Class="mood_moments.Views.NewEntryWizardPage"
              Title="New Mood Entry">
+    <ContentPage.BindingContext>
+        <viewModels:NewEntryWizardViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label x:Name="StepTitle" FontSize="24" FontAttributes="Bold" />
-            <StackLayout x:Name="StepContent" />
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0">
-                <Button x:Name="BackButton" Text="Back" Clicked="BackButton_Clicked" IsVisible="False" />
-                <Button x:Name="FinishButton" Text="Finish" Clicked="FinishButton_Clicked" IsVisible="False" />
-            </StackLayout>
+            <Label Text="{Binding StepTitle}" FontSize="24" FontAttributes="Bold" />
+            <ContentView Content="{Binding StepContent}" />
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Back" Command="{Binding BackStepCommand}" IsVisible="{Binding IsBackVisible}" Grid.Column="0" />
+                <Button Text="Finish" Command="{Binding FinishCommand}" IsVisible="{Binding IsFinishVisible}" Grid.Column="1" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
