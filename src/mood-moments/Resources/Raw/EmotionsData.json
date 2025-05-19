@@ -1,0 +1,284 @@
+[
+    {
+        "core": "Happy",
+        "mid_level": [
+            {
+                "name": "Optimistic",
+                "nuanced": [
+                    "Hopeful",
+                    "Inspired"
+                ]
+            },
+            {
+                "name": "Trusting",
+                "nuanced": [
+                    "Sensitive",
+                    "Intimate"
+                ]
+            },
+            {
+                "name": "Peaceful",
+                "nuanced": [
+                    "Thankful",
+                    "Loving"
+                ]
+            },
+            {
+                "name": "Powerful",
+                "nuanced": [
+                    "Creative",
+                    "Courageous"
+                ]
+            },
+            {
+                "name": "Accepted",
+                "nuanced": [
+                    "Respected",
+                    "Valued"
+                ]
+            },
+            {
+                "name": "Proud",
+                "nuanced": [
+                    "Confident",
+                    "Successful"
+                ]
+            },
+            {
+                "name": "Interested",
+                "nuanced": [
+                    "Inquisitive",
+                    "Curious"
+                ]
+            },
+            {
+                "name": "Joyful",
+                "nuanced": [
+                    "Cheeky",
+                    "Playful"
+                ]
+            }
+        ]
+    },
+    {
+        "core": "Sad",
+        "mid_level": [
+            {
+                "name": "Lonely",
+                "nuanced": [
+                    "Isolated",
+                    "Abandoned"
+                ]
+            },
+            {
+                "name": "Vulnerable",
+                "nuanced": [
+                    "Victimized",
+                    "Fragile"
+                ]
+            },
+            {
+                "name": "Despair",
+                "nuanced": [
+                    "Grief",
+                    "Powerless"
+                ]
+            },
+            {
+                "name": "Guilty",
+                "nuanced": [
+                    "Remorseful",
+                    "Ashamed"
+                ]
+            },
+            {
+                "name": "Depressed",
+                "nuanced": [
+                    "Empty",
+                    "Inferior"
+                ]
+            },
+            {
+                "name": "Hurt",
+                "nuanced": [
+                    "Embarrassed",
+                    "Disappointed"
+                ]
+            }
+        ]
+    },
+    {
+        "core": "Angry",
+        "mid_level": [
+            {
+                "name": "Let down",
+                "nuanced": [
+                    "Betrayed",
+                    "Resentful"
+                ]
+            },
+            {
+                "name": "Humiliated",
+                "nuanced": [
+                    "Disrespected",
+                    "Ridiculed"
+                ]
+            },
+            {
+                "name": "Bitter",
+                "nuanced": [
+                    "Indignant",
+                    "Violated"
+                ]
+            },
+            {
+                "name": "Mad",
+                "nuanced": [
+                    "Furious",
+                    "Jealous"
+                ]
+            },
+            {
+                "name": "Aggressive",
+                "nuanced": [
+                    "Provoked",
+                    "Hostile"
+                ]
+            },
+            {
+                "name": "Frustrated",
+                "nuanced": [
+                    "Infuriated",
+                    "Annoyed"
+                ]
+            },
+            {
+                "name": "Distant",
+                "nuanced": [
+                    "Withdrawn",
+                    "Numb"
+                ]
+            },
+            {
+                "name": "Critical",
+                "nuanced": [
+                    "Skeptical",
+                    "Dismissive"
+                ]
+            }
+        ]
+    },
+    {
+        "core": "Afraid",
+        "mid_level": [
+            {
+                "name": "Scared",
+                "nuanced": [
+                    "Helpless",
+                    "Frightened"
+                ]
+            },
+            {
+                "name": "Anxious",
+                "nuanced": [
+                    "Overwhelmed",
+                    "Worried"
+                ]
+            },
+            {
+                "name": "Insecure",
+                "nuanced": [
+                    "Inferior",
+                    "Inadequate"
+                ]
+            },
+            {
+                "name": "Weak",
+                "nuanced": [
+                    "Worthless",
+                    "Insignificant"
+                ]
+            },
+            {
+                "name": "Rejected",
+                "nuanced": [
+                    "Excluded",
+                    "Persecuted"
+                ]
+            },
+            {
+                "name": "Threatened",
+                "nuanced": [
+                    "Nervous",
+                    "Exposed"
+                ]
+            }
+        ]
+    },
+    {
+        "core": "Disgusted",
+        "mid_level": [
+            {
+                "name": "Disapproving",
+                "nuanced": [
+                    "Judgmental",
+                    "Embarrassed"
+                ]
+            },
+            {
+                "name": "Disappointed",
+                "nuanced": [
+                    "Appalled",
+                    "Revolted"
+                ]
+            },
+            {
+                "name": "Awful",
+                "nuanced": [
+                    "Nauseated",
+                    "Detestable"
+                ]
+            },
+            {
+                "name": "Repelled",
+                "nuanced": [
+                    "Horrified",
+                    "Disgusted"
+                ]
+            }
+        ]
+    },
+    {
+        "core": "Surprised",
+        "mid_level": [
+            {
+                "name": "Startled",
+                "nuanced": [
+                    "Shocked",
+                    "Dismayed"
+                ]
+            },
+            {
+                "name": "Confused",
+                "nuanced": [
+                    "Disillusioned",
+                    "Perplexed"
+                ]
+            },
+            {
+                "name": "Amazed",
+                "nuanced": [
+                    "Astonished",
+                    "Awe"
+                ]
+            },
+            {
+                "name": "Excited",
+                "nuanced": [
+                    "Eager",
+                    "Energetic"
+                ]
+            }
+        ]
+    }
+]

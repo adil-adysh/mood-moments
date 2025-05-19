@@ -15,6 +15,7 @@ namespace mood_moments.Views
         public NewEntryWizardPage()
         {
             InitializeComponent();
+            // Removed navigation bar back button code
         }
 
         protected override void OnAppearing()
@@ -23,7 +24,18 @@ namespace mood_moments.Views
             if (ViewModel != null)
             {
                 ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+                ViewModel.WizardFinished += OnWizardFinished;
                 SetStepContent(ViewModel.CurrentStep);
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (ViewModel != null)
+            {
+                ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
+                ViewModel.WizardFinished -= OnWizardFinished;
             }
         }
 
@@ -34,9 +46,19 @@ namespace mood_moments.Views
             {
                 ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
                 ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-                //if (StepHost != null)
-                    SetStepContent(ViewModel.CurrentStep); //this is a prblematic line here
+                ViewModel.WizardFinished -= OnWizardFinished;
+                ViewModel.WizardFinished += OnWizardFinished;
+                SetStepContent(ViewModel.CurrentStep);
             }
+        }
+
+        private void OnWizardFinished()
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                if (Navigation.NavigationStack.Count > 0)
+                    await Navigation.PopAsync();
+            });
         }
 
         private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)

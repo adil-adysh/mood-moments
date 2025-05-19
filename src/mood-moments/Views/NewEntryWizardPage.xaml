@@ -14,7 +14,7 @@
             <Label Text="{Binding StepTitle}"
                    FontSize="24"
                    FontAttributes="Bold"/>
-            <ContentView x:Name="StepHost" />
+            <ContentView x:Name="StepHost"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -4,12 +4,34 @@ using System.Collections.ObjectModel;
 using mood_moments.Models;
 using mood_moments.Views.MoodEntryWizard;
 using Microsoft.Maui.Controls;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace mood_moments.ViewModels
 {
     public partial class NewEntryWizardViewModel : ObservableObject
     {
-        public NewEntryWizardViewModel() { }
+        public NewEntryWizardViewModel()
+        {
+            _ = LoadEmotionHierarchy();
+        }
+
+        // Change signature to return Task
+        private async Task LoadEmotionHierarchy()
+        {
+            try
+            {
+                using var stream = await FileSystem.OpenAppPackageFileAsync("EmotionsData.json");
+                emotionHierarchy = await EmotionHierarchy.LoadFromJsonAsync(stream);
+                CoreEmotions.Clear();
+                foreach (var core in emotionHierarchy.GetCoreEmotions())
+                    CoreEmotions.Add(core);
+            }
+            catch (Exception ex)
+            {
+                Application.Current?.MainPage?.DisplayAlert("Error", $"Failed to load emotions: {ex.Message}", "OK");
+            }
+        }
 
         [ObservableProperty]
         private int currentStep = 0;
@@ -29,7 +51,7 @@ namespace mood_moments.ViewModels
         [ObservableProperty]
         private string? triggersValue;
 
-        public ObservableCollection<string> CoreEmotions { get; } = new(new[] { "Joy", "Sadness", "Fear", "Anger", "Disgust", "Surprise" });
+        public ObservableCollection<string> CoreEmotions { get; private set; } = new();
         public ObservableCollection<string> MidEmotions { get; } = new();
         public ObservableCollection<string> NuancedEmotions { get; } = new();
 
@@ -52,54 +74,7 @@ namespace mood_moments.ViewModels
 
         public string StepTitle => StepTitles.Count > CurrentStep ? StepTitles[CurrentStep] : string.Empty;
 
-        // Core to mid and mid to nuanced emotion mappings
-        private static readonly Dictionary<string, List<string>> coreToMid = new()
-        {
-            { "Joy", new List<string> { "Content", "Proud", "Cheerful", "Grateful", "Hopeful", "Excited" } },
-            { "Sadness", new List<string> { "Disappointed", "Lonely", "Hurt", "Guilt", "Discouraged", "Depressed" } },
-            { "Fear", new List<string> { "Insecure", "Anxious", "Nervous", "Helpless", "Rejected", "Scared" } },
-            { "Anger", new List<string> { "Frustrated", "Resentful", "Annoyed", "Hostile", "Irritated", "Bitter" } },
-            { "Disgust", new List<string> { "Disapproval", "Judgmental", "Disdain", "Contempt", "Embarrassed", "Uncomfortable" } },
-            { "Surprise", new List<string> { "Shocked", "Confused", "Amazed", "Startled", "Intrigued", "Disoriented" } },
-        };
-        private static readonly Dictionary<string, Dictionary<string, List<string>>> midToNuanced = new()
-        {
-            { "Joy", new Dictionary<string, List<string>> { { "Excited", new List<string> { "Energetic", "Ecstatic", "Thrilled" } } } },
-            { "Sadness", new Dictionary<string, List<string>> { { "Hurt", new List<string> { "Rejected", "Heartbroken", "Grieving" } } } },
-            { "Fear", new Dictionary<string, List<string>> { { "Anxious", new List<string> { "Worried", "Panicked", "Apprehensive" } } } },
-            { "Anger", new Dictionary<string, List<string>> { { "Frustrated", new List<string> { "Agitated", "Impatient", "Provoked" } } } },
-            { "Disgust", new Dictionary<string, List<string>> { { "Embarrassed", new List<string> { "Ashamed", "Self-conscious", "Awkward" } } } },
-            { "Surprise", new Dictionary<string, List<string>> { { "Confused", new List<string> { "Perplexed", "Disoriented", "Puzzled" } } } },
-        };
-
-        public ObservableCollection<string> ContextOptions { get; } = new(new[]
-        {
-            "Social Interaction",
-            "Task or Activity",
-            "Rest or Pause",
-            "Internal Reflection",
-            "Change or Event",
-            "Anticipation",
-            "Physical/Sensory",
-            "Environment"
-        });
-
-        public ObservableCollection<string> TriggerOptions { get; } = new(new[]
-        {
-            "Exclusion / Rejection",
-            "Criticism / Judgment",
-            "Approval / Validation",
-            "Disconnection",
-            "Achievement / Failure",
-            "Loss / Absence",
-            "Uncertainty / Ambiguity",
-            "Repetition / Pattern",
-            "Self-Evaluation (Neg)",
-            "Self-Evaluation (Pos)",
-            "Violation of Expectation",
-            "Physical State",
-            "Relationship Conflict"
-        });
+        private EmotionHierarchy? emotionHierarchy;
 
         public View? CurrentStepView
         {
@@ -120,10 +95,8 @@ namespace mood_moments.ViewModels
         }
 
         public int StepCount => StepTitles.Count;
-        public bool CanGoBack => CurrentStep > 0;
         public bool CanGoNext => CurrentStep < StepCount - 1;
         public bool IsFinishVisible => CurrentStep == StepCount - 1;
-        public bool IsBackVisible => CurrentStep > 0;
 
         [RelayCommand]
         void NextStep()
@@ -135,15 +108,7 @@ namespace mood_moments.ViewModels
             }
         }
 
-        [RelayCommand]
-        void BackStep()
-        {
-            if (CurrentStep > 0)
-            {
-                CurrentStep--;
-                UpdateStepProperties();
-            }
-        }
+        public event Action? WizardFinished;
 
         [RelayCommand]
         void Finish()
@@ -160,15 +125,14 @@ namespace mood_moments.ViewModels
             ContextValue = null;
             TriggersValue = null;
             UpdateStepProperties();
+            WizardFinished?.Invoke();
         }
 
         private void UpdateStepProperties()
         {
             OnPropertyChanged(nameof(StepTitle));
-            OnPropertyChanged(nameof(CanGoBack));
             OnPropertyChanged(nameof(CanGoNext));
             OnPropertyChanged(nameof(IsFinishVisible));
-            OnPropertyChanged(nameof(IsBackVisible));
             OnPropertyChanged(nameof(CurrentStepView));
         }
 
@@ -178,13 +142,12 @@ namespace mood_moments.ViewModels
             SelectedCoreEmotion = emotion;
             MidEmotions.Clear();
             NuancedEmotions.Clear();
-            if (!string.IsNullOrEmpty(emotion) && coreToMid.TryGetValue(emotion, out var mids))
+            if (!string.IsNullOrEmpty(emotion) && emotionHierarchy != null)
             {
-                foreach (var mid in mids)
+                foreach (var mid in emotionHierarchy.GetMidLevelEmotions(emotion))
                     MidEmotions.Add(mid);
             }
-            if (!string.IsNullOrEmpty(emotion))
-                NextStep();
+            // Removed automatic NextStep() call here
         }
 
         [RelayCommand]
@@ -192,23 +155,19 @@ namespace mood_moments.ViewModels
         {
             SelectedMidEmotion = emotion;
             NuancedEmotions.Clear();
-            if (!string.IsNullOrEmpty(SelectedCoreEmotion) && !string.IsNullOrEmpty(emotion)
-                && midToNuanced.TryGetValue(SelectedCoreEmotion, out var nuancesForCore)
-                && nuancesForCore.TryGetValue(emotion, out var nuances))
+            if (!string.IsNullOrEmpty(SelectedCoreEmotion) && !string.IsNullOrEmpty(emotion) && emotionHierarchy != null)
             {
-                foreach (var nuance in nuances)
+                foreach (var nuance in emotionHierarchy.GetNuancedEmotions(SelectedCoreEmotion, emotion))
                     NuancedEmotions.Add(nuance);
             }
-            if (!string.IsNullOrEmpty(emotion))
-                NextStep();
+            // Removed automatic NextStep() call
         }
 
         [RelayCommand]
         void SelectNuancedEmotion(string emotion)
         {
             SelectedNuancedEmotion = emotion;
-            if (!string.IsNullOrEmpty(emotion))
-                NextStep();
+            // Removed automatic NextStep() call
         }
 
         [RelayCommand]

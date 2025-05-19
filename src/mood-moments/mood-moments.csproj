@@ -29,4 +29,10 @@
 		<PackageReference Include="Plugin.LocalNotification" Version="12.0.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Include="Resources\Raw\EmotionsData.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>
