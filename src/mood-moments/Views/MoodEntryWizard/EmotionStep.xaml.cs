@@ -6,6 +6,18 @@ namespace mood_moments.Views.MoodEntryWizard
 {
     public partial class EmotionStep : ContentView
     {
-        // All code-behind logic is now handled by the ViewModel and XAML bindings. This file can be empty or removed.
+        public EmotionStep()
+        {
+            InitializeComponent();
+        }
+
+        public void OnCoreEmotionCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value && sender is RadioButton rb && rb.Content is string emotion && BindingContext is mood_moments.ViewModels.NewEntryWizardViewModel vm)
+            {
+                if (vm.SelectCoreEmotionCommand.CanExecute(emotion))
+                    vm.SelectCoreEmotionCommand.Execute(emotion);
+            }
+        }
     }
 }

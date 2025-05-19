@@ -8,6 +8,9 @@ namespace mood_moments.Views.MoodEntryWizard
 {
     public partial class TriggerStep : ContentView
     {
-        // All code-behind logic is now handled by the ViewModel and XAML bindings. This file can be empty or removed.
+        public TriggerStep()
+        {
+            InitializeComponent();
+        }
     }
 }

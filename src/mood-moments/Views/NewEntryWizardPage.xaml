@@ -2,23 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
+             xmlns:views="clr-namespace:mood_moments.Views"
+             xmlns:mew="clr-namespace:mood_moments.Views.MoodEntryWizard"
              x:Class="mood_moments.Views.NewEntryWizardPage"
              Title="New Mood Entry">
     <ContentPage.BindingContext>
-        <viewModels:NewEntryWizardViewModel />
+        <viewModels:NewEntryWizardViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="{Binding StepTitle}" FontSize="24" FontAttributes="Bold" />
-            <ContentView Content="{Binding StepContent}" />
-            <Grid Margin="0,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="Back" Command="{Binding BackStepCommand}" IsVisible="{Binding IsBackVisible}" Grid.Column="0" />
-                <Button Text="Finish" Command="{Binding FinishCommand}" IsVisible="{Binding IsFinishVisible}" Grid.Column="1" />
-            </Grid>
+            <Label Text="{Binding StepTitle}"
+                   FontSize="24"
+                   FontAttributes="Bold"/>
+            <ContentView x:Name="StepHost" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

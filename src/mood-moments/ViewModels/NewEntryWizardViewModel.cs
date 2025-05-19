@@ -2,11 +2,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using mood_moments.Models;
+using mood_moments.Views.MoodEntryWizard;
+using Microsoft.Maui.Controls;
 
 namespace mood_moments.ViewModels
 {
     public partial class NewEntryWizardViewModel : ObservableObject
     {
+        public NewEntryWizardViewModel() { }
+
         [ObservableProperty]
         private int currentStep = 0;
 
@@ -45,6 +49,8 @@ namespace mood_moments.ViewModels
         public ObservableCollection<object> StepContents { get; } = new();
 
         public object? StepContent => StepContents.Count > CurrentStep ? StepContents[CurrentStep] : null;
+
+        public string StepTitle => StepTitles.Count > CurrentStep ? StepTitles[CurrentStep] : string.Empty;
 
         // Core to mid and mid to nuanced emotion mappings
         private static readonly Dictionary<string, List<string>> coreToMid = new()
@@ -95,28 +101,54 @@ namespace mood_moments.ViewModels
             "Relationship Conflict"
         });
 
+        public View? CurrentStepView
+        {
+            get
+            {
+                return CurrentStep switch
+                {
+                    0 => new EmotionStep { BindingContext = this },
+                    1 => new EmotionStep { BindingContext = this },
+                    2 => new EmotionStep { BindingContext = this },
+                    3 => new IntensityStep { BindingContext = this },
+                    4 => new NoteStep { BindingContext = this },
+                    5 => new ContextStep { BindingContext = this },
+                    6 => new TriggerStep { BindingContext = this },
+                    _ => null
+                };
+            }
+        }
+
+        public int StepCount => StepTitles.Count;
+        public bool CanGoBack => CurrentStep > 0;
+        public bool CanGoNext => CurrentStep < StepCount - 1;
+        public bool IsFinishVisible => CurrentStep == StepCount - 1;
+        public bool IsBackVisible => CurrentStep > 0;
+
         [RelayCommand]
         void NextStep()
         {
-            if (CurrentStep < 6) CurrentStep++;
+            if (CurrentStep < StepCount - 1)
+            {
+                CurrentStep++;
+                UpdateStepProperties();
+            }
         }
 
         [RelayCommand]
         void BackStep()
         {
-            if (CurrentStep > 0) CurrentStep--;
+            if (CurrentStep > 0)
+            {
+                CurrentStep--;
+                UpdateStepProperties();
+            }
         }
 
         [RelayCommand]
         void Finish()
         {
             // Save the mood entry (example logic)
-            string mood = SelectedCoreEmotion ?? string.Empty;
-            if (!string.IsNullOrEmpty(SelectedNuancedEmotion))
-                mood = SelectedNuancedEmotion;
-            else if (!string.IsNullOrEmpty(SelectedMidEmotion))
-                mood = SelectedMidEmotion;
-
             // Example: You could raise an event, call a service, or navigate away here.
             // For now, just clear the wizard state as a placeholder for completion.
             CurrentStep = 0;
@@ -127,12 +159,30 @@ namespace mood_moments.ViewModels
             PersonalNote = null;
             ContextValue = null;
             TriggersValue = null;
+            UpdateStepProperties();
+        }
+
+        private void UpdateStepProperties()
+        {
+            OnPropertyChanged(nameof(StepTitle));
+            OnPropertyChanged(nameof(CanGoBack));
+            OnPropertyChanged(nameof(CanGoNext));
+            OnPropertyChanged(nameof(IsFinishVisible));
+            OnPropertyChanged(nameof(IsBackVisible));
+            OnPropertyChanged(nameof(CurrentStepView));
         }
 
         [RelayCommand]
         void SelectCoreEmotion(string emotion)
         {
             SelectedCoreEmotion = emotion;
+            MidEmotions.Clear();
+            NuancedEmotions.Clear();
+            if (!string.IsNullOrEmpty(emotion) && coreToMid.TryGetValue(emotion, out var mids))
+            {
+                foreach (var mid in mids)
+                    MidEmotions.Add(mid);
+            }
             if (!string.IsNullOrEmpty(emotion))
                 NextStep();
         }
@@ -141,6 +191,14 @@ namespace mood_moments.ViewModels
         void SelectMidEmotion(string emotion)
         {
             SelectedMidEmotion = emotion;
+            NuancedEmotions.Clear();
+            if (!string.IsNullOrEmpty(SelectedCoreEmotion) && !string.IsNullOrEmpty(emotion)
+                && midToNuanced.TryGetValue(SelectedCoreEmotion, out var nuancesForCore)
+                && nuancesForCore.TryGetValue(emotion, out var nuances))
+            {
+                foreach (var nuance in nuances)
+                    NuancedEmotions.Add(nuance);
+            }
             if (!string.IsNullOrEmpty(emotion))
                 NextStep();
         }
@@ -180,6 +238,14 @@ namespace mood_moments.ViewModels
         {
             TriggersValue = trigger;
             NextStep();
+        }
+
+        [RelayCommand]
+        void SkipToIntensity()
+        {
+            // Intensity step is index 3
+            CurrentStep = 3;
+            UpdateStepProperties();
         }
     }
 }

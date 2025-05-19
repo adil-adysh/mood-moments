@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
              x:Class="mood_moments.Views.MoodEntryWizard.TriggerStep">
-    <ContentView.BindingContext>
-        <viewModels:NewEntryWizardViewModel />
-    </ContentView.BindingContext>
     <StackLayout>
         <Label Text="Step 7: Triggers" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
@@ -17,5 +14,14 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Back" Command="{Binding BackStepCommand}" Grid.Column="0" />
+            <Button Text="Finish" Command="{Binding FinishCommand}" Grid.Column="2" />
+        </Grid>
     </StackLayout>
 </ContentView>

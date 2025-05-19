@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mood_moments.Views.MoodEntryWizard.NuanceEmotionStep"
+             x:Name="NuanceEmotionStepRoot">
+    <StackLayout Padding="10" Spacing="15">
+        <Label Text="{Binding StepTitle}" FontSize="22" FontAttributes="Bold" />
+        <Label Text="Pick the most precise word for your feeling" FontSize="18" FontAttributes="Bold" />
+        <CollectionView ItemsSource="{Binding NuancedEmotions}" SelectionMode="Single" x:Name="NuancedEmotionsCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Content="{Binding .}"
+                                 GroupName="NuancedEmotionsGroup"
+                                 CheckedChanged="OnNuancedEmotionCheckedChanged" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentView>

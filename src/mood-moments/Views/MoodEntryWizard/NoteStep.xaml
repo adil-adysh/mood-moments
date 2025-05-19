@@ -3,15 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
              x:Class="mood_moments.Views.MoodEntryWizard.NoteStep">
-    <ContentView.BindingContext>
-        <viewModels:NewEntryWizardViewModel />
-    </ContentView.BindingContext>
     <StackLayout>
         <Label Text="Step 5: Personal Note" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Note Step Heading" />
         <Editor Text="{Binding PersonalNote, Mode=TwoWay}" Placeholder="Write your note here..." AutoSize="TextChanges" HeightRequest="100"
                 SemanticProperties.Description="Personal Note Editor" />
-        <Button Text="Next" Command="{Binding SetPersonalNoteCommand}" CommandParameter="{Binding PersonalNote}" />
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Back" Command="{Binding BackStepCommand}" Grid.Column="0" />
+            <Button Text="Next" Command="{Binding NextStepCommand}" Grid.Column="2" />
+        </Grid>
     </StackLayout>
 </ContentView>

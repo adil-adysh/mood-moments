@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
-             x:Class="mood_moments.Views.MoodEntryWizard.EmotionStep">
-    <ContentView.BindingContext>
-        <viewModels:NewEntryWizardViewModel />
-    </ContentView.BindingContext>
-    <StackLayout>
-        <!-- The parent page should set StepTitle to:
-             Core: "How are you feeling at your core?"
-             Secondary: "Can you be more specific about your feeling?"
-             Nuanced: "Is there a more precise word for your feeling?" -->
-        <Label Text="{Binding StepTitle}" FontSize="22" FontAttributes="Bold"
+             x:Class="mood_moments.Views.MoodEntryWizard.EmotionStep"
+             x:Name="EmotionStepRoot">
+    <StackLayout Padding="10" Spacing="15">
+        <!-- Main Title -->
+        <Label Text="{Binding StepTitle}"
+                FontSize="22"
+                FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
-               SemanticProperties.Description="Emotion Selection" />
-        <Label Text="Select one of the options below" FontSize="18" FontAttributes="Bold"
+               SemanticProperties.Description="Emotion Selection"/>
+
+        <Label Text="Select one of the options below"
+                FontSize="18"
+                FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level2"
-               SemanticProperties.Description="Emotion Options" />
-        <CollectionView ItemsSource="{Binding CoreEmotions}" SelectionMode="Single"
-                        IsVisible="{Binding CurrentStep, Converter={StaticResource StepToVisibilityConverter}, ConverterParameter=0}">
+               SemanticProperties.Description="Emotion Options"/>
+
+        <!-- Core Emotions -->
+        <CollectionView ItemsSource="{Binding CoreEmotions}" SelectionMode="Single" x:Name="CoreEmotionsCollection">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Button Text="{Binding .}" Command="{Binding BindingContext.SelectCoreEmotionCommand, Source={x:Reference Name=EmotionStepRoot}}" CommandParameter="{Binding .}" />
+                    <RadioButton Content="{Binding .}"
+                                 GroupName="CoreEmotionsGroup"
+                                 CheckedChanged="OnCoreEmotionCheckedChanged" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <CollectionView ItemsSource="{Binding MidEmotions}" SelectionMode="Single"
-                        IsVisible="{Binding CurrentStep, Converter={StaticResource StepToVisibilityConverter}, ConverterParameter=1}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Button Text="{Binding .}" Command="{Binding BindingContext.SelectMidEmotionCommand, Source={x:Reference Name=EmotionStepRoot}}" CommandParameter="{Binding .}" />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <CollectionView ItemsSource="{Binding NuancedEmotions}" SelectionMode="Single"
-                        IsVisible="{Binding CurrentStep, Converter={StaticResource StepToVisibilityConverter}, ConverterParameter=2}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Button Text="{Binding .}" Command="{Binding BindingContext.SelectNuancedEmotionCommand, Source={x:Reference Name=EmotionStepRoot}}" CommandParameter="{Binding .}" />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Back" Command="{Binding BackStepCommand}" Grid.Column="0" />
+            <Button Text="Skip to Intensity" Command="{Binding SkipToIntensityCommand}" Grid.Column="1" />
+            <Button Text="Next" Command="{Binding NextStepCommand}" Grid.Column="2" />
+        </Grid>
     </StackLayout>
 </ContentView>
