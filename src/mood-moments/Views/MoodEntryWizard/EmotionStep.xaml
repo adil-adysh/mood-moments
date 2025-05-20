@@ -18,7 +18,7 @@
                SemanticProperties.Description="Emotion Options"/>
 
         <!-- Core Emotions -->
-        <CollectionView ItemsSource="{Binding CoreEmotions}" SelectionMode="Single" x:Name="CoreEmotionsCollection">
+        <CollectionView ItemsSource="{Binding EmotionSelection.CoreEmotions}" SelectionMode="Single" x:Name="CoreEmotionsCollection">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <RadioButton Content="{Binding .}"
@@ -34,9 +34,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Text="Back" Command="{Binding BackStepCommand}" Grid.Column="0" />
-            <Button Text="Skip to Intensity" Command="{Binding SkipToIntensityCommand}" Grid.Column="1" />
-            <Button Text="Next" Command="{Binding NextStepCommand}" Grid.Column="2" />
+            <Button Text="Back" Command="{Binding Navigation.BackStepCommand}" Grid.Column="0" />
+            <Button Text="Skip to Intensity" Command="{Binding Navigation.SkipToIntensityCommand}" Grid.Column="1" />
+            <Button Text="Next" Command="{Binding Navigation.NextStepCommand}" Grid.Column="2" />
         </Grid>
     </StackLayout>
 </ContentView>

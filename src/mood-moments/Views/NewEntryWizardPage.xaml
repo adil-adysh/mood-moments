@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+    This is a .NET MAUI ContentPage for the New Entry Wizard.
+    - ContentPage: Represents a single page of your app's UI.
+    - xmlns: XML namespaces for XAML, including custom namespaces for ViewModels and Views.
+    - x:Class: Links this XAML to its code-behind file.
+    - Title: Sets the page title (shown in navigation bars).
+-->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
@@ -6,14 +13,31 @@
              xmlns:mew="clr-namespace:mood_moments.Views.MoodEntryWizard"
              x:Class="mood_moments.Views.NewEntryWizardPage"
              Title="New Mood Entry">
+    <!--
+        Sets the BindingContext for this page to an instance of NewEntryWizardViewModel.
+        This enables data binding between the ViewModel and the UI controls.
+    -->
     <ContentPage.BindingContext>
         <viewModels:NewEntryWizardViewModel/>
     </ContentPage.BindingContext>
+    <!--
+        The main content of the page is a StackLayout with padding.
+        StackLayout arranges its children vertically by default.
+    -->
     <ContentPage.Content>
         <StackLayout Padding="20">
+            <!--
+                Label bound to the StepTitle property of the ViewModel.
+                - Text: Uses data binding to display the current step's title.
+                - FontSize and FontAttributes: Style the label as a heading.
+            -->
             <Label Text="{Binding StepTitle}"
                    FontSize="24"
                    FontAttributes="Bold"/>
+            <!--
+                ContentView named StepHost acts as a placeholder for the current step's content.
+                The actual content is likely swapped dynamically in the code-behind or ViewModel.
+            -->
             <ContentView x:Name="StepHost"/>
         </StackLayout>
     </ContentPage.Content>

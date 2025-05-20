@@ -6,7 +6,7 @@
     <StackLayout Padding="10" Spacing="15">
         <Label Text="{Binding StepTitle}" FontSize="22" FontAttributes="Bold" />
         <Label Text="Pick the most precise word for your feeling" FontSize="18" FontAttributes="Bold" />
-        <CollectionView ItemsSource="{Binding NuancedEmotions}" SelectionMode="Single" x:Name="NuancedEmotionsCollection">
+        <CollectionView ItemsSource="{Binding EmotionSelection.NuancedEmotions}" SelectionMode="Single" x:Name="NuancedEmotionsCollection">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <RadioButton Content="{Binding .}"
@@ -21,8 +21,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Text="Back" Command="{Binding BackStepCommand}" Grid.Column="0" IsVisible="{Binding CanGoBack}" />
-            <Button Text="Next" Command="{Binding NextStepCommand}" Grid.Column="2" />
+            <Button Text="Back" Command="{Binding Navigation.BackStepCommand}" Grid.Column="0" IsVisible="{Binding CanGoBack}" />
+            <Button Text="Next" Command="{Binding Navigation.NextStepCommand}" Grid.Column="2" />
         </Grid>
     </StackLayout>
 </ContentView>
