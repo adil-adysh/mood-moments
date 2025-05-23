@@ -11,7 +11,7 @@ namespace mood_moments.Droid
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Plugin.LocalNotification.NotificationCenter.CreateNotificationChannel();
+            // Channel creation is handled automatically by Plugin.LocalNotification v12+
         }
     }
 }

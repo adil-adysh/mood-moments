@@ -9,7 +9,7 @@ public partial class App : Application
 		MainPage = new AppShell();
 
 #if ANDROID
-		Plugin.LocalNotification.NotificationCenter.Current.NotificationActionTapped += OnNotificationActionTapped;
+		Plugin.LocalNotification.LocalNotificationCenter.Current.NotificationActionTapped += OnNotificationActionTapped;
 #endif
 	}
 

@@ -11,9 +11,15 @@ namespace mood_moments.Views.MoodEntryWizard
 
         public void OnNuancedEmotionCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (e.Value && sender is RadioButton rb && rb.Content is string emotion && BindingContext is mood_moments.ViewModels.NewEntryWizardViewModel vm && vm.SelectNuancedEmotionCommand.CanExecute(emotion))
+            if (e != null
+                && e.Value
+                && sender is RadioButton rb
+                && rb.Content is string emotion
+                && BindingContext is mood_moments.ViewModels.NewEntryWizardViewModel vm
+                && vm.SelectNuancedEmotionCommand != null
+                && vm.SelectNuancedEmotionCommand.CanExecute(emotion))
             {
-                vm.SelectNuancedEmotionCommand.Execute(emotion);
+                vm.SelectNuancedEmotionCommand?.Execute(emotion);
             }
         }
     }
