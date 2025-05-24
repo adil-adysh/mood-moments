@@ -1,0 +1,1169 @@
+{
+    "domains": [
+        {
+            "name": "Body & Health",
+            "description": "How your body feels and functions, including sleep, food, and physical well-being.",
+            "contexts": [
+                {
+                    "name": "Sleep",
+                    "description": "Your current state of rest and quality of sleep.",
+                    "triggers": {
+                        "positive": [
+                            "Woke up refreshed",
+                            "Slept deeply",
+                            "Had a refreshing nap",
+                            "Peaceful dreams"
+                        ],
+                        "neutral": [
+                            "Rested but groggy",
+                            "Light sleep",
+                            "Woke up to an alarm",
+                            "Short nap"
+                        ],
+                        "negative": [
+                            "Woke up feeling exhausted",
+                            "Restless night",
+                            "Insomnia",
+                            "Couldn't fall asleep",
+                            "Nightmares"
+                        ]
+                    }
+                },
+                {
+                    "name": "Health",
+                    "description": "Your current physical well-being, including any pain or illness.",
+                    "triggers": {
+                        "positive": [
+                            "Feeling healthy",
+                            "Body feels strong",
+                            "Energy boost",
+                            "Symptoms improved",
+                            "Healing well"
+                        ],
+                        "neutral": [
+                            "Health stable",
+                            "Minor fatigue",
+                            "Usual aches",
+                            "Taking regular medication"
+                        ],
+                        "negative": [
+                            "Feeling sick",
+                            "In pain",
+                            "Physical discomfort",
+                            "Chronic discomfort",
+                            "Symptoms worsened",
+                            "Sudden illness"
+                        ]
+                    }
+                },
+                {
+                    "name": "Physical Activity",
+                    "description": "Your current level of physical movement or exercise.",
+                    "triggers": {
+                        "positive": [
+                            "Energized after exercise",
+                            "Had a good workout",
+                            "Enjoyed a walk",
+                            "Feeling limber",
+                            "Reached a fitness goal"
+                        ],
+                        "neutral": [
+                            "Light movement",
+                            "Commuting",
+                            "Sedentary for a bit",
+                            "Stretching lightly"
+                        ],
+                        "negative": [
+                            "Lack of movement",
+                            "Stiff or sore",
+                            "Skipped workout",
+                            "Feeling out of shape",
+                            "Over-exerted",
+                            "Injured self"
+                        ]
+                    }
+                },
+                {
+                    "name": "Nutrition",
+                    "description": "Your current physical needs related to food and drink.",
+                    "triggers": {
+                        "positive": [
+                            "Nourished after a good meal",
+                            "Feeling energized by food",
+                            "Enjoyed favorite dish",
+                            "Drank enough water",
+                            "Ate mindfully"
+                        ],
+                        "neutral": [
+                            "Ate something basic",
+                            "Followed meal routine",
+                            "Snacked briefly",
+                            "Neutral food experience"
+                        ],
+                        "negative": [
+                            "Feeling 'hangry'",
+                            "Skipped meals",
+                            "Overate",
+                            "Ate something unhealthy",
+                            "Dehydrated",
+                            "Cravings without satisfaction"
+                        ]
+                    }
+                },
+                {
+                    "name": "Hormonal Cycles",
+                    "description": "How hormonal changes are currently affecting your body and mood.",
+                    "triggers": {
+                        "positive": [
+                            "Feeling emotionally balanced",
+                            "Stable energy",
+                            "Symptom-free",
+                            "Feeling vibrant"
+                        ],
+                        "neutral": [
+                            "Hormonal shift noticeable",
+                            "Body feels typical for this cycle",
+                            "Mild symptoms"
+                        ],
+                        "negative": [
+                            "Mood swings",
+                            "Cramps",
+                            "Exhaustion or irritability",
+                            "Bloating",
+                            "Headaches",
+                            "Hormonal discomfort"
+                        ]
+                    }
+                },
+                {
+                    "name": "Substance Effects",
+                    "description": "How caffeine, alcohol, or medications are currently impacting you.",
+                    "triggers": {
+                        "positive": [
+                            "Medication working well",
+                            "Feeling alert from caffeine",
+                            "Calm after tea/coffee",
+                            "Uplifted after moderate use"
+                        ],
+                        "neutral": [
+                            "Took prescribed dose",
+                            "Regular caffeine or alcohol intake",
+                            "No strong effect"
+                        ],
+                        "negative": [
+                            "Jittery",
+                            "Side effects of medication",
+                            "Feeling sluggish from substance",
+                            "Hangover",
+                            "Craving a substance",
+                            "Dependency fatigue"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Mind & Emotions",
+            "description": "Your thoughts, feelings, and overall mental state.",
+            "contexts": [
+                {
+                    "name": "Emotional State",
+                    "description": "Your main feelings and emotional well-being.",
+                    "triggers": {
+                        "positive": [
+                            "Feeling calm",
+                            "Content",
+                            "Joyful",
+                            "Peaceful",
+                            "Optimistic",
+                            "Excited",
+                            "Hopeful",
+                            "Open-hearted"
+                        ],
+                        "neutral": [
+                            "Neutral mood",
+                            "Okay but not inspired",
+                            "Emotionally flat",
+                            "Pensive",
+                            "Indifferent"
+                        ],
+                        "negative": [
+                            "Anxious",
+                            "Stressed",
+                            "Irritable",
+                            "Frustrated",
+                            "Down or moody",
+                            "Overwhelmed",
+                            "Sad",
+                            "Angry",
+                            "Lonely",
+                            "Hopeless"
+                        ]
+                    }
+                },
+                {
+                    "name": "Mental Focus",
+                    "description": "How clearly you can think and concentrate.",
+                    "triggers": {
+                        "positive": [
+                            "Clear head",
+                            "Deep concentration",
+                            "Highly focused",
+                            "In flow",
+                            "Solved a complex problem"
+                        ],
+                        "neutral": [
+                            "Thinking casually",
+                            "Processing information",
+                            "Mixed focus",
+                            "Mind wandering gently"
+                        ],
+                        "negative": [
+                            "Brain fog",
+                            "Can't focus",
+                            "Easily distracted",
+                            "Mind racing",
+                            "Mentally stuck",
+                            "Foggy brain"
+                        ]
+                    }
+                },
+                {
+                    "name": "Inner Dialogue",
+                    "description": "The way you talk to yourself in your head.",
+                    "triggers": {
+                        "positive": [
+                            "Self-kindness",
+                            "Encouraging thoughts",
+                            "Helpful self-talk",
+                            "Positive affirmations",
+                            "Self-compassion"
+                        ],
+                        "neutral": [
+                            "Neutral self-checks",
+                            "Planning internally",
+                            "Reflective without emotion"
+                        ],
+                        "negative": [
+                            "Harsh inner critic",
+                            "Self-doubt spiral",
+                            "Rumination",
+                            "Negative comparisons",
+                            "Obsessive thoughts"
+                        ]
+                    }
+                },
+                {
+                    "name": "Cognitive Load",
+                    "description": "How much mental effort your brain is currently handling.",
+                    "triggers": {
+                        "positive": [
+                            "Intellectually stimulated",
+                            "Feeling sharp",
+                            "Mentally engaged",
+                            "Learning something new",
+                            "Solving a puzzle"
+                        ],
+                        "neutral": [
+                            "Routine mental tasks",
+                            "Reading casually",
+                            "Processing information",
+                            "Mental break"
+                        ],
+                        "negative": [
+                            "Mental fatigue",
+                            "Information overload",
+                            "Feeling overwhelmed by thoughts",
+                            "Mind feels drained",
+                            "Decision paralysis"
+                        ]
+                    }
+                },
+                {
+                    "name": "Memory/Mental Triggers",
+                    "description": "Specific memories or thoughts currently affecting your mood.",
+                    "triggers": {
+                        "positive": [
+                            "Fond memory",
+                            "Nostalgic warmth",
+                            "Inspiring thought",
+                            "Recalled a happy event",
+                            "Positive visualization"
+                        ],
+                        "neutral": [
+                            "Thinking about the past",
+                            "Recalling facts",
+                            "Neutral reflection",
+                            "Daydreaming"
+                        ],
+                        "negative": [
+                            "Worrying about future",
+                            "Intrusive thoughts",
+                            "Regret",
+                            "Emotional flashback",
+                            "Haunting memory",
+                            "Mental replay of negative event"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Relationships & Social Life",
+            "description": "Your interactions and connections with others, both in person and online.",
+            "contexts": [
+                {
+                    "name": "Connection Quality",
+                    "description": "The feeling and state of your relationships with individuals and groups.",
+                    "triggers": {
+                        "positive": [
+                            "Felt supported",
+                            "Feeling loved",
+                            "Emotionally safe",
+                            "Deep trust",
+                            "Bond strengthened",
+                            "Mutual respect",
+                            "Connected with someone new"
+                        ],
+                        "neutral": [
+                            "Relationship feels steady",
+                            "Basic interaction",
+                            "Functional conversation",
+                            "Routine connection",
+                            "Casual presence of others"
+                        ],
+                        "negative": [
+                            "Lack of connection",
+                            "Feeling neglected",
+                            "Emotionally distant",
+                            "Misunderstood",
+                            "Felt lonely even with others",
+                            "Trust issues surfaced",
+                            "Feeling disrespected",
+                            "Judged"
+                        ]
+                    }
+                },
+                {
+                    "name": "Social Engagement",
+                    "description": "The general tone and energy of your current interactions and gatherings.",
+                    "triggers": {
+                        "positive": [
+                            "Engaging conversation",
+                            "Enjoyed a social gathering",
+                            "Positive group dynamic",
+                            "Feeling heard",
+                            "Had a good chat",
+                            "Received a compliment"
+                        ],
+                        "neutral": [
+                            "Polite exchange",
+                            "Small talk",
+                            "Brief encounter",
+                            "Observing others",
+                            "Quiet co-existing"
+                        ],
+                        "negative": [
+                            "Social awkwardness",
+                            "Feeling ignored in a group",
+                            "Tense conversation",
+                            "Argument",
+                            "Unwanted interaction",
+                            "Conflict escalated",
+                            "Criticism",
+                            "Felt judged socially"
+                        ]
+                    }
+                },
+                {
+                    "name": "Emotional Support Dynamics",
+                    "description": "Your experience of giving or receiving emotional support.",
+                    "triggers": {
+                        "positive": [
+                            "Received emotional support",
+                            "Felt cared for",
+                            "Someone listened empathetically",
+                            "Felt understood",
+                            "Helped someone",
+                            "Provided comfort",
+                            "Got helpful advice"
+                        ],
+                        "neutral": [
+                            "Listened to a friend's problem",
+                            "Standard greeting",
+                            "Polite concern",
+                            "Brief check-in"
+                        ],
+                        "negative": [
+                            "Felt alone with feelings",
+                            "Lack of empathy",
+                            "Felt unheard",
+                            "Giving felt draining",
+                            "Support wasn't appreciated",
+                            "Dismissed feelings",
+                            "Someone was insensitive",
+                            "Advice was unhelpful"
+                        ]
+                    }
+                },
+                {
+                    "name": "Conflict & Resolution",
+                    "description": "The current state of disagreements or tension in your relationships.",
+                    "triggers": {
+                        "positive": [
+                            "Resolved a conflict",
+                            "Reached understanding",
+                            "Compromised successfully",
+                            "Had a productive disagreement",
+                            "Forgave someone",
+                            "Made amends"
+                        ],
+                        "neutral": [
+                            "Discussing differences calmly",
+                            "Acknowledging a disagreement",
+                            "Tension present but calm",
+                            "Awaiting a resolution"
+                        ],
+                        "negative": [
+                            "Unresolved tension",
+                            "Ongoing argument",
+                            "No path to resolution",
+                            "Conflict escalated",
+                            "Feeling resentful",
+                            "Fight broke out",
+                            "Feeling unheard in conflict"
+                        ]
+                    }
+                },
+                {
+                    "name": "Social Media Presence",
+                    "description": "Your current experience and feelings related to online social platforms.",
+                    "triggers": {
+                        "positive": [
+                            "Positive online interaction",
+                            "Connected with online friends",
+                            "Inspiring content seen",
+                            "Engaged with community",
+                            "Shared something meaningful"
+                        ],
+                        "neutral": [
+                            "Browse feed casually",
+                            "Checking notifications",
+                            "Passive consumption"
+                        ],
+                        "negative": [
+                            "Social comparison (FOMO)",
+                            "Feeling drained by social media",
+                            "Negative comments",
+                            "Doomscrolling",
+                            "Toxic online environment",
+                            "Online conflict",
+                            "Cyberbullying"
+                        ]
+                    }
+                },
+                {
+                    "name": "Milestone & Events",
+                    "description": "Significant events or celebrations involving others.",
+                    "triggers": {
+                        "positive": [
+                            "Enjoyed a special occasion",
+                            "Celebrated an event",
+                            "Attended a wedding/birthday",
+                            "Shared good news",
+                            "Felt part of something special"
+                        ],
+                        "neutral": [
+                            "Attended a required social gathering",
+                            "Observing an event",
+                            "Exchanged holiday greetings"
+                        ],
+                        "negative": [
+                            "Unpleasant social obligation",
+                            "Event was stressful",
+                            "Missed an important event",
+                            "Felt excluded from a celebration",
+                            "Felt pressured at an event"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Work, Study & Purpose",
+            "description": "Activities related to your job, studies, goals, or tasks that require effort.",
+            "contexts": [
+                {
+                    "name": "Work State",
+                    "description": "Your current level of engagement, productivity, or fatigue with tasks.",
+                    "triggers": {
+                        "positive": [
+                            "Felt productive",
+                            "In the zone",
+                            "Achieved a flow state",
+                            "Inspired",
+                            "Creative breakthrough"
+                        ],
+                        "neutral": [
+                            "Routine tasks",
+                            "Steady progress",
+                            "Getting through the work",
+                            "Mild focus"
+                        ],
+                        "negative": [
+                            "Procrastinating",
+                            "Lack of motivation",
+                            "Feeling overwhelmed by workload",
+                            "Burnout",
+                            "Mental block",
+                            "Dreaded task"
+                        ]
+                    }
+                },
+                {
+                    "name": "Accomplishment",
+                    "description": "Your perception of progress or completion related to your work or goals.",
+                    "triggers": {
+                        "positive": [
+                            "Completed a goal",
+                            "Finished a major task",
+                            "Reached a milestone",
+                            "Received positive feedback",
+                            "Project approved"
+                        ],
+                        "neutral": [
+                            "Made steady progress",
+                            "Submitting work",
+                            "Working on a long-term project",
+                            "Waiting on feedback"
+                        ],
+                        "negative": [
+                            "Feeling unproductive",
+                            "Failed a task",
+                            "Missed a deadline",
+                            "Facing a setback",
+                            "Project rejected",
+                            "Effort not recognized"
+                        ]
+                    }
+                },
+                {
+                    "name": "Workload & Deadlines",
+                    "description": "The current pressure and volume of your work/study tasks.",
+                    "triggers": {
+                        "positive": [
+                            "Manageable workload",
+                            "Tasks feel light",
+                            "Ahead of schedule",
+                            "Deadline extended"
+                        ],
+                        "neutral": [
+                            "Standard workload",
+                            "Steady flow of tasks",
+                            "Approaching deadline"
+                        ],
+                        "negative": [
+                            "Overwhelming workload",
+                            "Too many commitments",
+                            "Tight deadlines",
+                            "Unexpected urgent tasks",
+                            "Feeling behind schedule"
+                        ]
+                    }
+                },
+                {
+                    "name": "Career/Academic Progress",
+                    "description": "Your feelings about your long-term path in work or studies.",
+                    "triggers": {
+                        "positive": [
+                            "Feeling on track",
+                            "Career opportunity arose",
+                            "Got a promotion/raise",
+                            "Learned a valuable skill",
+                            "Positive academic result"
+                        ],
+                        "neutral": [
+                            "Considering career options",
+                            "Evaluating next steps",
+                            "Standard academic term"
+                        ],
+                        "negative": [
+                            "Feeling stuck in career",
+                            "Uncertainty about future",
+                            "Lack of growth opportunities",
+                            "Academic struggle",
+                            "Career setback"
+                        ]
+                    }
+                },
+                {
+                    "name": "Location",
+                    "description": "Your physical or virtual work/study environment.",
+                    "triggers": {
+                        "positive": [
+                            "Comfortable workspace",
+                            "Productive atmosphere",
+                            "Ideal setting",
+                            "Energized by the environment"
+                        ],
+                        "neutral": [
+                            "Neutral setting",
+                            "Functional space",
+                            "Typical office noise"
+                        ],
+                        "negative": [
+                            "Distracting surroundings",
+                            "Noisy environment",
+                            "Uncomfortable setup",
+                            "Cluttered workspace",
+                            "Poor lighting"
+                        ]
+                    }
+                },
+                {
+                    "name": "Device Use",
+                    "description": "How you're currently using digital devices for work or study.",
+                    "triggers": {
+                        "positive": [
+                            "Seamless tech experience",
+                            "Effective use",
+                            "Tech was a great tool",
+                            "Flow in digital work",
+                            "Good call/meeting"
+                        ],
+                        "neutral": [
+                            "Functional use",
+                            "Checking emails",
+                            "Standard digital tasks",
+                            "Scrolling mindlessly"
+                        ],
+                        "negative": [
+                            "Tech issues",
+                            "Distracted by device",
+                            "Excessive screen time for work",
+                            "Notification overwhelm",
+                            "Zoom fatigue",
+                            "Disconnected from task"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Daily Life & Environment",
+            "description": "Your daily routines, surroundings, and the general world around you.",
+            "contexts": [
+                {
+                    "name": "Time",
+                    "description": "The current time of day and how it affects you.",
+                    "triggers": {
+                        "positive": [
+                            "Energized morning",
+                            "Perfect time for an activity",
+                            "Relaxing evening",
+                            "Feeling on schedule"
+                        ],
+                        "neutral": [
+                            "Standard daytime",
+                            "Routine time",
+                            "Clock-aware but neutral"
+                        ],
+                        "negative": [
+                            "Feeling rushed",
+                            "Dragging afternoon",
+                            "Time wasted",
+                            "Too late for something",
+                            "Lonely night"
+                        ]
+                    }
+                },
+                {
+                    "name": "Location",
+                    "description": "Your current physical surroundings.",
+                    "triggers": {
+                        "positive": [
+                            "Peaceful space",
+                            "Cozy at home",
+                            "Beautiful scenery",
+                            "Inspired in nature",
+                            "Comfortable setting"
+                        ],
+                        "neutral": [
+                            "Neutral room",
+                            "Familiar street",
+                            "Transit space",
+                            "Public area"
+                        ],
+                        "negative": [
+                            "Crowded place",
+                            "Too much noise",
+                            "Chaotic environment",
+                            "Unpleasant location",
+                            "Feeling stuck indoors",
+                            "Feeling unsafe"
+                        ]
+                    }
+                },
+                {
+                    "name": "Chores/Errands",
+                    "description": "Your current engagement with daily tasks and responsibilities.",
+                    "triggers": {
+                        "positive": [
+                            "Completed a chore",
+                            "Organized space",
+                            "Ran errands efficiently",
+                            "Feeling productive about tasks",
+                            "Home feels tidy"
+                        ],
+                        "neutral": [
+                            "Doing routine chores",
+                            "Starting a task",
+                            "Waiting in line"
+                        ],
+                        "negative": [
+                            "Overdue tasks",
+                            "Messy surroundings",
+                            "Overwhelmed by chores",
+                            "Unexpected delay",
+                            "Lost something",
+                            "Task felt pointless"
+                        ]
+                    }
+                },
+                {
+                    "name": "Commute/Travel",
+                    "description": "Your experience during travel or daily commute.",
+                    "triggers": {
+                        "positive": [
+                            "Smooth commute",
+                            "Relaxing travel",
+                            "Enjoyed the journey",
+                            "Reached destination easily"
+                        ],
+                        "neutral": [
+                            "Standard commute",
+                            "Routine travel",
+                            "Waiting for transport"
+                        ],
+                        "negative": [
+                            "Heavy traffic",
+                            "Travel delay",
+                            "Stressful travel",
+                            "Uncomfortable journey",
+                            "Missed connection",
+                            "Got lost",
+                            "Public transport issues"
+                        ]
+                    }
+                },
+                {
+                    "name": "Day Type",
+                    "description": "Whether it's a weekday, weekend, or a special day.",
+                    "triggers": {
+                        "positive": [
+                            "Fun weekend",
+                            "Enjoyed a day off",
+                            "Meaningful holiday",
+                            "Productive weekday"
+                        ],
+                        "neutral": [
+                            "Typical weekday",
+                            "Ordinary day",
+                            "Neutral schedule"
+                        ],
+                        "negative": [
+                            "Overbooked day",
+                            "Monday blues",
+                            "Boring weekend",
+                            "Unplanned changes",
+                            "Isolated holiday"
+                        ]
+                    }
+                },
+                {
+                    "name": "Season/Weather",
+                    "description": "The current climate and how it impacts your comfort.",
+                    "triggers": {
+                        "positive": [
+                            "Enjoying the weather",
+                            "Sunny day",
+                            "Perfect temperature",
+                            "Light breeze",
+                            "Refreshing rain",
+                            "Seasonal comfort"
+                        ],
+                        "neutral": [
+                            "Typical weather",
+                            "Overcast sky",
+                            "Mildly aware of the weather"
+                        ],
+                        "negative": [
+                            "Unbearable heat/cold",
+                            "Gloomy skies",
+                            "Weather discomfort",
+                            "Stormy weather",
+                            "Heavy pollution",
+                            "Bad driving conditions"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Leisure & Self-Expression",
+            "description": "Your hobbies, creative activities, and how you relax and unwind.",
+            "contexts": [
+                {
+                    "name": "Rest Mode",
+                    "description": "Your current state of relaxation, rest, or boredom.",
+                    "triggers": {
+                        "positive": [
+                            "Felt recharged",
+                            "Relaxed mindfully",
+                            "Peaceful downtime",
+                            "Enjoyed quiet time",
+                            "Feeling renewed"
+                        ],
+                        "neutral": [
+                            "Zoned out",
+                            "Routine rest",
+                            "Doing nothing specific"
+                        ],
+                        "negative": [
+                            "Can't relax",
+                            "Restless boredom",
+                            "Lack of true rest",
+                            "Felt stuck or agitated",
+                            "Feeling unproductive during rest"
+                        ]
+                    }
+                },
+                {
+                    "name": "Activity",
+                    "description": "What you're doing for entertainment or recreation.",
+                    "triggers": {
+                        "positive": [
+                            "Entertained",
+                            "Deeply engaged in a show/book",
+                            "Enjoyed a game",
+                            "Lost in music",
+                            "Found new content"
+                        ],
+                        "neutral": [
+                            "Watching passively",
+                            "Casual listening",
+                            "Browse for content"
+                        ],
+                        "negative": [
+                            "Screen fatigue",
+                            "Feeling drained after content",
+                            "Bored by activity",
+                            "Overstimulated by media",
+                            "Activity felt like a chore"
+                        ]
+                    }
+                },
+                {
+                    "name": "Hobby Engagement",
+                    "description": "Your current participation in hobbies or recreational activities.",
+                    "triggers": {
+                        "positive": [
+                            "Enjoyed a hobby",
+                            "Deeply engaged in a hobby",
+                            "Progressed in a skill",
+                            "Connected with a hobby group"
+                        ],
+                        "neutral": [
+                            "Practicing a hobby casually",
+                            "Planning hobby time"
+                        ],
+                        "negative": [
+                            "No time for hobbies",
+                            "Lost interest in a hobby",
+                            "Frustrated with a hobby",
+                            "Hobby felt like a chore"
+                        ]
+                    }
+                },
+                {
+                    "name": "Creative Outlet",
+                    "description": "Your current involvement with creative pursuits.",
+                    "triggers": {
+                        "positive": [
+                            "Creative flow",
+                            "Feeling inspired",
+                            "Expressed yourself freely",
+                            "Artistic joy",
+                            "Finished a creative project"
+                        ],
+                        "neutral": [
+                            "Basic journaling or doodle",
+                            "Light expression",
+                            "Planning a creative piece"
+                        ],
+                        "negative": [
+                            "Creative block",
+                            "Feeling uninspired",
+                            "Criticizing own own work",
+                            "Project didn't turn out",
+                            "Lack of creative time"
+                        ]
+                    }
+                },
+                {
+                    "name": "Personal Growth",
+                    "description": "Activities related to learning, self-improvement, or personal development.",
+                    "triggers": {
+                        "positive": [
+                            "Learned something new",
+                            "Had an insight",
+                            "Feeling self-aware",
+                            "Practiced a skill",
+                            "Reached a personal goal"
+                        ],
+                        "neutral": [
+                            "Reading for information",
+                            "Reflecting on a topic",
+                            "Attending a workshop"
+                        ],
+                        "negative": [
+                            "Feeling stuck in growth",
+                            "Lack of progress",
+                            "Overwhelmed by new info",
+                            "Struggling to learn",
+                            "Feeling inadequate"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Financial Well-being",
+            "description": "Your feelings and experiences related to money, income, savings, and financial security.",
+            "contexts": [
+                {
+                    "name": "Spending & Budgeting",
+                    "description": "How you are currently managing your money through spending and saving.",
+                    "triggers": {
+                        "positive": [
+                            "Stuck to budget",
+                            "Made a smart purchase",
+                            "Saved money",
+                            "Found a good deal"
+                        ],
+                        "neutral": [
+                            "Made routine purchases",
+                            "Reviewed budget"
+                        ],
+                        "negative": [
+                            "Overspent",
+                            "Impulse purchase",
+                            "Spending felt wasteful",
+                            "Couldn't afford something"
+                        ]
+                    }
+                },
+                {
+                    "name": "Income & Earnings",
+                    "description": "Your current situation regarding earning money.",
+                    "triggers": {
+                        "positive": [
+                            "Received income",
+                            "Income feels stable",
+                            "Got a bonus/raise",
+                            "Earned extra money"
+                        ],
+                        "neutral": [
+                            "Regular payday",
+                            "Income as expected"
+                        ],
+                        "negative": [
+                            "Unexpected expense",
+                            "Income felt insufficient",
+                            "Financial loss",
+                            "Missed a payment"
+                        ]
+                    }
+                },
+                {
+                    "name": "Debt & Bills",
+                    "description": "Your current relationship with debts, loans, and recurring payments.",
+                    "triggers": {
+                        "positive": [
+                            "Bills are manageable",
+                            "Paid off a debt",
+                            "Found a way to reduce debt"
+                        ],
+                        "neutral": [
+                            "Paid routine bills",
+                            "Reviewed loan statements"
+                        ],
+                        "negative": [
+                            "Bills are overdue",
+                            "Debt feels overwhelming",
+                            "Struggling to pay bills",
+                            "Received a late fee"
+                        ]
+                    }
+                },
+                {
+                    "name": "Savings & Investments",
+                    "description": "Your feelings about your financial future and security.",
+                    "triggers": {
+                        "positive": [
+                            "Financial plan feels secure",
+                            "Savings growing",
+                            "Reached a savings goal",
+                            "Investment performed well"
+                        ],
+                        "neutral": [
+                            "Checking savings balance",
+                            "Neutral investment performance"
+                        ],
+                        "negative": [
+                            "Financial insecurity",
+                            "Savings are low",
+                            "Investment loss",
+                            "Worried about future finances"
+                        ]
+                    }
+                },
+                {
+                    "name": "Financial Planning",
+                    "description": "Your engagement and feelings about managing your long-term financial future.",
+                    "triggers": {
+                        "positive": [
+                            "Feeling financially prepared",
+                            "Made a good financial decision",
+                            "Planned for future expenses"
+                        ],
+                        "neutral": [
+                            "Thinking about finances",
+                            "Researching financial options"
+                        ],
+                        "negative": [
+                            "Uncertain about finances",
+                            "Unexpected financial stressor",
+                            "Avoiding financial planning"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Spirituality",
+            "description": "Your connection to something greater than yourself, purpose, and values.",
+            "contexts": [
+                {
+                    "name": "Inner Peace & Calm",
+                    "description": "Your sense of inner tranquility and spiritual contentment.",
+                    "triggers": {
+                        "positive": [
+                            "Felt deep inner peace",
+                            "Sense of calm",
+                            "Experienced serenity",
+                            "Mind feels still"
+                        ],
+                        "neutral": [
+                            "Reflecting quietly",
+                            "Feeling neutral about inner state"
+                        ],
+                        "negative": [
+                            "Lack of inner peace",
+                            "Spiritual anxiety",
+                            "Felt restless within",
+                            "Mind is racing"
+                        ]
+                    }
+                },
+                {
+                    "name": "Purpose & Meaning",
+                    "description": "Your connection to life's meaning and your personal purpose.",
+                    "triggers": {
+                        "positive": [
+                            "Felt a strong sense of purpose",
+                            "Actions felt aligned with values",
+                            "Found meaning in an experience",
+                            "Feeling guided"
+                        ],
+                        "neutral": [
+                            "Pondering life's big questions",
+                            "Seeking clarity"
+                        ],
+                        "negative": [
+                            "Felt aimless",
+                            "Lack of meaning",
+                            "Questioning purpose",
+                            "Values felt challenged"
+                        ]
+                    }
+                },
+                {
+                    "name": "Spiritual Practices",
+                    "description": "Your engagement with activities that nurture your spiritual side.",
+                    "triggers": {
+                        "positive": [
+                            "Meaningful meditation session",
+                            "Uplifting prayer/ritual",
+                            "Connected with community",
+                            "Inspiring spiritual reading"
+                        ],
+                        "neutral": [
+                            "Engaged in routine practice",
+                            "Thinking about spiritual texts"
+                        ],
+                        "negative": [
+                            "Practice felt unfulfilling",
+                            "Skipped a practice",
+                            "Spiritual doubt",
+                            "Difficulty focusing during practice"
+                        ]
+                    }
+                },
+                {
+                    "name": "Values & Ethics",
+                    "description": "Your adherence to and reflection on your personal moral compass.",
+                    "triggers": {
+                        "positive": [
+                            "Acted with integrity",
+                            "Felt morally clear",
+                            "Stood up for my values",
+                            "Made an ethical choice"
+                        ],
+                        "neutral": [
+                            "Considering ethical implications",
+                            "Reflecting on a dilemma"
+                        ],
+                        "negative": [
+                            "Compromised values",
+                            "Felt morally conflicted",
+                            "Witnessed injustice",
+                            "Actions felt misaligned with beliefs"
+                        ]
+                    }
+                },
+                {
+                    "name": "Connection to the Divine/Universe",
+                    "description": "Your feeling of connection to a higher power, nature, or universal energy.",
+                    "triggers": {
+                        "positive": [
+                            "Felt a strong spiritual connection",
+                            "Experienced awe in nature",
+                            "Sense of oneness",
+                            "Felt guided by a higher power"
+                        ],
+                        "neutral": [
+                            "Reflecting on beliefs",
+                            "Observing natural beauty"
+                        ],
+                        "negative": [
+                            "Felt disconnected spiritually",
+                            "Sense of isolation from the divine",
+                            "Questioning faith/beliefs"
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}
