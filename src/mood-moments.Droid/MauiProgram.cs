@@ -1,4 +1,6 @@
-﻿namespace mood_moments.Droid
+﻿using Plugin.LocalNotification;
+
+namespace mood_moments.Droid
 {
     public static class MauiProgram
     {
@@ -7,7 +9,8 @@
             var builder = MauiApp.CreateBuilder();
 
             builder
-                .UseSharedMauiApp();
+                .UseSharedMauiApp()
+                .UseLocalNotification();
 
             return builder.Build();
         }
