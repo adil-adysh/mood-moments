@@ -8,14 +8,5 @@
         <Label Text="How intense is your feeling? (1 = Very Low, 5 = Very High)" FontSize="18" FontAttributes="Bold" />
         <Slider Minimum="1" Maximum="5" Value="{Binding SelectedIntensity, Mode=TwoWay}" />
         <Label Text="{Binding SelectedIntensity, StringFormat='Intensity: {0}/5'}" FontSize="16" />
-        <Grid ColumnSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Back" Command="{Binding BackStepCommand}" Grid.Column="0" />
-            <Button Text="Next" Command="{Binding NextStepCommand}" Grid.Column="2" />
-        </Grid>
     </StackLayout>
 </ContentView>

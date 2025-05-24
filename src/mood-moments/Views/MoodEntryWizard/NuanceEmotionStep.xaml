@@ -15,14 +15,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Grid ColumnSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Back" Command="{Binding Navigation.BackStepCommand}" Grid.Column="0" IsVisible="{Binding CanGoBack}" />
-            <Button Text="Next" Command="{Binding Navigation.NextStepCommand}" Grid.Column="2" />
-        </Grid>
     </StackLayout>
 </ContentView>

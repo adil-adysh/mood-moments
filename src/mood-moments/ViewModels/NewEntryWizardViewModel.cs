@@ -77,5 +77,7 @@ namespace mood_moments.ViewModels
         public IRelayCommand NextStepCommand => Navigation.NextStepCommand;
         public IRelayCommand? BackStepCommand => Navigation.BackStepCommand;
         public IRelayCommand? SkipToIntensityCommand => Navigation.SkipToIntensityCommand;
+
+        public bool IsLastStep => Navigation.CurrentStep == Navigation.StepCount - 1;
     }
 }
