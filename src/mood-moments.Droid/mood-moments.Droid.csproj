@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0-android</TargetFramework>
+        <TargetFramework>$(MoodMomentsTargetFramework)-android</TargetFramework>
         <SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
         <OutputType>Exe</OutputType>
         <RootNamespace>mood_moments</RootNamespace>

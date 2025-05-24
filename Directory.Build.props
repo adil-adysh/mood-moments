@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Change the target framework here to update all projects -->
+    <MoodMomentsTargetFramework>net9.0</MoodMomentsTargetFramework>
+  </PropertyGroup>
+</Project>
