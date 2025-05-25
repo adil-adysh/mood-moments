@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
-             x:Class="mood_moments.Views.MoodEntryWizard.TriggerStep">
+             x:Class="mood_moments.Views.MoodEntryWizard.TriggerStep"
+             x:Name="TriggerStepRoot">
     <StackLayout>
         <Label Text="Step 7: Triggers" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Triggers Step Heading" />
-        <CollectionView ItemsSource="{Binding TriggerOptions}" SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding TriggerStep.TriggerOptions}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Button Text="{Binding .}" Command="{Binding BindingContext.SelectTriggerCommand, Source={x:Reference Name=TriggerStepRoot}}" CommandParameter="{Binding .}" />
+                    <Button Text="{Binding .}" Command="{Binding BindingContext.TriggerStep.SelectTriggerCommand, Source={x:Reference TriggerStepRoot}}" CommandParameter="{Binding .}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -71,8 +71,18 @@ namespace mood_moments
 
         private async void NewEntryButton_Clicked(object? sender, EventArgs e)
         {
-            // Navigate to the wizard page. EntrySaved event is no longer used in MVVM.
-            await Navigation.PushAsync(new Views.NewEntryWizardPage());
+            try
+            {
+                await Navigation.PushAsync(new Views.NewEntryWizardPage());
+            }
+            catch (Exception ex)
+            {
+                var mainPage = Application.Current?.Windows.FirstOrDefault()?.Page;
+                if (mainPage != null)
+                {
+                    await mainPage.DisplayAlert("Navigation Error", ex.ToString(), "OK");
+                }
+            }
         }
     }
 }
