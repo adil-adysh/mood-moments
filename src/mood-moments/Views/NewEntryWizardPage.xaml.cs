@@ -13,12 +13,12 @@ namespace mood_moments.Views
     public partial class NewEntryWizardPage : ContentPage
     {
         // Strongly-typed ViewModel property for easier access to the BindingContext.
-        private NewEntryWizardViewModel? ViewModel => BindingContext as NewEntryWizardViewModel;
+        public NewEntryWizardViewModel ViewModel { get; } = new NewEntryWizardViewModel();
 
         public NewEntryWizardPage()
         {
             InitializeComponent();
-
+            BindingContext = this;
             // Hide Shell's default back button
             Shell.SetBackButtonBehavior(this, new BackButtonBehavior
             {
@@ -31,61 +31,41 @@ namespace mood_moments.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (ViewModel != null)
-            {
-                // Subscribe to ViewModel property changes and wizard completion event.
-                ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-                ViewModel.WizardFinished += OnWizardFinished;
-                // Set the initial step content based on the current step.
-                SetStepContent(ViewModel.CurrentStep);
-            }
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            ViewModel.WizardFinished += OnWizardFinished;
+            SetStepContent(ViewModel.CurrentStep);
         }
 
         // Called when the page is about to disappear.
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            if (ViewModel != null)
-            {
-                // Unsubscribe from events to prevent memory leaks.
-                ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
-                ViewModel.WizardFinished -= OnWizardFinished;
-            }
+            ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
+            ViewModel.WizardFinished -= OnWizardFinished;
         }
 
         // Called when the BindingContext (ViewModel) changes.
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            if (ViewModel != null)
-            {
-                // Ensure event handlers are attached only once.
-                ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
-                ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-                ViewModel.WizardFinished -= OnWizardFinished;
-                ViewModel.WizardFinished += OnWizardFinished;
-                // Update the step content for the new ViewModel.
-                SetStepContent(ViewModel.CurrentStep);
-            }
+            SetStepContent(ViewModel.CurrentStep);
         }
 
         // Handler for when the wizard is finished.
         private void OnWizardFinished()
         {
-            // Ensure navigation happens on the main UI thread.
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 if (Navigation.NavigationStack.Count > 0)
-                    await Navigation.PopAsync(); // Navigate back to the previous page.
+                    await Navigation.PopAsync();
             });
         }
 
         // Handles property changes in the ViewModel.
         private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            // If the current step or emotion selection changes, update the step content.
-            if ((e.PropertyName == nameof(NewEntryWizardViewModel.CurrentStep) ||
-                 e.PropertyName == nameof(NewEntryWizardViewModel.EmotionSelection)) && ViewModel != null)
+            if (e.PropertyName == nameof(NewEntryWizardViewModel.CurrentStep) ||
+                e.PropertyName == nameof(NewEntryWizardViewModel.EmotionSelection))
             {
                 SetStepContent(ViewModel.CurrentStep);
             }
@@ -94,9 +74,6 @@ namespace mood_moments.Views
         // Dynamically sets the content of the wizard step based on the current step index.
         private void SetStepContent(int step)
         {
-            if (StepHost == null || ViewModel == null)
-                return;
-            // Switch statement selects the appropriate view for each step.
             View? content = step switch
             {
                 0 => new EmotionStep(),
@@ -109,8 +86,23 @@ namespace mood_moments.Views
                 _ => null
             };
             if (content != null)
-                content.BindingContext = ViewModel; // Bind the step view to the same ViewModel.
-            StepHost.Content = content; // Display the selected step view.
+                content.BindingContext = ViewModel;
+            StepContent = content;
+        }
+
+        // Property for ContentPresenter binding
+        private View? _stepContent;
+        public View? StepContent
+        {
+            get => _stepContent;
+            set
+            {
+                if (_stepContent != value)
+                {
+                    _stepContent = value;
+                    OnPropertyChanged(nameof(StepContent));
+                }
+            }
         }
     }
 }
