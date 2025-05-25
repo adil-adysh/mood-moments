@@ -21,24 +21,79 @@
         <viewModels:NewEntryWizardViewModel/>
     </ContentPage.BindingContext>
     <!--
-        The main content of the page is a StackLayout with padding.
-        StackLayout arranges its children vertically by default.
+        The main content of the page is a Grid with three rows:
+        - Auto: For the step title and content.
+        - *: For the dynamic content area (StepHost).
+        - Auto: For the bottom navigation bar.
     -->
     <ContentPage.Content>
-        <StackLayout Padding="20">
+        <Grid RowDefinitions="Auto,*,Auto">
             <!--
-                Label bound to the StepTitle property of the ViewModel.
-                - Text: Uses data binding to display the current step's title.
-                - FontSize and FontAttributes: Style the label as a heading.
+                The first row contains the step title and content.
+                - StackLayout: A layout that arranges its children vertically.
+                - Padding: Adds space around the content.
             -->
-            <Label Text="{Binding StepTitle}"
-                   FontSize="24"
-                   FontAttributes="Bold"/>
+            <StackLayout Padding="20" Grid.Row="0">
+                <!--
+                    Label bound to the StepTitle property of the ViewModel.
+                    - Text: Uses data binding to display the current step's title.
+                    - FontSize and FontAttributes: Style the label as a heading.
+                -->
+                <Label Text="{Binding StepTitle}"
+                       FontSize="24"
+                       FontAttributes="Bold"/>
+                <!--
+                    ContentView named StepHost acts as a placeholder for the current step's content.
+                    The actual content is likely swapped dynamically in the code-behind or ViewModel.
+                -->
+                <ContentView x:Name="StepHost"/>
+            </StackLayout>
             <!--
-                ContentView named StepHost acts as a placeholder for the current step's content.
-                The actual content is likely swapped dynamically in the code-behind or ViewModel.
+                The third row is a bottom navigation bar with buttons for navigation.
+                - Grid: A flexible layout that arranges its children in rows and columns.
+                - BackgroundColor: Sets the background color of the bar.
+                - Padding: Adds space inside the bar.
+                - VerticalOptions: Aligns the bar at the bottom.
             -->
-            <ContentView x:Name="StepHost"/>
-        </StackLayout>
+            <Grid Grid.Row="2" BackgroundColor="{DynamicResource SecondaryColor}" Padding="10,5" VerticalOptions="End">
+                <!--
+                    Defines four columns for the navigation buttons.
+                    - ColumnDefinition: Specifies the width of each column.
+                -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!--
+                    Back button
+                    - Command: Binds to the BackStepCommand in the ViewModel.
+                    - IsVisible: Binds to the CanExecute property of the command, controlling visibility.
+                -->
+                <Button Text="Back"
+                        Command="{Binding BackStepCommand}"
+                        IsVisible="{Binding BackStepCommand.CanExecute, Mode=OneWay}"
+                        Grid.Column="0" />
+                <!--
+                    Next button
+                    - Command: Binds to the NextStepCommand in the ViewModel.
+                    - IsVisible: Binds to the CanExecute property of the command, controlling visibility.
+                -->
+                <Button Text="Next"
+                        Command="{Binding NextStepCommand}"
+                        IsVisible="{Binding NextStepCommand.CanExecute, Mode=OneWay}"
+                        Grid.Column="2" />
+                <!--
+                    Finish button
+                    - Command: Binds to the FinishCommand in the ViewModel.
+                    - IsVisible: Binds to the CurrentStep property, using a converter to determine visibility.
+                -->
+                <Button Text="Finish"
+                        Command="{Binding FinishCommand}"
+                        IsVisible="{Binding CurrentStep, Converter={StaticResource StepToFinishVisibilityConverter}}"
+                        Grid.Column="3" />
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -9,14 +9,5 @@
                SemanticProperties.Description="Note Step Heading" />
         <Editor Text="{Binding PersonalNote, Mode=TwoWay}" Placeholder="Write your note here..." AutoSize="TextChanges" HeightRequest="100"
                 SemanticProperties.Description="Personal Note Editor" />
-        <Grid ColumnSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Back" Command="{Binding BackStepCommand}" Grid.Column="0" />
-            <Button Text="Next" Command="{Binding NextStepCommand}" Grid.Column="2" />
-        </Grid>
     </StackLayout>
 </ContentView>

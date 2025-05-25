@@ -15,15 +15,10 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Grid ColumnSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Back" Command="{Binding Navigation.BackStepCommand}" Grid.Column="0" />
-            <Button Text="Skip to Intensity" Command="{Binding Navigation.SkipToIntensityCommand}" Grid.Column="1" />
-            <Button Text="Next" Command="{Binding Navigation.NextStepCommand}" Grid.Column="2" />
-        </Grid>
+        <Button Text="Skip to Intensity"
+                Command="{Binding SkipToIntensityCommand}"
+                Margin="0,10,0,0"
+                HorizontalOptions="Center"
+                IsVisible="{Binding SkipToIntensityCommand.CanExecute, Mode=OneWay}" />
     </StackLayout>
 </ContentView>
