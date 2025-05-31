@@ -35,32 +35,22 @@
       }
     },
     {
-      "name": "Social Engagement",
-      "description": "The tone, energy, and feeling of being around others or in a group setting.",
+      "name": "Intimacy & Affection",
+      "description": "Feelings around closeness, affection, and emotional intimacy.",
       "triggers": {
         "positive": [
-          "We laughed together",
-          "I enjoyed the vibe",
-          "It felt easy to talk",
-          "I felt included",
-          "We had a fun conversation",
-          "Someone said something kind"
+          "Felt close and connected",
+          "Shared affectionate moments",
+          "Comfortable emotional intimacy"
         ],
         "neutral": [
-          "Chatted politely",
-          "Just made small talk",
-          "Quick hello and goodbye",
-          "Watched others interact",
-          "Shared the same space quietly"
+          "Routine interactions",
+          "Neutral emotional distance"
         ],
         "negative": [
-          "I felt awkward",
-          "I was ignored in the group",
-          "The talk got tense",
-          "We argued",
-          "I didn’t want to be there",
-          "Things got heated",
-          "I felt judged by others"
+          "Felt emotionally distant",
+          "Lack of affection",
+          "Avoided intimacy"
         ]
       }
     },
@@ -104,7 +94,9 @@
           "We were able to compromise",
           "Even disagreement felt respectful",
           "I forgave them",
-          "We made peace"
+          "We made peace",
+          "Learned something new about each other",
+          "Conflict led to better understanding"
         ],
         "neutral": [
           "We acknowledged our differences",
@@ -119,7 +111,84 @@
           "It got worse",
           "I’m still angry",
           "We fought and didn’t resolve it",
-          "I didn’t feel heard during the conflict"
+          "I didn’t feel heard during the conflict",
+          "Lingering resentment",
+          "Conflict reopened old wounds"
+        ]
+      }
+    },
+    {
+      "name": "Boundaries & Respect",
+      "description": "How well boundaries are maintained and respect is shown.",
+      "triggers": {
+        "positive": [
+          "Boundaries were honored",
+          "Felt respected and valued",
+          "Healthy space was maintained"
+        ],
+        "neutral": [
+          "Boundaries were neutral",
+          "Respect was routine"
+        ],
+        "negative": [
+          "Boundaries were crossed",
+          "Felt disrespected",
+          "Personal space ignored"
+        ]
+      }
+    },
+    {
+      "name": "Social Engagement",
+      "description": "The tone, energy, and feeling of being around others or in a group setting.",
+      "triggers": {
+        "positive": [
+          "We laughed together",
+          "I enjoyed the vibe",
+          "It felt easy to talk",
+          "I felt included",
+          "We had a fun conversation",
+          "Someone said something kind"
+        ],
+        "neutral": [
+          "Chatted politely",
+          "Just made small talk",
+          "Quick hello and goodbye",
+          "Watched others interact",
+          "Shared the same space quietly"
+        ],
+        "negative": [
+          "I felt awkward",
+          "I was ignored in the group",
+          "The talk got tense",
+          "We argued",
+          "I didn’t want to be there",
+          "Things got heated",
+          "I felt judged by others"
+        ]
+      }
+    },
+    {
+      "name": "Milestones & Events",
+      "description": "How you felt during meaningful or social life events.",
+      "triggers": {
+        "positive": [
+          "I felt celebrated",
+          "The event felt special",
+          "We shared a joyful moment",
+          "I was part of something big",
+          "Shared good news and felt supported"
+        ],
+        "neutral": [
+          "Went to a gathering out of obligation",
+          "Just showed up to the event",
+          "Traded holiday wishes"
+        ],
+        "negative": [
+          "Felt pressure to be social",
+          "It was overwhelming emotionally",
+          "Missed something important",
+          "Felt left out",
+          "Had to pretend I was okay"
         ]
       }
     },
@@ -147,31 +216,6 @@
           "It felt like a toxic space",
           "Argued or got into online drama",
           "Felt invisible online"
-        ]
-      }
-    },
-    {
-      "name": "Milestones & Events",
-      "description": "How you felt during meaningful or social life events.",
-      "triggers": {
-        "positive": [
-          "I felt celebrated",
-          "The event felt special",
-          "We shared a joyful moment",
-          "I was part of something big",
-          "Shared good news and felt supported"
-        ],
-        "neutral": [
-          "Went to a gathering out of obligation",
-          "Just showed up to the event",
-          "Traded holiday wishes"
-        ],
-        "negative": [
-          "Felt pressure to be social",
-          "It was overwhelming emotionally",
-          "Missed something important",
-          "Felt left out",
-          "Had to pretend I was okay"
         ]
       }
     }
