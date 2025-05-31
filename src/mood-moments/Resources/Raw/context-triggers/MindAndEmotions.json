@@ -1,144 +1,134 @@
 {
     "name": "Mind & Emotions",
-    "description": "Your thoughts, feelings, and overall mental state.",
+    "description": "What’s shaping your mental landscape — including your thoughts, focus, inner voice, and how memories, mental load, or personal interpretation affect you.",
     "contexts": [
         {
-            "name": "Emotional State",
-            "description": "Your main feelings and emotional well-being.",
+            "name": "Internal Emotional Influences",
+            "description": "Internally triggered shifts in emotional state based on your interpretations, expectations, or reflections.",
             "triggers": {
                 "positive": [
-                    "Feeling calm",
-                    "Content",
-                    "Joyful",
-                    "Peaceful",
-                    "Optimistic",
-                    "Excited",
-                    "Hopeful",
-                    "Open-hearted"
+                    "Noticed a moment of calm within myself",
+                    "Accomplished something I had been putting off",
+                    "Found meaning in something I did today",
+                    "Reminded myself of personal growth",
+                    "Felt alignment between values and actions"
                 ],
                 "neutral": [
-                    "Neutral mood",
-                    "Okay but not inspired",
-                    "Emotionally flat",
-                    "Pensive",
-                    "Indifferent"
+                    "Moved through the day on autopilot",
+                    "Completed routine tasks without much reflection",
+                    "Followed habits or rituals without emotion",
+                    "Experienced a thought without attaching meaning"
                 ],
                 "negative": [
-                    "Anxious",
-                    "Stressed",
-                    "Irritable",
-                    "Frustrated",
-                    "Down or moody",
-                    "Overwhelmed",
-                    "Sad",
-                    "Angry",
-                    "Lonely",
-                    "Hopeless"
+                    "Felt disconnected from my inner world",
+                    "Noticed an unhelpful pattern repeating",
+                    "Criticized myself for not doing enough",
+                    "Struggled to find purpose in the day",
+                    "Felt emotionally numb or disengaged internally"
                 ]
             }
         },
         {
-            "name": "Mental Focus",
-            "description": "How clearly you can think and concentrate.",
+            "name": "Focus & Clarity",
+            "description": "The state of your mental sharpness, presence, and capacity to concentrate.",
             "triggers": {
                 "positive": [
-                    "Clear head",
-                    "Deep concentration",
-                    "Highly focused",
-                    "In flow",
-                    "Solved a complex problem"
+                    "Completed a mentally engaging task",
+                    "Got into a focused rhythm",
+                    "Worked through something complex successfully",
+                    "Felt mentally refreshed after a break",
+                    "Organized thoughts with clarity"
                 ],
                 "neutral": [
-                    "Thinking casually",
-                    "Processing information",
-                    "Mixed focus",
-                    "Mind wandering gently"
+                    "Moved through familiar tasks without effort",
+                    "Let my thoughts drift calmly",
+                    "Was present but not highly focused",
+                    "Processed input without strong attention"
                 ],
                 "negative": [
-                    "Brain fog",
-                    "Can't focus",
-                    "Easily distracted",
-                    "Mind racing",
-                    "Mentally stuck",
-                    "Foggy brain"
+                    "Struggled to concentrate despite effort",
+                    "Felt scattered across multiple thoughts",
+                    "Had difficulty remembering things",
+                    "Experienced internal mental noise or chaos",
+                    "Lost focus repeatedly while working"
                 ]
             }
         },
         {
-            "name": "Inner Dialogue",
-            "description": "The way you talk to yourself in your head.",
+            "name": "Self-Talk & Inner Voice",
+            "description": "The quality and tone of your internal dialogue — how you're speaking to yourself right now.",
             "triggers": {
                 "positive": [
-                    "Self-kindness",
-                    "Encouraging thoughts",
-                    "Helpful self-talk",
-                    "Positive affirmations",
-                    "Self-compassion"
+                    "Supported myself with kind thoughts",
+                    "Mentally encouraged myself to keep going",
+                    "Affirmed my decisions",
+                    "Practiced gentle accountability",
+                    "Used internal validation over external approval"
                 ],
                 "neutral": [
-                    "Neutral self-checks",
-                    "Planning internally",
-                    "Reflective without emotion"
+                    "Planned my next steps mentally",
+                    "Reflected on something without judgment",
+                    "Thought through tasks methodically",
+                    "Had mental silence or stillness"
                 ],
                 "negative": [
-                    "Harsh inner critic",
-                    "Self-doubt spiral",
-                    "Rumination",
-                    "Negative comparisons",
-                    "Obsessive thoughts"
+                    "Mentally replayed what I did wrong",
+                    "Focused on my flaws",
+                    "Used critical or shaming self-talk",
+                    "Felt trapped in spiraling thoughts",
+                    "Compared myself internally to a standard I couldn’t meet"
                 ]
             }
         },
         {
-            "name": "Cognitive Load",
-            "description": "How much mental effort your brain is currently handling.",
+            "name": "Mental Load & Energy",
+            "description": "How much cognitive effort you're handling and how mentally taxed or energized you feel.",
             "triggers": {
                 "positive": [
-                    "Intellectually stimulated",
-                    "Feeling sharp",
-                    "Mentally engaged",
-                    "Learning something new",
-                    "Solving a puzzle"
+                    "Felt intellectually challenged in a good way",
+                    "Balanced tasks without mental strain",
+                    "Paced myself well across mental demands",
+                    "Had space to think creatively",
+                    "Used energy on something I care about"
                 ],
                 "neutral": [
-                    "Routine mental tasks",
-                    "Reading casually",
-                    "Processing information",
-                    "Mental break"
+                    "Engaged in light mental activity",
+                    "Did habitual thinking patterns",
+                    "Was mentally passive for a while",
+                    "Alternated between attention and rest"
                 ],
                 "negative": [
-                    "Mental fatigue",
-                    "Information overload",
-                    "Feeling overwhelmed by thoughts",
-                    "Mind feels drained",
-                    "Decision paralysis"
+                    "Tried to do too much at once mentally",
+                    "Experienced mental exhaustion from overthinking",
+                    "Struggled to manage incoming demands",
+                    "Felt cognitively depleted",
+                    "Had decision fatigue"
                 ]
             }
         },
         {
-            "name": "Memory/Mental Triggers",
-            "description": "Specific memories or thoughts currently affecting your mood.",
+            "name": "Memory & Mental Imagery",
+            "description": "Thoughts, flashbacks, or imagined scenarios currently affecting your mental state.",
             "triggers": {
                 "positive": [
-                    "Fond memory",
-                    "Nostalgic warmth",
-                    "Inspiring thought",
-                    "Recalled a happy event",
-                    "Positive visualization"
+                    "Revisited a personal success or turning point",
+                    "Imagined a future I feel drawn toward",
+                    "Remembered something that motivates me",
+                    "Visualized something creative or expressive",
+                    "Connected with a personal insight from the past"
                 ],
                 "neutral": [
-                    "Thinking about the past",
-                    "Recalling facts",
-                    "Neutral reflection",
-                    "Daydreaming"
+                    "Replayed a neutral memory or image",
+                    "Mentally wandered through abstract thoughts",
+                    "Visualized a familiar routine or daydream",
+                    "Recalled facts or timelines without emotion"
                 ],
                 "negative": [
-                    "Worrying about future",
-                    "Intrusive thoughts",
-                    "Regret",
-                    "Emotional flashback",
-                    "Haunting memory",
-                    "Mental replay of negative event"
+                    "Got stuck in a loop of regretful thoughts",
+                    "Had a flashback to something painful",
+                    "Imagined worst-case scenarios repeatedly",
+                    "Mentally rehearsed a failure or fear",
+                    "Was triggered by a personal memory I didn’t expect"
                 ]
             }
         }
