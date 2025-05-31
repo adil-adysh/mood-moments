@@ -1,0 +1,128 @@
+{
+    "name": "Leisure & Self-Expression",
+    "description": "Your hobbies, creative activities, and how you relax and unwind.",
+    "contexts": [
+        {
+            "name": "Rest Mode",
+            "description": "Your current state of relaxation, rest, or boredom.",
+            "triggers": {
+                "positive": [
+                    "Felt recharged",
+                    "Relaxed mindfully",
+                    "Peaceful downtime",
+                    "Enjoyed quiet time",
+                    "Feeling renewed"
+                ],
+                "neutral": [
+                    "Zoned out",
+                    "Routine rest",
+                    "Doing nothing specific"
+                ],
+                "negative": [
+                    "Can't relax",
+                    "Restless boredom",
+                    "Lack of true rest",
+                    "Felt stuck or agitated",
+                    "Feeling unproductive during rest"
+                ]
+            }
+        },
+        {
+            "name": "Activity",
+            "description": "What you're doing for entertainment or recreation.",
+            "triggers": {
+                "positive": [
+                    "Entertained",
+                    "Deeply engaged in a show/book",
+                    "Enjoyed a game",
+                    "Lost in music",
+                    "Found new content"
+                ],
+                "neutral": [
+                    "Watching passively",
+                    "Casual listening",
+                    "Browse for content"
+                ],
+                "negative": [
+                    "Screen fatigue",
+                    "Feeling drained after content",
+                    "Bored by activity",
+                    "Overstimulated by media",
+                    "Activity felt like a chore"
+                ]
+            }
+        },
+        {
+            "name": "Hobby Engagement",
+            "description": "Your current participation in hobbies or recreational activities.",
+            "triggers": {
+                "positive": [
+                    "Enjoyed a hobby",
+                    "Deeply engaged in a hobby",
+                    "Progressed in a skill",
+                    "Connected with a hobby group"
+                ],
+                "neutral": [
+                    "Practicing a hobby casually",
+                    "Planning hobby time"
+                ],
+                "negative": [
+                    "No time for hobbies",
+                    "Lost interest in a hobby",
+                    "Frustrated with a hobby",
+                    "Hobby felt like a chore"
+                ]
+            }
+        },
+        {
+            "name": "Creative Outlet",
+            "description": "Your current involvement with creative pursuits.",
+            "triggers": {
+                "positive": [
+                    "Creative flow",
+                    "Feeling inspired",
+                    "Expressed yourself freely",
+                    "Artistic joy",
+                    "Finished a creative project"
+                ],
+                "neutral": [
+                    "Basic journaling or doodle",
+                    "Light expression",
+                    "Planning a creative piece"
+                ],
+                "negative": [
+                    "Creative block",
+                    "Feeling uninspired",
+                    "Criticizing own own work",
+                    "Project didn't turn out",
+                    "Lack of creative time"
+                ]
+            }
+        },
+        {
+            "name": "Personal Growth",
+            "description": "Activities related to learning, self-improvement, or personal development.",
+            "triggers": {
+                "positive": [
+                    "Learned something new",
+                    "Had an insight",
+                    "Feeling self-aware",
+                    "Practiced a skill",
+                    "Reached a personal goal"
+                ],
+                "neutral": [
+                    "Reading for information",
+                    "Reflecting on a topic",
+                    "Attending a workshop"
+                ],
+                "negative": [
+                    "Feeling stuck in growth",
+                    "Lack of progress",
+                    "Overwhelmed by new info",
+                    "Struggling to learn",
+                    "Feeling inadequate"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,181 @@
+{
+    "name": "Relationships & Social Life",
+    "description": "Your interactions and connections with others, both in person and online.",
+    "contexts": [
+        {
+            "name": "Connection Quality",
+            "description": "The feeling and state of your relationships with individuals and groups.",
+            "triggers": {
+                "positive": [
+                    "Felt supported",
+                    "Feeling loved",
+                    "Emotionally safe",
+                    "Deep trust",
+                    "Bond strengthened",
+                    "Mutual respect",
+                    "Connected with someone new"
+                ],
+                "neutral": [
+                    "Relationship feels steady",
+                    "Basic interaction",
+                    "Functional conversation",
+                    "Routine connection",
+                    "Casual presence of others"
+                ],
+                "negative": [
+                    "Lack of connection",
+                    "Feeling neglected",
+                    "Emotionally distant",
+                    "Misunderstood",
+                    "Felt lonely even with others",
+                    "Trust issues surfaced",
+                    "Feeling disrespected",
+                    "Judged"
+                ]
+            }
+        },
+        {
+            "name": "Social Engagement",
+            "description": "The general tone and energy of your current interactions and gatherings.",
+            "triggers": {
+                "positive": [
+                    "Engaging conversation",
+                    "Enjoyed a social gathering",
+                    "Positive group dynamic",
+                    "Feeling heard",
+                    "Had a good chat",
+                    "Received a compliment"
+                ],
+                "neutral": [
+                    "Polite exchange",
+                    "Small talk",
+                    "Brief encounter",
+                    "Observing others",
+                    "Quiet co-existing"
+                ],
+                "negative": [
+                    "Social awkwardness",
+                    "Feeling ignored in a group",
+                    "Tense conversation",
+                    "Argument",
+                    "Unwanted interaction",
+                    "Conflict escalated",
+                    "Criticism",
+                    "Felt judged socially"
+                ]
+            }
+        },
+        {
+            "name": "Emotional Support Dynamics",
+            "description": "Your experience of giving or receiving emotional support.",
+            "triggers": {
+                "positive": [
+                    "Received emotional support",
+                    "Felt cared for",
+                    "Someone listened empathetically",
+                    "Felt understood",
+                    "Helped someone",
+                    "Provided comfort",
+                    "Got helpful advice"
+                ],
+                "neutral": [
+                    "Listened to a friend's problem",
+                    "Standard greeting",
+                    "Polite concern",
+                    "Brief check-in"
+                ],
+                "negative": [
+                    "Felt alone with feelings",
+                    "Lack of empathy",
+                    "Felt unheard",
+                    "Giving felt draining",
+                    "Support wasn't appreciated",
+                    "Dismissed feelings",
+                    "Someone was insensitive",
+                    "Advice was unhelpful"
+                ]
+            }
+        },
+        {
+            "name": "Conflict & Resolution",
+            "description": "The current state of disagreements or tension in your relationships.",
+            "triggers": {
+                "positive": [
+                    "Resolved a conflict",
+                    "Reached understanding",
+                    "Compromised successfully",
+                    "Had a productive disagreement",
+                    "Forgave someone",
+                    "Made amends"
+                ],
+                "neutral": [
+                    "Discussing differences calmly",
+                    "Acknowledging a disagreement",
+                    "Tension present but calm",
+                    "Awaiting a resolution"
+                ],
+                "negative": [
+                    "Unresolved tension",
+                    "Ongoing argument",
+                    "No path to resolution",
+                    "Conflict escalated",
+                    "Feeling resentful",
+                    "Fight broke out",
+                    "Feeling unheard in conflict"
+                ]
+            }
+        },
+        {
+            "name": "Social Media Presence",
+            "description": "Your current experience and feelings related to online social platforms.",
+            "triggers": {
+                "positive": [
+                    "Positive online interaction",
+                    "Connected with online friends",
+                    "Inspiring content seen",
+                    "Engaged with community",
+                    "Shared something meaningful"
+                ],
+                "neutral": [
+                    "Browse feed casually",
+                    "Checking notifications",
+                    "Passive consumption"
+                ],
+                "negative": [
+                    "Social comparison (FOMO)",
+                    "Feeling drained by social media",
+                    "Negative comments",
+                    "Doomscrolling",
+                    "Toxic online environment",
+                    "Online conflict",
+                    "Cyberbullying"
+                ]
+            }
+        },
+        {
+            "name": "Milestone & Events",
+            "description": "Significant events or celebrations involving others.",
+            "triggers": {
+                "positive": [
+                    "Enjoyed a special occasion",
+                    "Celebrated an event",
+                    "Attended a wedding/birthday",
+                    "Shared good news",
+                    "Felt part of something special"
+                ],
+                "neutral": [
+                    "Attended a required social gathering",
+                    "Observing an event",
+                    "Exchanged holiday greetings"
+                ],
+                "negative": [
+                    "Unpleasant social obligation",
+                    "Event was stressful",
+                    "Missed an important event",
+                    "Felt excluded from a celebration",
+                    "Felt pressured at an event"
+                ]
+            }
+        }
+    ]
+}

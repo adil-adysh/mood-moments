@@ -1,0 +1,113 @@
+{
+    "name": "Financial Well-being",
+    "description": "Your feelings and experiences related to money, income, savings, and financial security.",
+    "contexts": [
+        {
+            "name": "Spending & Budgeting",
+            "description": "How you are currently managing your money through spending and saving.",
+            "triggers": {
+                "positive": [
+                    "Stuck to budget",
+                    "Made a smart purchase",
+                    "Saved money",
+                    "Found a good deal"
+                ],
+                "neutral": [
+                    "Made routine purchases",
+                    "Reviewed budget"
+                ],
+                "negative": [
+                    "Overspent",
+                    "Impulse purchase",
+                    "Spending felt wasteful",
+                    "Couldn't afford something"
+                ]
+            }
+        },
+        {
+            "name": "Income & Earnings",
+            "description": "Your current situation regarding earning money.",
+            "triggers": {
+                "positive": [
+                    "Received income",
+                    "Income feels stable",
+                    "Got a bonus/raise",
+                    "Earned extra money"
+                ],
+                "neutral": [
+                    "Regular payday",
+                    "Income as expected"
+                ],
+                "negative": [
+                    "Unexpected expense",
+                    "Income felt insufficient",
+                    "Financial loss",
+                    "Missed a payment"
+                ]
+            }
+        },
+        {
+            "name": "Debt & Bills",
+            "description": "Your current relationship with debts, loans, and recurring payments.",
+            "triggers": {
+                "positive": [
+                    "Bills are manageable",
+                    "Paid off a debt",
+                    "Found a way to reduce debt"
+                ],
+                "neutral": [
+                    "Paid routine bills",
+                    "Reviewed loan statements"
+                ],
+                "negative": [
+                    "Bills are overdue",
+                    "Debt feels overwhelming",
+                    "Struggling to pay bills",
+                    "Received a late fee"
+                ]
+            }
+        },
+        {
+            "name": "Savings & Investments",
+            "description": "Your feelings about your financial future and security.",
+            "triggers": {
+                "positive": [
+                    "Financial plan feels secure",
+                    "Savings growing",
+                    "Reached a savings goal",
+                    "Investment performed well"
+                ],
+                "neutral": [
+                    "Checking savings balance",
+                    "Neutral investment performance"
+                ],
+                "negative": [
+                    "Financial insecurity",
+                    "Savings are low",
+                    "Investment loss",
+                    "Worried about future finances"
+                ]
+            }
+        },
+        {
+            "name": "Financial Planning",
+            "description": "Your engagement and feelings about managing your long-term financial future.",
+            "triggers": {
+                "positive": [
+                    "Feeling financially prepared",
+                    "Made a good financial decision",
+                    "Planned for future expenses"
+                ],
+                "neutral": [
+                    "Thinking about finances",
+                    "Researching financial options"
+                ],
+                "negative": [
+                    "Uncertain about finances",
+                    "Unexpected financial stressor",
+                    "Avoiding financial planning"
+                ]
+            }
+        }
+    ]
+}

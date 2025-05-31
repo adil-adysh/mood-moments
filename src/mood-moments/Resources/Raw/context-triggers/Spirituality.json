@@ -1,0 +1,115 @@
+{
+    "name": "Spirituality",
+    "description": "Your connection to something greater than yourself, purpose, and values.",
+    "contexts": [
+        {
+            "name": "Inner Peace & Calm",
+            "description": "Your sense of inner tranquility and spiritual contentment.",
+            "triggers": {
+                "positive": [
+                    "Felt deep inner peace",
+                    "Sense of calm",
+                    "Experienced serenity",
+                    "Mind feels still"
+                ],
+                "neutral": [
+                    "Reflecting quietly",
+                    "Feeling neutral about inner state"
+                ],
+                "negative": [
+                    "Lack of inner peace",
+                    "Spiritual anxiety",
+                    "Felt restless within",
+                    "Mind is racing"
+                ]
+            }
+        },
+        {
+            "name": "Purpose & Meaning",
+            "description": "Your connection to life's meaning and your personal purpose.",
+            "triggers": {
+                "positive": [
+                    "Felt a strong sense of purpose",
+                    "Actions felt aligned with values",
+                    "Found meaning in an experience",
+                    "Feeling guided"
+                ],
+                "neutral": [
+                    "Pondering life's big questions",
+                    "Seeking clarity"
+                ],
+                "negative": [
+                    "Felt aimless",
+                    "Lack of meaning",
+                    "Questioning purpose",
+                    "Values felt challenged"
+                ]
+            }
+        },
+        {
+            "name": "Spiritual Practices",
+            "description": "Your engagement with activities that nurture your spiritual side.",
+            "triggers": {
+                "positive": [
+                    "Meaningful meditation session",
+                    "Uplifting prayer/ritual",
+                    "Connected with community",
+                    "Inspiring spiritual reading"
+                ],
+                "neutral": [
+                    "Engaged in routine practice",
+                    "Thinking about spiritual texts"
+                ],
+                "negative": [
+                    "Practice felt unfulfilling",
+                    "Skipped a practice",
+                    "Spiritual doubt",
+                    "Difficulty focusing during practice"
+                ]
+            }
+        },
+        {
+            "name": "Values & Ethics",
+            "description": "Your adherence to and reflection on your personal moral compass.",
+            "triggers": {
+                "positive": [
+                    "Acted with integrity",
+                    "Felt morally clear",
+                    "Stood up for my values",
+                    "Made an ethical choice"
+                ],
+                "neutral": [
+                    "Considering ethical implications",
+                    "Reflecting on a dilemma"
+                ],
+                "negative": [
+                    "Compromised values",
+                    "Felt morally conflicted",
+                    "Witnessed injustice",
+                    "Actions felt misaligned with beliefs"
+                ]
+            }
+        },
+        {
+            "name": "Connection to the Divine/Universe",
+            "description": "Your feeling of connection to a higher power, nature, or universal energy.",
+            "triggers": {
+                "positive": [
+                    "Felt a strong spiritual connection",
+                    "Experienced awe in nature",
+                    "Sense of oneness",
+                    "Felt guided by a higher power"
+                ],
+                "neutral": [
+                    "Reflecting on beliefs",
+                    "Observing natural beauty"
+                ],
+                "negative": [
+                    "Felt disconnected spiritually",
+                    "Sense of isolation from the divine",
+                    "Questioning faith/beliefs"
+                ]
+            }
+        }
+    ]
+}

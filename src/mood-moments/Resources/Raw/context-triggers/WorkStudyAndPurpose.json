@@ -1,0 +1,160 @@
+{
+    "name": "Work, Study & Purpose",
+    "description": "Activities related to your job, studies, goals, or tasks that require effort.",
+    "contexts": [
+        {
+            "name": "Work State",
+            "description": "Your current level of engagement, productivity, or fatigue with tasks.",
+            "triggers": {
+                "positive": [
+                    "Felt productive",
+                    "In the zone",
+                    "Achieved a flow state",
+                    "Inspired",
+                    "Creative breakthrough"
+                ],
+                "neutral": [
+                    "Routine tasks",
+                    "Steady progress",
+                    "Getting through the work",
+                    "Mild focus"
+                ],
+                "negative": [
+                    "Procrastinating",
+                    "Lack of motivation",
+                    "Feeling overwhelmed by workload",
+                    "Burnout",
+                    "Mental block",
+                    "Dreaded task"
+                ]
+            }
+        },
+        {
+            "name": "Accomplishment",
+            "description": "Your perception of progress or completion related to your work or goals.",
+            "triggers": {
+                "positive": [
+                    "Completed a goal",
+                    "Finished a major task",
+                    "Reached a milestone",
+                    "Received positive feedback",
+                    "Project approved"
+                ],
+                "neutral": [
+                    "Made steady progress",
+                    "Submitting work",
+                    "Working on a long-term project",
+                    "Waiting on feedback"
+                ],
+                "negative": [
+                    "Feeling unproductive",
+                    "Failed a task",
+                    "Missed a deadline",
+                    "Facing a setback",
+                    "Project rejected",
+                    "Effort not recognized"
+                ]
+            }
+        },
+        {
+            "name": "Workload & Deadlines",
+            "description": "The current pressure and volume of your work/study tasks.",
+            "triggers": {
+                "positive": [
+                    "Manageable workload",
+                    "Tasks feel light",
+                    "Ahead of schedule",
+                    "Deadline extended"
+                ],
+                "neutral": [
+                    "Standard workload",
+                    "Steady flow of tasks",
+                    "Approaching deadline"
+                ],
+                "negative": [
+                    "Overwhelming workload",
+                    "Too many commitments",
+                    "Tight deadlines",
+                    "Unexpected urgent tasks",
+                    "Feeling behind schedule"
+                ]
+            }
+        },
+        {
+            "name": "Career/Academic Progress",
+            "description": "Your feelings about your long-term path in work or studies.",
+            "triggers": {
+                "positive": [
+                    "Feeling on track",
+                    "Career opportunity arose",
+                    "Got a promotion/raise",
+                    "Learned a valuable skill",
+                    "Positive academic result"
+                ],
+                "neutral": [
+                    "Considering career options",
+                    "Evaluating next steps",
+                    "Standard academic term"
+                ],
+                "negative": [
+                    "Feeling stuck in career",
+                    "Uncertainty about future",
+                    "Lack of growth opportunities",
+                    "Academic struggle",
+                    "Career setback"
+                ]
+            }
+        },
+        {
+            "name": "Location",
+            "description": "Your physical or virtual work/study environment.",
+            "triggers": {
+                "positive": [
+                    "Comfortable workspace",
+                    "Productive atmosphere",
+                    "Ideal setting",
+                    "Energized by the environment"
+                ],
+                "neutral": [
+                    "Neutral setting",
+                    "Functional space",
+                    "Typical office noise"
+                ],
+                "negative": [
+                    "Distracting surroundings",
+                    "Noisy environment",
+                    "Uncomfortable setup",
+                    "Cluttered workspace",
+                    "Poor lighting"
+                ]
+            }
+        },
+        {
+            "name": "Device Use",
+            "description": "How you're currently using digital devices for work or study.",
+            "triggers": {
+                "positive": [
+                    "Seamless tech experience",
+                    "Effective use",
+                    "Tech was a great tool",
+                    "Flow in digital work",
+                    "Good call/meeting"
+                ],
+                "neutral": [
+                    "Functional use",
+                    "Checking emails",
+                    "Standard digital tasks",
+                    "Scrolling mindlessly"
+                ],
+                "negative": [
+                    "Tech issues",
+                    "Distracted by device",
+                    "Excessive screen time for work",
+                    "Notification overwhelm",
+                    "Zoom fatigue",
+                    "Disconnected from task"
+                ]
+            }
+        }
+    ]
+}

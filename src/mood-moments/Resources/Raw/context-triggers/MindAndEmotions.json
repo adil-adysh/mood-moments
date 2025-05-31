@@ -1,0 +1,146 @@
+{
+    "name": "Mind & Emotions",
+    "description": "Your thoughts, feelings, and overall mental state.",
+    "contexts": [
+        {
+            "name": "Emotional State",
+            "description": "Your main feelings and emotional well-being.",
+            "triggers": {
+                "positive": [
+                    "Feeling calm",
+                    "Content",
+                    "Joyful",
+                    "Peaceful",
+                    "Optimistic",
+                    "Excited",
+                    "Hopeful",
+                    "Open-hearted"
+                ],
+                "neutral": [
+                    "Neutral mood",
+                    "Okay but not inspired",
+                    "Emotionally flat",
+                    "Pensive",
+                    "Indifferent"
+                ],
+                "negative": [
+                    "Anxious",
+                    "Stressed",
+                    "Irritable",
+                    "Frustrated",
+                    "Down or moody",
+                    "Overwhelmed",
+                    "Sad",
+                    "Angry",
+                    "Lonely",
+                    "Hopeless"
+                ]
+            }
+        },
+        {
+            "name": "Mental Focus",
+            "description": "How clearly you can think and concentrate.",
+            "triggers": {
+                "positive": [
+                    "Clear head",
+                    "Deep concentration",
+                    "Highly focused",
+                    "In flow",
+                    "Solved a complex problem"
+                ],
+                "neutral": [
+                    "Thinking casually",
+                    "Processing information",
+                    "Mixed focus",
+                    "Mind wandering gently"
+                ],
+                "negative": [
+                    "Brain fog",
+                    "Can't focus",
+                    "Easily distracted",
+                    "Mind racing",
+                    "Mentally stuck",
+                    "Foggy brain"
+                ]
+            }
+        },
+        {
+            "name": "Inner Dialogue",
+            "description": "The way you talk to yourself in your head.",
+            "triggers": {
+                "positive": [
+                    "Self-kindness",
+                    "Encouraging thoughts",
+                    "Helpful self-talk",
+                    "Positive affirmations",
+                    "Self-compassion"
+                ],
+                "neutral": [
+                    "Neutral self-checks",
+                    "Planning internally",
+                    "Reflective without emotion"
+                ],
+                "negative": [
+                    "Harsh inner critic",
+                    "Self-doubt spiral",
+                    "Rumination",
+                    "Negative comparisons",
+                    "Obsessive thoughts"
+                ]
+            }
+        },
+        {
+            "name": "Cognitive Load",
+            "description": "How much mental effort your brain is currently handling.",
+            "triggers": {
+                "positive": [
+                    "Intellectually stimulated",
+                    "Feeling sharp",
+                    "Mentally engaged",
+                    "Learning something new",
+                    "Solving a puzzle"
+                ],
+                "neutral": [
+                    "Routine mental tasks",
+                    "Reading casually",
+                    "Processing information",
+                    "Mental break"
+                ],
+                "negative": [
+                    "Mental fatigue",
+                    "Information overload",
+                    "Feeling overwhelmed by thoughts",
+                    "Mind feels drained",
+                    "Decision paralysis"
+                ]
+            }
+        },
+        {
+            "name": "Memory/Mental Triggers",
+            "description": "Specific memories or thoughts currently affecting your mood.",
+            "triggers": {
+                "positive": [
+                    "Fond memory",
+                    "Nostalgic warmth",
+                    "Inspiring thought",
+                    "Recalled a happy event",
+                    "Positive visualization"
+                ],
+                "neutral": [
+                    "Thinking about the past",
+                    "Recalling facts",
+                    "Neutral reflection",
+                    "Daydreaming"
+                ],
+                "negative": [
+                    "Worrying about future",
+                    "Intrusive thoughts",
+                    "Regret",
+                    "Emotional flashback",
+                    "Haunting memory",
+                    "Mental replay of negative event"
+                ]
+            }
+        }
+    ]
+}

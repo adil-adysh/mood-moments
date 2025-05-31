@@ -1,0 +1,160 @@
+{
+    "name": "Daily Life & Environment",
+    "description": "Your daily routines, surroundings, and the general world around you.",
+    "contexts": [
+        {
+            "name": "Time",
+            "description": "The current time of day and how it affects you.",
+            "triggers": {
+                "positive": [
+                    "Energized morning",
+                    "Perfect time for an activity",
+                    "Relaxing evening",
+                    "Feeling on schedule"
+                ],
+                "neutral": [
+                    "Standard daytime",
+                    "Routine time",
+                    "Clock-aware but neutral"
+                ],
+                "negative": [
+                    "Feeling rushed",
+                    "Dragging afternoon",
+                    "Time wasted",
+                    "Too late for something",
+                    "Lonely night"
+                ]
+            }
+        },
+        {
+            "name": "Location",
+            "description": "Your current physical surroundings.",
+            "triggers": {
+                "positive": [
+                    "Peaceful space",
+                    "Cozy at home",
+                    "Beautiful scenery",
+                    "Inspired in nature",
+                    "Comfortable setting"
+                ],
+                "neutral": [
+                    "Neutral room",
+                    "Familiar street",
+                    "Transit space",
+                    "Public area"
+                ],
+                "negative": [
+                    "Crowded place",
+                    "Too much noise",
+                    "Chaotic environment",
+                    "Unpleasant location",
+                    "Feeling stuck indoors",
+                    "Feeling unsafe"
+                ]
+            }
+        },
+        {
+            "name": "Chores/Errands",
+            "description": "Your current engagement with daily tasks and responsibilities.",
+            "triggers": {
+                "positive": [
+                    "Completed a chore",
+                    "Organized space",
+                    "Ran errands efficiently",
+                    "Feeling productive about tasks",
+                    "Home feels tidy"
+                ],
+                "neutral": [
+                    "Doing routine chores",
+                    "Starting a task",
+                    "Waiting in line"
+                ],
+                "negative": [
+                    "Overdue tasks",
+                    "Messy surroundings",
+                    "Overwhelmed by chores",
+                    "Unexpected delay",
+                    "Lost something",
+                    "Task felt pointless"
+                ]
+            }
+        },
+        {
+            "name": "Commute/Travel",
+            "description": "Your experience during travel or daily commute.",
+            "triggers": {
+                "positive": [
+                    "Smooth commute",
+                    "Relaxing travel",
+                    "Enjoyed the journey",
+                    "Reached destination easily"
+                ],
+                "neutral": [
+                    "Standard commute",
+                    "Routine travel",
+                    "Waiting for transport"
+                ],
+                "negative": [
+                    "Heavy traffic",
+                    "Travel delay",
+                    "Stressful travel",
+                    "Uncomfortable journey",
+                    "Missed connection",
+                    "Got lost",
+                    "Public transport issues"
+                ]
+            }
+        },
+        {
+            "name": "Day Type",
+            "description": "Whether it's a weekday, weekend, or a special day.",
+            "triggers": {
+                "positive": [
+                    "Fun weekend",
+                    "Enjoyed a day off",
+                    "Meaningful holiday",
+                    "Productive weekday"
+                ],
+                "neutral": [
+                    "Typical weekday",
+                    "Ordinary day",
+                    "Neutral schedule"
+                ],
+                "negative": [
+                    "Overbooked day",
+                    "Monday blues",
+                    "Boring weekend",
+                    "Unplanned changes",
+                    "Isolated holiday"
+                ]
+            }
+        },
+        {
+            "name": "Season/Weather",
+            "description": "The current climate and how it impacts your comfort.",
+            "triggers": {
+                "positive": [
+                    "Enjoying the weather",
+                    "Sunny day",
+                    "Perfect temperature",
+                    "Light breeze",
+                    "Refreshing rain",
+                    "Seasonal comfort"
+                ],
+                "neutral": [
+                    "Typical weather",
+                    "Overcast sky",
+                    "Mildly aware of the weather"
+                ],
+                "negative": [
+                    "Unbearable heat/cold",
+                    "Gloomy skies",
+                    "Weather discomfort",
+                    "Stormy weather",
+                    "Heavy pollution",
+                    "Bad driving conditions"
+                ]
+            }
+        }
+    ]
+}
