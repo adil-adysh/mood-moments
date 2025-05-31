@@ -7,7 +7,7 @@
             "description": "Your current state of relaxation, rest, or boredom.",
             "triggers": {
                 "positive": [
-                    "Felt recharged",
+                    "Feeling recharged",
                     "Relaxed mindfully",
                     "Peaceful downtime",
                     "Enjoyed quiet time",
@@ -16,13 +16,13 @@
                 "neutral": [
                     "Zoned out",
                     "Routine rest",
-                    "Doing nothing specific"
+                    "Resting without focus"
                 ],
                 "negative": [
-                    "Can't relax",
+                    "Unable to relax",
                     "Restless boredom",
                     "Lack of true rest",
-                    "Felt stuck or agitated",
+                    "Feeling stuck or agitated",
                     "Feeling unproductive during rest"
                 ]
             }
@@ -33,15 +33,15 @@
             "triggers": {
                 "positive": [
                     "Entertained",
-                    "Deeply engaged in a show/book",
+                    "Deeply engaged in a show or book",
                     "Enjoyed a game",
                     "Lost in music",
-                    "Found new content"
+                    "Discovered new content"
                 ],
                 "neutral": [
                     "Watching passively",
                     "Casual listening",
-                    "Browse for content"
+                    "Casually browsing content"
                 ],
                 "negative": [
                     "Screen fatigue",
@@ -86,15 +86,15 @@
                     "Finished a creative project"
                 ],
                 "neutral": [
-                    "Basic journaling or doodle",
+                    "Basic journaling or doodling",
                     "Light expression",
                     "Planning a creative piece"
                 ],
                 "negative": [
                     "Creative block",
                     "Feeling uninspired",
-                    "Criticizing own own work",
-                    "Project didn't turn out",
+                    "Criticizing own work",
+                    "Project didn't turn out as expected",
                     "Lack of creative time"
                 ]
             }
