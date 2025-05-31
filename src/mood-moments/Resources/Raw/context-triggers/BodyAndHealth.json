@@ -1,162 +1,162 @@
 {
-    "name": "Body & Health",
-    "description": "How your body feels and functions, including sleep, food, and physical well-being.",
-    "contexts": [
-        {
-            "name": "Sleep",
-            "description": "Your current state of rest and quality of sleep.",
-            "triggers": {
-                "positive": [
-                    "Woke up refreshed",
-                    "Slept deeply",
-                    "Had a refreshing nap",
-                    "Peaceful dreams"
-                ],
-                "neutral": [
-                    "Rested but groggy",
-                    "Light sleep",
-                    "Woke up to an alarm",
-                    "Short nap"
-                ],
-                "negative": [
-                    "Woke up feeling exhausted",
-                    "Restless night",
-                    "Insomnia",
-                    "Couldn't fall asleep",
-                    "Nightmares"
-                ]
-            }
-        },
-        {
-            "name": "Health",
-            "description": "Your current physical well-being, including any pain or illness.",
-            "triggers": {
-                "positive": [
-                    "Feeling healthy",
-                    "Body feels strong",
-                    "Energy boost",
-                    "Symptoms improved",
-                    "Healing well"
-                ],
-                "neutral": [
-                    "Health stable",
-                    "Minor fatigue",
-                    "Usual aches",
-                    "Taking regular medication"
-                ],
-                "negative": [
-                    "Feeling sick",
-                    "In pain",
-                    "Physical discomfort",
-                    "Chronic discomfort",
-                    "Symptoms worsened",
-                    "Sudden illness"
-                ]
-            }
-        },
-        {
-            "name": "Physical Activity",
-            "description": "Your current level of physical movement or exercise.",
-            "triggers": {
-                "positive": [
-                    "Energized after exercise",
-                    "Had a good workout",
-                    "Enjoyed a walk",
-                    "Feeling limber",
-                    "Reached a fitness goal"
-                ],
-                "neutral": [
-                    "Light movement",
-                    "Commuting",
-                    "Sedentary for a bit",
-                    "Stretching lightly"
-                ],
-                "negative": [
-                    "Lack of movement",
-                    "Stiff or sore",
-                    "Skipped workout",
-                    "Feeling out of shape",
-                    "Over-exerted",
-                    "Injured self"
-                ]
-            }
-        },
-        {
-            "name": "Nutrition",
-            "description": "Your current physical needs related to food and drink.",
-            "triggers": {
-                "positive": [
-                    "Nourished after a good meal",
-                    "Feeling energized by food",
-                    "Enjoyed favorite dish",
-                    "Drank enough water",
-                    "Ate mindfully"
-                ],
-                "neutral": [
-                    "Ate something basic",
-                    "Followed meal routine",
-                    "Snacked briefly",
-                    "Neutral food experience"
-                ],
-                "negative": [
-                    "Feeling 'hangry'",
-                    "Skipped meals",
-                    "Overate",
-                    "Ate something unhealthy",
-                    "Dehydrated",
-                    "Cravings without satisfaction"
-                ]
-            }
-        },
-        {
-            "name": "Hormonal Cycles",
-            "description": "How hormonal changes are currently affecting your body and mood.",
-            "triggers": {
-                "positive": [
-                    "Feeling emotionally balanced",
-                    "Stable energy",
-                    "Symptom-free",
-                    "Feeling vibrant"
-                ],
-                "neutral": [
-                    "Hormonal shift noticeable",
-                    "Body feels typical for this cycle",
-                    "Mild symptoms"
-                ],
-                "negative": [
-                    "Mood swings",
-                    "Cramps",
-                    "Exhaustion or irritability",
-                    "Bloating",
-                    "Headaches",
-                    "Hormonal discomfort"
-                ]
-            }
-        },
-        {
-            "name": "Substance Effects",
-            "description": "How caffeine, alcohol, or medications are currently impacting you.",
-            "triggers": {
-                "positive": [
-                    "Medication working well",
-                    "Feeling alert from caffeine",
-                    "Calm after tea/coffee",
-                    "Uplifted after moderate use"
-                ],
-                "neutral": [
-                    "Took prescribed dose",
-                    "Regular caffeine or alcohol intake",
-                    "No strong effect"
-                ],
-                "negative": [
-                    "Jittery",
-                    "Side effects of medication",
-                    "Feeling sluggish from substance",
-                    "Hangover",
-                    "Craving a substance",
-                    "Dependency fatigue"
-                ]
-            }
-        }
-    ]
+  "name": "Body & Health",
+  "description": "How your body feels and functions, including sleep, food, and physical well-being.",
+  "contexts": [
+    {
+      "name": "Sleep",
+      "description": "Your current state of rest and quality of sleep.",
+      "triggers": {
+        "positive": [
+          "Woke up feeling refreshed",
+          "Slept deeply",
+          "Had a refreshing nap",
+          "Experienced peaceful dreams"
+        ],
+        "neutral": [
+          "Rested but groggy",
+          "Light sleep",
+          "Woke up to an alarm",
+          "Took a short nap"
+        ],
+        "negative": [
+          "Woke up feeling exhausted",
+          "Had a restless night",
+          "Experienced insomnia",
+          "Couldn't fall asleep",
+          "Had nightmares"
+        ]
+      }
+    },
+    {
+      "name": "Health",
+      "description": "Your current physical well-being, including any pain or illness.",
+      "triggers": {
+        "positive": [
+          "Feeling healthy",
+          "Body feels strong",
+          "Experienced an energy boost",
+          "Symptoms improved",
+          "Healing well"
+        ],
+        "neutral": [
+          "Health stable",
+          "Minor fatigue",
+          "Usual aches",
+          "Taking regular medication"
+        ],
+        "negative": [
+          "Feeling sick",
+          "Experiencing pain",
+          "Physical discomfort",
+          "Chronic discomfort",
+          "Symptoms worsened",
+          "Sudden illness"
+        ]
+      }
+    },
+    {
+      "name": "Physical Activity",
+      "description": "Your current level of physical movement or exercise.",
+      "triggers": {
+        "positive": [
+          "Feeling energized after exercise",
+          "Had a good workout",
+          "Enjoyed a walk",
+          "Feeling limber",
+          "Reached a fitness goal"
+        ],
+        "neutral": [
+          "Light movement",
+          "Commuting",
+          "Sedentary for a while",
+          "Stretching lightly"
+        ],
+        "negative": [
+          "Lack of physical activity",
+          "Feeling stiff or sore",
+          "Skipped planned workout",
+          "Feeling out of shape",
+          "Over-exerted",
+          "Experienced injury"
+        ]
+      }
+    },
+    {
+      "name": "Nutrition",
+      "description": "Your current physical needs related to food and drink.",
+      "triggers": {
+        "positive": [
+          "Feeling nourished after a good meal",
+          "Energized by food",
+          "Enjoyed favorite dish",
+          "Drank enough water",
+          "Ate mindfully"
+        ],
+        "neutral": [
+          "Ate something basic",
+          "Followed usual meal routine",
+          "Had a brief snack",
+          "Neutral food experience"
+        ],
+        "negative": [
+          "Feeling irritable due to hunger",
+          "Skipped meals",
+          "Overate",
+          "Ate unhealthy food",
+          "Dehydrated",
+          "Experienced unsatisfied cravings"
+        ]
+      }
+    },
+    {
+      "name": "Hormonal Cycles",
+      "description": "How hormonal changes are currently affecting your body and mood.",
+      "triggers": {
+        "positive": [
+          "Feeling emotionally balanced",
+          "Energy levels stable",
+          "Symptom-free",
+          "Feeling vibrant"
+        ],
+        "neutral": [
+          "Noticing typical hormonal shifts",
+          "Body feels usual for this cycle",
+          "Mild symptoms present"
+        ],
+        "negative": [
+          "Experiencing mood swings",
+          "Having cramps",
+          "Feeling exhausted or irritable",
+          "Bloating",
+          "Headaches",
+          "Hormonal discomfort"
+        ]
+      }
+    },
+    {
+      "name": "Substance Effects",
+      "description": "How caffeine, alcohol, or medications are currently impacting you.",
+      "triggers": {
+        "positive": [
+          "Medication working well",
+          "Feeling alert from caffeine",
+          "Calm after tea or coffee",
+          "Feeling uplifted after moderate use"
+        ],
+        "neutral": [
+          "Took prescribed dose",
+          "Regular caffeine or alcohol intake",
+          "No strong effects noticed"
+        ],
+        "negative": [
+          "Feeling jittery",
+          "Experiencing side effects from medication",
+          "Feeling sluggish from substances",
+          "Hangover symptoms",
+          "Craving a substance",
+          "Experiencing dependency fatigue"
+        ]
+      }
+    }
+  ]
 }
