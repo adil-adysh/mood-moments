@@ -30,7 +30,7 @@
             "triggers": {
                 "positive": [
                     "Felt a strong sense of purpose",
-                    "Actions felt aligned with values",
+                    "Actions aligned with values",
                     "Found meaning in an experience",
                     "Feeling guided"
                 ],
@@ -52,7 +52,7 @@
             "triggers": {
                 "positive": [
                     "Meaningful meditation session",
-                    "Uplifting prayer/ritual",
+                    "Uplifting prayer or ritual",
                     "Connected with community",
                     "Inspiring spiritual reading"
                 ],
@@ -85,7 +85,7 @@
                 "negative": [
                     "Compromised values",
                     "Felt morally conflicted",
-                    "Witnessed injustice",
+                    "Observed injustice",
                     "Actions felt misaligned with beliefs"
                 ]
             }
@@ -102,12 +102,13 @@
                 ],
                 "neutral": [
                     "Reflecting on beliefs",
-                    "Observing natural beauty"
+                    "Observing natural beauty",
+                    "Contemplating spiritual ideas"
                 ],
                 "negative": [
                     "Felt disconnected spiritually",
                     "Sense of isolation from the divine",
-                    "Questioning faith/beliefs"
+                    "Questioning faith or beliefs"
                 ]
             }
         }
