@@ -42,8 +42,8 @@ namespace mood_moments.Services
                     {
                         result.Add(new DomainInfo
                         {
-                            Name = domain.Name,
-                            Description = domain.Description,
+                            Name = domain.Name!,
+                            Description = domain.Description!,
                             FileName = file
                         });
                     }

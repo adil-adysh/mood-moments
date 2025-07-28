@@ -11,7 +11,7 @@ namespace mood_moments.Views.MoodEntryWizard
 
         public void OnMidEmotionCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (e.Value && sender is RadioButton rb && rb.Content is string emotion && BindingContext is mood_moments.ViewModels.NewEntryWizardViewModel vm && vm.SelectMidEmotionCommand.CanExecute(emotion))
+            if (e?.Value == true && sender is RadioButton rb && rb.Content is string emotion && BindingContext is mood_moments.ViewModels.NewEntryWizardViewModel vm && vm.SelectMidEmotionCommand != null && vm.SelectMidEmotionCommand.CanExecute(emotion))
             {
                 vm.SelectMidEmotionCommand.Execute(emotion);
             }

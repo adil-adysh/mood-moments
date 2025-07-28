@@ -14,11 +14,6 @@ namespace mood_moments.ViewModels.MoodEntryWizard
         public ObservableCollection<string> ContextOptions { get; } = new();
         [ObservableProperty]
         private string? context;
-        public ICommand SelectContextCommand { get; }
-
-        // Event to notify parent when a context is selected
-        public event EventHandler<string?>? ContextSelected;
-
         // Error message for UI binding
         [ObservableProperty]
         private string? errorMessage;
@@ -27,7 +22,6 @@ namespace mood_moments.ViewModels.MoodEntryWizard
         {
             _contextService = contextService;
             DomainFileName = domainFileName;
-            SelectContextCommand = new RelayCommand<string?>(OnSelectContext);
             _ = LoadContextOptionsAsync(domainFileName);
         }
 
@@ -51,12 +45,6 @@ namespace mood_moments.ViewModels.MoodEntryWizard
             {
                 ErrorMessage = $"Failed to load contexts: {ex.Message}";
             }
-        }
-
-        private void OnSelectContext(string? selected)
-        {
-            Context = selected;
-            ContextSelected?.Invoke(this, selected);
         }
     }
 }

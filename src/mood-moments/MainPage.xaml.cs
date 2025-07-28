@@ -11,7 +11,17 @@ namespace mood_moments
         private readonly MainPageViewModel viewModel;
         public MainPage()
         {
-            InitializeComponent();
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("[MainPage] Initializing components...");
+                InitializeComponent();
+                System.Diagnostics.Debug.WriteLine("[MainPage] InitializeComponent succeeded.");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[MainPage] Exception in InitializeComponent: {ex}");
+                throw;
+            }
             viewModel = new MainPageViewModel();
             BindingContext = viewModel;
             AllTab.Clicked += (s, e) => SwitchTimeUnit("All");
@@ -59,11 +69,12 @@ namespace mood_moments
             }
             catch
             {
-                if (Application.Current != null && Application.Current.MainPage != null)
+                var mainPage = Application.Current?.Windows.FirstOrDefault()?.Page;
+                if (mainPage is Page page)
                 {
                     MainThread.BeginInvokeOnMainThread(async () =>
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", "An error occurred while updating the timeline. Please try again.", "OK");
+                        await page.DisplayAlert("Error", "An error occurred while updating the timeline. Please try again.", "OK");
                     });
                 }
             }

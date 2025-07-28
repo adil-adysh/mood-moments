@@ -20,14 +20,14 @@
                IsVisible="True" />
         <CollectionView ItemsSource="{Binding ContextOptions}"
                         SelectionMode="Single"
-                        AutomationProperties.LabeledBy="{x:Reference ContextStepHeaderLabel}"
+                        SelectedItem="{Binding Context, Mode=TwoWay}"
+                        AutomationId="ContextOptionsCollection"
                         SemanticProperties.Hint="Select one context option. Only one can be selected.">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <RadioButton Content="{Binding .}"
                                  GroupName="ContextGroup"
                                  FontAutoScalingEnabled="True"
-                                 IsChecked="{Binding Source={x:Reference ContextStepRoot}, Path=BindingContext.Context, Mode=TwoWay, Converter={StaticResource EqualityConverter}, ConverterParameter={Binding .}}"
                                  SemanticProperties.Description="{Binding .}"
                                  SemanticProperties.Hint="Select this context."
                                  AutomationId="{Binding .}" />

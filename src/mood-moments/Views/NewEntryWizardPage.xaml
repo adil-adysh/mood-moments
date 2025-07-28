@@ -40,7 +40,7 @@
                        SemanticProperties.HeadingLevel="Level1"
                        SemanticProperties.Description="{Binding StepTitle}" />
                 <!-- Bind directly to StepContent on the code-behind via x:Reference -->
-                <ContentPresenter x:Name="StepHost" Content="{Binding Source={x:Reference Name=NewEntryWizardPageRoot}, Path=StepContent}"/>
+                <ContentPresenter x:Name="StepHost" Content="{Binding Source={x:Reference NewEntryWizardPageRoot}, Path=StepContent}"/>
             </StackLayout>
             <!--
                 The third row is a bottom navigation bar with buttons for navigation.
@@ -99,9 +99,5 @@
             </Grid>
         </Grid>
     </ContentPage.Content>
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <viewModels:NewEntryWizardViewModel x:Key="WizardVM" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    <!-- Removed unused ResourceDictionary ViewModel -->
 </ContentPage>

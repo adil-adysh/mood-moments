@@ -119,7 +119,14 @@ namespace mood_moments.Views
                     if (_contextStepVM == null || _contextStepVM.DomainFileName != ViewModel.SelectedDomainFile)
                     {
                         _contextStepVM = new mood_moments.ViewModels.MoodEntryWizard.ContextStepViewModel(_contextService, ViewModel.SelectedDomainFile);
-                        _contextStepVM.ContextSelected += (s, ctx) => ViewModel.SelectedContextName = ctx;
+                        _contextStepVM.PropertyChanged += (s, e) =>
+                        {
+                            if (e.PropertyName == nameof(mood_moments.ViewModels.MoodEntryWizard.ContextStepViewModel.Context))
+                            {
+                                ViewModel.SelectedContextName = _contextStepVM.Context;
+                                _triggerStepVM = null;
+                            }
+                        };
                     }
                     content = new ContextStep { BindingContext = _contextStepVM };
                     break;
@@ -137,7 +144,6 @@ namespace mood_moments.Views
             StepContent = content;
         }
 
-        // Property for ContentPresenter binding
         private View? _stepContent;
         public View? StepContent
         {

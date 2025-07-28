@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:mood_moments"
-    xmlns:views="clr-namespace:mood_moments.Views"
+    xmlns:views="clr-namespace:mood_moments.Views.MoodEntryWizard"
+    xmlns:reminders="clr-namespace:mood_moments.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="mood_moments">
 
@@ -15,7 +16,7 @@
             Route="MainPage" />
         <ShellContent
             Title="Reminders"
-            ContentTemplate="{DataTemplate views:RemindersPage}"
+            ContentTemplate="{DataTemplate reminders:RemindersPage}"
             Route="RemindersPage" />
         <ShellContent
             Title="Wizard"

@@ -17,8 +17,8 @@ namespace mood_moments.Converters
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            // Not used for one-way binding
-            throw new NotImplementedException();
+            // No-op for one-way binding
+            return Binding.DoNothing;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using mood_moments.Services;
+using mood_moments.ViewModels.MoodEntryWizard;
 
 namespace mood_moments.ViewModels.MoodEntryWizard
 {
@@ -27,11 +28,33 @@ namespace mood_moments.ViewModels.MoodEntryWizard
             {
                 var domain = await contextService.LoadDomainAsync(domainFileName);
                 GroupedTriggers.Clear();
-                if (domain != null && domain.Contexts != null)
+                if (domain == null)
                 {
-                    var context = domain.Contexts.FirstOrDefault(c => c.Name == selectedContext);
-                    if (context != null && context.Triggers != null)
+                    System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] Domain not found for file: {domainFileName}");
+                }
+                else if (domain.Contexts == null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] No contexts in domain: {domain.Name}");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] Looking for context: '{selectedContext}' in domain: {domain.Name}");
+                    foreach (var ctx in domain.Contexts)
                     {
+                        System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] Available context: '{ctx.Name}'");
+                    }
+                    var context = domain.Contexts.FirstOrDefault(c => c.Name == selectedContext);
+                    if (context == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] Context '{selectedContext}' not found in domain '{domain.Name}'.");
+                    }
+                    else if (context.Triggers == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] No triggers for context '{context.Name}'.");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] Loading triggers for context '{context.Name}'.");
                         AddTriggerGroup("Positive", context.Triggers.Positive);
                         AddTriggerGroup("Neutral", context.Triggers.Neutral);
                         AddTriggerGroup("Negative", context.Triggers.Negative);
@@ -41,6 +64,7 @@ namespace mood_moments.ViewModels.MoodEntryWizard
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"[TriggerStepViewModel] Exception: {ex}");
                 ErrorMessage = $"Failed to load triggers: {ex.Message}";
             }
         }
@@ -56,17 +80,6 @@ namespace mood_moments.ViewModels.MoodEntryWizard
         public IEnumerable<string> SelectedTriggers => GroupedTriggers.SelectMany(g => g.Triggers).Where(t => t.IsSelected).Select(t => t.Name);
         public bool HasSelectedTriggers => SelectedTriggers.Any();
 
-        public class TriggerGroup
-        {
-            public string Category { get; set; } = string.Empty;
-            public ObservableCollection<TriggerItem> Triggers { get; set; } = new();
-        }
-
-        public class TriggerItem : ObservableObject
-        {
-            public string Name { get; set; } = string.Empty;
-            [ObservableProperty]
-            private bool isSelected;
-        }
+        // ...existing code...
     }
 }

@@ -4,7 +4,7 @@
              xmlns:viewModels="clr-namespace:mood_moments.ViewModels.MoodEntryWizard"
              x:Class="mood_moments.Views.MoodEntryWizard.TriggerStep"
              x:Name="TriggerStepRoot"
-             >
+             x:DataType="viewModels:TriggerStepViewModel">
     <StackLayout>
         <Label x:Name="TriggerStepHeaderLabel"
                Text="Step 7: Triggers"
@@ -20,11 +20,11 @@
                IsVisible="True" />
         <CollectionView ItemsSource="{Binding GroupedTriggers}"
                         IsGrouped="True"
-                        AutomationProperties.LabeledBy="{x:Reference TriggerStepHeaderLabel}"
+                        AutomationId="TriggerOptionsCollection"
                         SemanticProperties.Description="Trigger options grouped list"
                         SemanticProperties.Hint="Select one or more triggers. Use spacebar or tap to toggle.">
             <CollectionView.GroupHeaderTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="viewModels:TriggerGroup">
                     <StackLayout Orientation="Horizontal" Padding="8,4">
                         <Label Text="{Binding Category}" FontAttributes="Bold" FontAutoScalingEnabled="True" />
                         <Label Text="({Binding Triggers.Count})" FontSize="12" Margin="8,0,0,0" FontAutoScalingEnabled="True" />
@@ -32,7 +32,7 @@
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="viewModels:TriggerItem">
                     <HorizontalStackLayout Spacing="8">
                         <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
                                  AutomationId="TriggerCheckBox"

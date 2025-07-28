@@ -6,12 +6,16 @@ namespace mood_moments.ViewModels.MoodEntryWizard
     public partial class IntensityStepViewModel : ObservableObject
     {
         [ObservableProperty]
-        private int intensity = 3;
+        private int selectedIntensity = 3;
+
+        [ObservableProperty]
+        private string stepTitle = "How intense is your feeling?";
+
         public string[] IntensityLabels { get; } = { "Very Low", "Low", "Moderate", "High", "Very High" };
 
-        public string IntensityLabel => IntensityLabels[Intensity - 1];
+        public string IntensityLabel => IntensityLabels[SelectedIntensity - 1];
 
-        partial void OnIntensityChanged(int value)
+        partial void OnSelectedIntensityChanged(int value)
         {
             OnPropertyChanged(nameof(IntensityLabel));
         }
