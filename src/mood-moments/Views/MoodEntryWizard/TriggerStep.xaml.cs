@@ -12,5 +12,14 @@ namespace mood_moments.Views.MoodEntryWizard
         {
             InitializeComponent();
         }
+
+        protected override async void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            if (BindingContext is mood_moments.ViewModels.MoodEntryWizard.TriggerStepViewModel vm)
+            {
+                await vm.LoadAsync();
+            }
+        }
     }
 }
