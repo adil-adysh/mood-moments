@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
              x:Class="mood_moments.Views.MoodEntryWizard.NuanceEmotionStep"
-             x:Name="NuanceEmotionStepRoot">
+             x:Name="NuanceEmotionStepRoot"
+             x:DataType="viewModels:NewEntryWizardViewModel">
     <StackLayout Padding="10" Spacing="15">
         <Label Text="{Binding StepTitle}" FontSize="22" FontAttributes="Bold" />
         <Label Text="Pick the most precise word for your feeling" FontSize="18" FontAttributes="Bold" />
-        <CollectionView ItemsSource="{Binding EmotionSelection.NuancedEmotions}" SelectionMode="Single" x:Name="NuancedEmotionsCollection">
+        <CollectionView ItemsSource="{Binding EmotionSelection.NuancedEmotions}" SelectionMode="Single" x:Name="NuancedEmotionsCollection" SemanticProperties.Description="Nuanced emotion options">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="x:String">
                     <RadioButton Content="{Binding .}"
                                  GroupName="NuancedEmotionsGroup"
-                                 CheckedChanged="OnNuancedEmotionCheckedChanged" />
+                                 CheckedChanged="OnNuancedEmotionCheckedChanged"
+                                 SemanticProperties.Description="{Binding .}"
+                                 AutomationId="{Binding .}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -19,6 +23,7 @@
                 Command="{Binding SkipToIntensityCommand}"
                 Margin="0,10,0,0"
                 HorizontalOptions="Center"
-                IsVisible="{Binding SkipToIntensityCommand.CanExecute, Mode=OneWay}" />
+                SemanticProperties.Description="Skip to intensity selection"
+                AutomationId="SkipToIntensityButton" />
     </StackLayout>
 </ContentView>

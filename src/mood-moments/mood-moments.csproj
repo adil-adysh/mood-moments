@@ -37,7 +37,7 @@
 		<None Include="Resources\Raw\EmotionsData.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Include="Resources\Raw\ContextAndTriggers.json">
+		<None Include="Resources\Raw\context-triggers\*.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

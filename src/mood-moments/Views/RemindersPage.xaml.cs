@@ -35,7 +35,15 @@ namespace mood_moments.Views
             var pmRadio = new RadioButton { Content = "PM", GroupName = "ampm", IsChecked = now.Hour >= 12 };
             var okClicked = false;
             var okButton = new Button { Text = "OK" };
-            okButton.Clicked += (s, e2) => { okClicked = true; Application.Current?.MainPage?.Navigation.PopModalAsync(); };
+            okButton.Clicked += (s, e2) => {
+                okClicked = true;
+                var window = Application.Current?.Windows.FirstOrDefault();
+                var page = window?.Page;
+                if (page != null)
+                {
+                    _ = page.Navigation.PopModalAsync();
+                }
+            };
 
             var timeStack = new StackLayout
             {
@@ -58,11 +66,16 @@ namespace mood_moments.Views
                 }
             };
 
-            await (Application.Current?.MainPage?.Navigation?.PushModalAsync(timeDialog) ?? Task.CompletedTask);
-            // Wait for user to close dialog
-            while (Application.Current?.MainPage?.Navigation?.ModalStack?.LastOrDefault() == timeDialog && !okClicked)
+            var mainWindow = Application.Current?.Windows.FirstOrDefault();
+            var mainPage = mainWindow?.Page;
+            if (mainPage != null)
             {
-                await Task.Delay(100);
+                await mainPage.Navigation.PushModalAsync(timeDialog);
+                // Wait for user to close dialog
+                while (mainPage.Navigation.ModalStack.LastOrDefault() == timeDialog && !okClicked)
+                {
+                    await Task.Delay(100);
+                }
             }
 
             int hour = hourPicker.SelectedIndex + 1;

@@ -12,6 +12,7 @@
             </ResourceDictionary.MergedDictionaries>
             <converters:StepToFinishVisibilityConverter x:Key="StepToFinishVisibilityConverter" />
             <converters:NullOrEmptyToBoolConverter x:Key="NullOrEmptyToBoolConverter" />
+            <converters:EqualityConverter x:Key="EqualityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

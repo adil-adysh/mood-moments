@@ -10,22 +10,53 @@ namespace mood_moments.ViewModels.MoodEntryWizard
     public partial class ContextStepViewModel : ObservableObject
     {
         private readonly ContextAndTriggersService _contextService;
+        public string DomainFileName { get; }
         public ObservableCollection<string> ContextOptions { get; } = new();
         [ObservableProperty]
         private string? context;
         public ICommand SelectContextCommand { get; }
 
-        public ContextStepViewModel(ContextAndTriggersService contextService)
+        // Event to notify parent when a context is selected
+        public event EventHandler<string?>? ContextSelected;
+
+        // Error message for UI binding
+        [ObservableProperty]
+        private string? errorMessage;
+
+        public ContextStepViewModel(ContextAndTriggersService contextService, string domainFileName)
         {
             _contextService = contextService;
-            foreach (var ctx in             _contextService.Data.Domains.SelectMany(d => d.Contexts).Select(c => c.Name))
-                ContextOptions.Add(ctx);
+            DomainFileName = domainFileName;
             SelectContextCommand = new RelayCommand<string?>(OnSelectContext);
+            _ = LoadContextOptionsAsync(domainFileName);
+        }
+
+        private async Task LoadContextOptionsAsync(string domainFileName)
+        {
+            try
+            {
+                var domain = await _contextService.LoadDomainAsync(domainFileName);
+                ContextOptions.Clear();
+                if (domain != null && domain.Contexts != null)
+                {
+                    foreach (var ctx in domain.Contexts)
+                    {
+                        if (!string.IsNullOrEmpty(ctx?.Name))
+                            ContextOptions.Add(ctx.Name!);
+                    }
+                }
+                ErrorMessage = null;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Failed to load contexts: {ex.Message}";
+            }
         }
 
         private void OnSelectContext(string? selected)
         {
             Context = selected;
+            ContextSelected?.Invoke(this, selected);
         }
     }
 }

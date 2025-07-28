@@ -12,13 +12,18 @@ namespace mood_moments.Views
     // It handles page lifecycle events, data binding, and dynamic step content.
     public partial class NewEntryWizardPage : ContentPage
     {
-        // Strongly-typed ViewModel property for easier access to the BindingContext.
         public NewEntryWizardViewModel ViewModel { get; } = new NewEntryWizardViewModel();
+        private mood_moments.ViewModels.MoodEntryWizard.DomainSelectionViewModel? _domainVM;
+        private mood_moments.ViewModels.MoodEntryWizard.ContextStepViewModel? _contextStepVM;
+        private mood_moments.ViewModels.MoodEntryWizard.TriggerStepViewModel? _triggerStepVM;
+
+        // Only one constructor should exist
+        // ...existing code...
 
         public NewEntryWizardPage()
         {
             InitializeComponent();
-            BindingContext = this;
+            BindingContext = ViewModel;
             // Hide Shell's default back button
             Shell.SetBackButtonBehavior(this, new BackButtonBehavior
             {
@@ -72,21 +77,63 @@ namespace mood_moments.Views
         }
 
         // Dynamically sets the content of the wizard step based on the current step index.
+        private readonly mood_moments.Services.ContextAndTriggersService _contextService = new();
+
         private void SetStepContent(int step)
         {
-            View? content = step switch
+            View? content = null;
+            switch (step)
             {
-                0 => new EmotionStep(),
-                1 => new MidEmotionStep(),
-                2 => new NuanceEmotionStep(),
-                3 => new IntensityStep(),
-                4 => new NoteStep(),
-                5 => new ContextStep(),
-                6 => new TriggerStep(),
-                _ => null
-            };
-            if (content != null)
-                content.BindingContext = ViewModel;
+                case 0:
+                    content = new EmotionStep { BindingContext = ViewModel };
+                    break;
+                case 1:
+                    content = new MidEmotionStep { BindingContext = ViewModel };
+                    break;
+                case 2:
+                    content = new NuanceEmotionStep { BindingContext = ViewModel };
+                    break;
+                case 3:
+                    content = new IntensityStep { BindingContext = ViewModel };
+                    break;
+                case 4:
+                    content = new NoteStep { BindingContext = ViewModel };
+                    break;
+                case 5:
+                    if (_domainVM == null)
+                    {
+                        _domainVM = new mood_moments.ViewModels.MoodEntryWizard.DomainSelectionViewModel(_contextService);
+                        _domainVM.PropertyChanged += (s, e) =>
+                        {
+                            if (e.PropertyName == nameof(mood_moments.ViewModels.MoodEntryWizard.DomainSelectionViewModel.SelectedDomain) && _domainVM.SelectedDomain != null)
+                            {
+                                ViewModel.SelectedDomainFile = _domainVM.SelectedDomain.FileName;
+                                _contextStepVM = null;
+                                _triggerStepVM = null;
+                            }
+                        };
+                    }
+                    content = new mood_moments.Views.MoodEntryWizard.DomainSelectionStep { BindingContext = _domainVM };
+                    break;
+                case 6:
+                    if (_contextStepVM == null || _contextStepVM.DomainFileName != ViewModel.SelectedDomainFile)
+                    {
+                        _contextStepVM = new mood_moments.ViewModels.MoodEntryWizard.ContextStepViewModel(_contextService, ViewModel.SelectedDomainFile);
+                        _contextStepVM.ContextSelected += (s, ctx) => ViewModel.SelectedContextName = ctx;
+                    }
+                    content = new ContextStep { BindingContext = _contextStepVM };
+                    break;
+                case 7:
+                    if (_triggerStepVM == null || _triggerStepVM.DomainFileName != ViewModel.SelectedDomainFile || _triggerStepVM.SelectedContext != ViewModel.SelectedContextName)
+                    {
+                        _triggerStepVM = new mood_moments.ViewModels.MoodEntryWizard.TriggerStepViewModel(_contextService, ViewModel.SelectedDomainFile, ViewModel.SelectedContextName);
+                    }
+                    content = new TriggerStep { BindingContext = _triggerStepVM };
+                    break;
+                default:
+                    content = null;
+                    break;
+            }
             StepContent = content;
         }
 
@@ -100,6 +147,7 @@ namespace mood_moments.Views
                 if (_stepContent != value)
                 {
                     _stepContent = value;
+                    // Notify the ContentPresenter in XAML, which now binds to the code-behind property via x:Reference
                     OnPropertyChanged(nameof(StepContent));
                 }
             }

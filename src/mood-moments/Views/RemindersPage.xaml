@@ -7,37 +7,52 @@
              Title="Reminders"
              x:DataType="viewModels:RemindersViewModel">
     <StackLayout Padding="20">
-        <Label Text="Reminders" FontSize="24" FontAttributes="Bold" />
-        <CollectionView x:Name="RemindersList" Margin="0,10,0,0" ItemsSource="{Binding Reminders}">
+        <Label Text="Reminders" FontSize="24" FontAttributes="Bold"
+               SemanticProperties.HeadingLevel="Level1"
+               SemanticProperties.Description="Reminders main heading" />
+        <CollectionView x:Name="RemindersList" Margin="0,10,0,0" ItemsSource="{Binding Reminders}"
+                        SemanticProperties.Description="List of reminders">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="viewModels:ReminderViewModel">
                     <Border Margin="0,4,0,4" Stroke="LightGray" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 8">
                         <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Label Text="⏰" FontSize="20" />
-                            <Label Text="{Binding Display}" FontSize="18" />
-                            <Button Text="Delete" Command="{Binding BindingContext.DeleteReminderCommand, Source={x:Reference Name=RemindersPageRoot}}" CommandParameter="{Binding .}" FontSize="13" />
+                            <Label Text="⏰" FontSize="20" SemanticProperties.Description="Reminder icon" />
+                            <Label Text="{Binding Display}" FontSize="18" SemanticProperties.Description="{Binding Display}" />
+                            <Button Text="Delete" Command="{Binding BindingContext.DeleteReminderCommand, Source={x:Reference Name=RemindersPageRoot}}" CommandParameter="{Binding .}" FontSize="13"
+                                    SemanticProperties.Description="Delete this reminder" AutomationId="DeleteReminderButton" />
                         </StackLayout>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="Add Reminder" Command="{Binding ShowAddReminderDialogCommand}" />
-        <Grid IsVisible="{Binding IsAddReminderDialogVisible}" BackgroundColor="#80000000">
+        <Button Text="Add Reminder" Command="{Binding ShowAddReminderDialogCommand}"
+                SemanticProperties.Description="Show add reminder dialog" AutomationId="AddReminderButton" />
+        <Grid IsVisible="{Binding IsAddReminderDialogVisible}" BackgroundColor="#80000000"
+              SemanticProperties.Description="Add reminder dialog overlay">
             <Border Padding="20" BackgroundColor="White" StrokeShape="RoundRectangle 12" VerticalOptions="Center" HorizontalOptions="Center">
-                <StackLayout Orientation="Vertical" Spacing="12">
-                    <Label Text="Add Reminder" FontSize="20" FontAttributes="Bold" />
-                    <Entry Placeholder="Reminder text" Text="{Binding NewReminderText}" WidthRequest="160" />
+                <StackLayout Orientation="Vertical" Spacing="12" SemanticProperties.Description="Add reminder dialog content">
+                    <Label Text="Add Reminder" FontSize="20" FontAttributes="Bold"
+                           SemanticProperties.HeadingLevel="Level2"
+                           SemanticProperties.Description="Add reminder dialog heading" />
+                    <Entry Placeholder="Reminder text" Text="{Binding NewReminderText}" WidthRequest="160"
+                           SemanticProperties.Description="Reminder text input" AutomationId="ReminderTextEntry" />
                     <StackLayout Orientation="Horizontal" Spacing="8">
-                        <Picker Title="Hour" ItemsSource="{Binding Hours}" SelectedItem="{Binding Hour}" WidthRequest="60" />
-                        <Picker Title="Minute" ItemsSource="{Binding Minutes}" SelectedItem="{Binding Minute}" WidthRequest="60" />
+                        <Picker Title="Hour" ItemsSource="{Binding Hours}" SelectedItem="{Binding Hour}" WidthRequest="60"
+                                SemanticProperties.Description="Hour picker" AutomationId="HourPicker" />
+                        <Picker Title="Minute" ItemsSource="{Binding Minutes}" SelectedItem="{Binding Minute}" WidthRequest="60"
+                                SemanticProperties.Description="Minute picker" AutomationId="MinutePicker" />
                         <StackLayout Orientation="Horizontal" Spacing="0">
-                            <RadioButton Content="AM" GroupName="ampm" IsChecked="{Binding IsPm, Converter={StaticResource InverseBoolConverter}}" />
-                            <RadioButton Content="PM" GroupName="ampm" IsChecked="{Binding IsPm}" />
+                            <RadioButton Content="AM" GroupName="ampm" IsChecked="{Binding IsPm, Converter={StaticResource InverseBoolConverter}}"
+                                         SemanticProperties.Description="AM" AutomationId="AMRadioButton" />
+                            <RadioButton Content="PM" GroupName="ampm" IsChecked="{Binding IsPm}"
+                                         SemanticProperties.Description="PM" AutomationId="PMRadioButton" />
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-                        <Button Text="Cancel" Command="{Binding HideAddReminderDialogCommand}" />
-                        <Button Text="Add" Command="{Binding AddReminderCommand}" />
+                        <Button Text="Cancel" Command="{Binding HideAddReminderDialogCommand}"
+                                SemanticProperties.Description="Cancel add reminder" AutomationId="CancelAddReminderButton" />
+                        <Button Text="Add" Command="{Binding AddReminderCommand}"
+                                SemanticProperties.Description="Confirm add reminder" AutomationId="ConfirmAddReminderButton" />
                     </StackLayout>
                 </StackLayout>
             </Border>

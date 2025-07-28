@@ -1,30 +1,35 @@
 using System.Collections.Generic;
-
 namespace mood_moments.Models
 {
+    public class DomainInfo
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string FileName { get; set; } = string.Empty;
+    }
     public class TriggerSet
     {
-        public List<string> Positive { get; set; }
-        public List<string> Neutral { get; set; }
-        public List<string> Negative { get; set; }
+        public List<string>? Positive { get; set; }
+        public List<string>? Neutral { get; set; }
+        public List<string>? Negative { get; set; }
     }
 
     public class Context
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public TriggerSet Triggers { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public TriggerSet? Triggers { get; set; }
     }
 
     public class Domain
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public List<Context> Contexts { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public List<Context>? Contexts { get; set; }
     }
 
     public class ContextAndTriggersData
     {
-        public List<Domain> Domains { get; set; }
+        public List<Domain>? Domains { get; set; }
     }
 }

@@ -12,7 +12,9 @@
              xmlns:views="clr-namespace:mood_moments.Views"
              xmlns:mew="clr-namespace:mood_moments.Views.MoodEntryWizard"
              x:Class="mood_moments.Views.NewEntryWizardPage"
-             Title="New Mood Entry">
+             Title="New Mood Entry"
+             x:DataType="viewModels:NewEntryWizardViewModel"
+             x:Name="NewEntryWizardPageRoot">
     <!--
         The main content of the page is a Grid with three rows:
         - Auto: For the step title and content.
@@ -32,11 +34,13 @@
                     - Text: Uses data binding to display the current step's title.
                     - FontSize and FontAttributes: Style the label as a heading.
                 -->
-                <Label Text="{Binding ViewModel.StepTitle}"
+                <Label Text="{Binding StepTitle}"
                        FontSize="24"
-                       FontAttributes="Bold"/>
-                <!-- Bind directly to StepContent on the ViewModel, no Source -->
-                <ContentPresenter x:Name="StepHost" Content="{Binding StepContent}"/>
+                       FontAttributes="Bold"
+                       SemanticProperties.HeadingLevel="Level1"
+                       SemanticProperties.Description="{Binding StepTitle}" />
+                <!-- Bind directly to StepContent on the code-behind via x:Reference -->
+                <ContentPresenter x:Name="StepHost" Content="{Binding Source={x:Reference Name=NewEntryWizardPageRoot}, Path=StepContent}"/>
             </StackLayout>
             <!--
                 The third row is a bottom navigation bar with buttons for navigation.
@@ -62,27 +66,36 @@
                     - IsVisible: Binds to the CanExecute property of the command, controlling visibility.
                 -->
                 <Button Text="Back"
-                        Command="{Binding ViewModel.BackStepCommand}"
-                        IsVisible="{Binding ViewModel.BackStepCommand.CanExecute, Mode=OneWay}"
-                        Grid.Column="0" />
+                        Command="{Binding BackStepCommand}"
+                        IsVisible="{Binding ShowBackButton}"
+                        IsEnabled="{Binding CanGoBack}"
+                        Grid.Column="0"
+                        SemanticProperties.Description="Go to previous step"
+                        AutomationId="BackButton" />
                 <!--
                     Next button
                     - Command: Binds to the NextStepCommand in the ViewModel.
                     - IsVisible: Binds to the CanExecute property of the command, controlling visibility.
                 -->
                 <Button Text="Next"
-                        Command="{Binding ViewModel.NextStepCommand}"
-                        IsVisible="{Binding ViewModel.NextStepCommand.CanExecute, Mode=OneWay}"
-                        Grid.Column="2" />
+                        Command="{Binding NextStepCommand}"
+                        IsVisible="{Binding ShowNextButton}"
+                        IsEnabled="{Binding CanGoNext}"
+                        Grid.Column="2"
+                        SemanticProperties.Description="Go to next step"
+                        AutomationId="NextButton" />
                 <!--
                     Finish button
                     - Command: Binds to the FinishCommand in the ViewModel.
                     - IsVisible: Binds to the CurrentStep property, using a converter to determine visibility.
                 -->
                 <Button Text="Finish"
-                        Command="{Binding ViewModel.FinishCommand}"
-                        IsVisible="{Binding ViewModel.CurrentStep, Converter={StaticResource StepToFinishVisibilityConverter}}"
-                        Grid.Column="3" />
+                        Command="{Binding FinishCommand}"
+                        IsVisible="{Binding ShowFinishButton}"
+                        IsEnabled="{Binding CanFinish}"
+                        Grid.Column="3"
+                        SemanticProperties.Description="Finish and save entry"
+                        AutomationId="FinishButton" />
             </Grid>
         </Grid>
     </ContentPage.Content>

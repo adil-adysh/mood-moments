@@ -2,12 +2,14 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:mood_moments.ViewModels"
-             x:Class="mood_moments.Views.MoodEntryWizard.NoteStep">
+             x:Class="mood_moments.Views.MoodEntryWizard.NoteStep"
+             x:DataType="viewModels:NewEntryWizardViewModel">
     <StackLayout>
         <Label Text="Step 5: Personal Note" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Note Step Heading" />
         <Editor Text="{Binding PersonalNote, Mode=TwoWay}" Placeholder="Write your note here..." AutoSize="TextChanges" HeightRequest="100"
-                SemanticProperties.Description="Personal Note Editor" />
+                SemanticProperties.Description="Personal Note Editor"
+                AutomationId="PersonalNoteEditor" />
     </StackLayout>
 </ContentView>

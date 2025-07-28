@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:mood_moments.ViewModels.MoodEntryWizard"
              x:Class="mood_moments.Views.MoodEntryWizard.ContextStep"
-             x:Name="ContextStepRoot">
+             x:Name="ContextStepRoot"
+             x:DataType="viewModels:ContextStepViewModel">
     <StackLayout>
         <Label Text="Step 6: Context" FontSize="22" FontAttributes="Bold"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Context Step Heading" />
-        <CollectionView ItemsSource="{Binding ContextStep.ContextOptions}" SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding ContextOptions}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Button Text="{Binding .}" Command="{Binding BindingContext.ContextStep.SelectContextCommand, Source={x:Reference ContextStepRoot}}" CommandParameter="{Binding .}" />
+                <DataTemplate x:DataType="x:String">
+                    <RadioButton Content="{Binding .}"
+                                 GroupName="ContextGroup"
+                                 IsChecked="{Binding Source={x:Reference ContextStepRoot}, Path=BindingContext.Context, Mode=TwoWay, Converter={StaticResource EqualityConverter}, ConverterParameter={Binding .}}"
+                                 SemanticProperties.Description="{Binding .}"
+                                 AutomationId="{Binding .}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

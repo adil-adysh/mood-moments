@@ -12,6 +12,12 @@ namespace mood_moments.ViewModels
 {
     public partial class NewEntryWizardViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private int selectedIntensity;
+
+        [ObservableProperty]
+        private string? personalNote;
+
         public EmotionSelectionViewModel? EmotionSelection { get; private set; }
 
         public WizardNavigationViewModel Navigation { get; }
@@ -25,9 +31,42 @@ namespace mood_moments.ViewModels
             "Is there a more precise word for your feeling?",
             "How intense is your feeling?",
             "Add a personal note (optional)",
+            "Select a Life Domain",
             "Context: Where are you?",
             "What triggered this feeling?"
         });
+
+
+        // Track selected domain file and context name
+        private string _selectedDomainFile = "WorkStudyAndPurpose.json";
+        public string SelectedDomainFile
+        {
+            get => _selectedDomainFile;
+            set
+            {
+                if (_selectedDomainFile != value)
+                {
+                    _selectedDomainFile = value;
+                    OnPropertyChanged(nameof(SelectedDomainFile));
+                    // Reset context and trigger when domain changes
+                    SelectedContextName = null;
+                }
+            }
+        }
+
+        private string? _selectedContextName;
+        public string? SelectedContextName
+        {
+            get => _selectedContextName;
+            set
+            {
+                if (_selectedContextName != value)
+                {
+                    _selectedContextName = value;
+                    OnPropertyChanged(nameof(SelectedContextName));
+                }
+            }
+        }
 
         public NewEntryWizardViewModel()
         {
@@ -40,6 +79,7 @@ namespace mood_moments.ViewModels
                 {
                     OnPropertyChanged(nameof(CurrentStep));
                     OnPropertyChanged(nameof(StepTitle));
+                    NotifyNavigationStateChanged();
                 }
             };
 
@@ -57,13 +97,49 @@ namespace mood_moments.ViewModels
             }
             catch (Exception ex)
             {
-                Application.Current?.MainPage?.DisplayAlert("Error", $"Failed to load emotions: {ex.Message}", "OK");
+                var window = Application.Current?.Windows.FirstOrDefault();
+                var page = window?.Page;
+                if (page != null)
+                {
+                    _ = page.DisplayAlert("Error", $"Failed to load emotions: {ex.Message}", "OK");
+                }
             }
         }
 
         // 👉 For UI binding
+
         public int CurrentStep => Navigation.CurrentStep;
         public string StepTitle => StepTitles.ElementAtOrDefault(CurrentStep) ?? string.Empty;
+
+        // Navigation button visibility/enabling
+        public bool ShowBackButton => CurrentStep > 0;
+        public bool ShowNextButton => CurrentStep < StepTitles.Count - 1;
+        public bool ShowFinishButton => CurrentStep == StepTitles.Count - 1;
+
+        // Example: Only allow next if current step is valid (expand as needed)
+        public bool CanGoNext
+        {
+            get
+            {
+                // TODO: Add per-step validation logic here
+                // For now, always true except last step
+                return ShowNextButton;
+            }
+        }
+
+        public bool CanGoBack => ShowBackButton;
+        public bool CanFinish => ShowFinishButton;
+
+        // Notify UI when navigation state changes
+        private void NotifyNavigationStateChanged()
+        {
+            OnPropertyChanged(nameof(ShowBackButton));
+            OnPropertyChanged(nameof(ShowNextButton));
+            OnPropertyChanged(nameof(ShowFinishButton));
+            OnPropertyChanged(nameof(CanGoNext));
+            OnPropertyChanged(nameof(CanGoBack));
+            OnPropertyChanged(nameof(CanFinish));
+        }
 
         public event Action? WizardFinished;
 

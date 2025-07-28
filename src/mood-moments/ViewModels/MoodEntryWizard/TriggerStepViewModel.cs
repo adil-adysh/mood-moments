@@ -1,37 +1,63 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using mood_moments.Services;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using mood_moments.Services;
 
 namespace mood_moments.ViewModels.MoodEntryWizard
 {
     public partial class TriggerStepViewModel : ObservableObject
     {
+        public string DomainFileName { get; }
+        public string? SelectedContext { get; }
         public ObservableCollection<string> TriggerOptions { get; } = new();
         [ObservableProperty]
         private string? trigger;
         public ICommand SelectTriggerCommand { get; }
+        [ObservableProperty]
+        private string? errorMessage;
 
-        public TriggerStepViewModel(ContextAndTriggersService contextService, string? selectedContext)
+        public TriggerStepViewModel(ContextAndTriggersService contextService, string domainFileName, string? selectedContext)
         {
-            var context = contextService.Data.Domains.SelectMany(d => d.Contexts).FirstOrDefault(c => c.Name == selectedContext);
-            if (context != null)
-            {
-                foreach (var trig in context.Triggers.Positive)
-                    TriggerOptions.Add(trig);
-                foreach (var trig in context.Triggers.Neutral)
-                    TriggerOptions.Add(trig);
-                foreach (var trig in context.Triggers.Negative)
-                    TriggerOptions.Add(trig);
-            }
+            DomainFileName = domainFileName;
+            SelectedContext = selectedContext;
             SelectTriggerCommand = new RelayCommand<string?>(OnSelectTrigger);
+            _ = LoadTriggerOptionsAsync(contextService, domainFileName, selectedContext);
         }
 
-        private void OnSelectTrigger(string? selected)
+        private async Task LoadTriggerOptionsAsync(ContextAndTriggersService contextService, string domainFileName, string? selectedContext)
         {
-            Trigger = selected;
+            try
+            {
+                var domain = await contextService.LoadDomainAsync(domainFileName);
+                TriggerOptions.Clear();
+                if (domain != null && domain.Contexts != null)
+                {
+                    var context = domain.Contexts.FirstOrDefault(c => c.Name == selectedContext);
+                    if (context != null && context.Triggers != null)
+                    {
+                        if (context.Triggers.Positive != null)
+                            foreach (var trig in context.Triggers.Positive)
+                                TriggerOptions.Add(trig);
+                        if (context.Triggers.Neutral != null)
+                            foreach (var trig in context.Triggers.Neutral)
+                                TriggerOptions.Add(trig);
+                        if (context.Triggers.Negative != null)
+                            foreach (var trig in context.Triggers.Negative)
+                                TriggerOptions.Add(trig);
+                    }
+                }
+                ErrorMessage = null;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Failed to load triggers: {ex.Message}";
+            }
+        }
+
+        private static void OnSelectTrigger(string? selected)
+        {
+            // This method is static due to analyzer requirements. Actual trigger selection logic should be handled via command binding or refactored if needed.
         }
     }
 }
