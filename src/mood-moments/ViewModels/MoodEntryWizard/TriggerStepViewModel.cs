@@ -10,10 +10,7 @@ namespace mood_moments.ViewModels.MoodEntryWizard
     {
         public string DomainFileName { get; }
         public string? SelectedContext { get; }
-        public ObservableCollection<string> TriggerOptions { get; } = new();
-        [ObservableProperty]
-        private string? trigger;
-        public ICommand SelectTriggerCommand { get; }
+        public ObservableCollection<TriggerGroup> GroupedTriggers { get; } = new();
         [ObservableProperty]
         private string? errorMessage;
 
@@ -21,7 +18,6 @@ namespace mood_moments.ViewModels.MoodEntryWizard
         {
             DomainFileName = domainFileName;
             SelectedContext = selectedContext;
-            SelectTriggerCommand = new RelayCommand<string?>(OnSelectTrigger);
             _ = LoadTriggerOptionsAsync(contextService, domainFileName, selectedContext);
         }
 
@@ -30,21 +26,15 @@ namespace mood_moments.ViewModels.MoodEntryWizard
             try
             {
                 var domain = await contextService.LoadDomainAsync(domainFileName);
-                TriggerOptions.Clear();
+                GroupedTriggers.Clear();
                 if (domain != null && domain.Contexts != null)
                 {
                     var context = domain.Contexts.FirstOrDefault(c => c.Name == selectedContext);
                     if (context != null && context.Triggers != null)
                     {
-                        if (context.Triggers.Positive != null)
-                            foreach (var trig in context.Triggers.Positive)
-                                TriggerOptions.Add(trig);
-                        if (context.Triggers.Neutral != null)
-                            foreach (var trig in context.Triggers.Neutral)
-                                TriggerOptions.Add(trig);
-                        if (context.Triggers.Negative != null)
-                            foreach (var trig in context.Triggers.Negative)
-                                TriggerOptions.Add(trig);
+                        AddTriggerGroup("Positive", context.Triggers.Positive);
+                        AddTriggerGroup("Neutral", context.Triggers.Neutral);
+                        AddTriggerGroup("Negative", context.Triggers.Negative);
                     }
                 }
                 ErrorMessage = null;
@@ -55,9 +45,28 @@ namespace mood_moments.ViewModels.MoodEntryWizard
             }
         }
 
-        private static void OnSelectTrigger(string? selected)
+        private void AddTriggerGroup(string category, IEnumerable<string>? triggers)
         {
-            // This method is static due to analyzer requirements. Actual trigger selection logic should be handled via command binding or refactored if needed.
+            if (triggers == null) return;
+            var items = triggers.Select(t => new TriggerItem { Name = t }).ToList();
+            if (items.Count > 0)
+                GroupedTriggers.Add(new TriggerGroup { Category = category, Triggers = new ObservableCollection<TriggerItem>(items) });
+        }
+
+        public IEnumerable<string> SelectedTriggers => GroupedTriggers.SelectMany(g => g.Triggers).Where(t => t.IsSelected).Select(t => t.Name);
+        public bool HasSelectedTriggers => SelectedTriggers.Any();
+
+        public class TriggerGroup
+        {
+            public string Category { get; set; } = string.Empty;
+            public ObservableCollection<TriggerItem> Triggers { get; set; } = new();
+        }
+
+        public class TriggerItem : ObservableObject
+        {
+            public string Name { get; set; } = string.Empty;
+            [ObservableProperty]
+            private bool isSelected;
         }
     }
 }

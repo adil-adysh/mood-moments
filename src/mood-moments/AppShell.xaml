@@ -17,5 +17,9 @@
             Title="Reminders"
             ContentTemplate="{DataTemplate views:RemindersPage}"
             Route="RemindersPage" />
+        <ShellContent
+            Title="Wizard"
+            ContentTemplate="{DataTemplate views:ContextStep}"
+            Route="ContextStep" />
     </TabBar>
 </Shell>

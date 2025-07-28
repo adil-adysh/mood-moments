@@ -6,16 +6,30 @@
              x:Name="ContextStepRoot"
              x:DataType="viewModels:ContextStepViewModel">
     <StackLayout>
-        <Label Text="Step 6: Context" FontSize="22" FontAttributes="Bold"
+        <Label x:Name="ContextStepHeaderLabel"
+               Text="Step 6: Context"
+               FontSize="22"
+               FontAttributes="Bold"
+               FontAutoScalingEnabled="True"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Context Step Heading" />
-        <CollectionView ItemsSource="{Binding ContextOptions}" SelectionMode="Single">
+        <Label Text="Select the context for your mood entry."
+               FontSize="14"
+               FontAutoScalingEnabled="True"
+               SemanticProperties.Hint="This is a required step. Use arrow keys or touch to select."
+               IsVisible="True" />
+        <CollectionView ItemsSource="{Binding ContextOptions}"
+                        SelectionMode="Single"
+                        AutomationProperties.LabeledBy="{x:Reference ContextStepHeaderLabel}"
+                        SemanticProperties.Hint="Select one context option. Only one can be selected.">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <RadioButton Content="{Binding .}"
                                  GroupName="ContextGroup"
+                                 FontAutoScalingEnabled="True"
                                  IsChecked="{Binding Source={x:Reference ContextStepRoot}, Path=BindingContext.Context, Mode=TwoWay, Converter={StaticResource EqualityConverter}, ConverterParameter={Binding .}}"
                                  SemanticProperties.Description="{Binding .}"
+                                 SemanticProperties.Hint="Select this context."
                                  AutomationId="{Binding .}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>

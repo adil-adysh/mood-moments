@@ -15,8 +15,13 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            })
-            .UseLocalNotification();
+            });
+        // Register converters for XAML
+        builder.Services.AddSingleton<Converters.SelectedToColorConverter>();
+        builder.Services.AddSingleton<Converters.CategoryToColorConverter>();
+        builder.Services.AddSingleton<Converters.NullToBoolConverter>();
+
+        builder.UseLocalNotification();
 
         return builder.Build();
     }

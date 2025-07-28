@@ -6,13 +6,16 @@
              x:Class="mood_moments.App">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <converters:StepToFinishVisibilityConverter x:Key="StepToFinishVisibilityConverter" />
-            <converters:NullOrEmptyToBoolConverter x:Key="NullOrEmptyToBoolConverter" />
-            <converters:EqualityConverter x:Key="EqualityConverter" />
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+            <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+        <converters:StepToFinishVisibilityConverter x:Key="StepToFinishVisibilityConverter" />
+        <converters:NullOrEmptyToBoolConverter x:Key="NullOrEmptyToBoolConverter" />
+        <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+        <converters:SelectedToColorConverter x:Key="SelectedToColorConverter" />
+        <converters:CategoryToColorConverter x:Key="CategoryToColorConverter" />
+        <converters:EqualityConverter x:Key="EqualityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

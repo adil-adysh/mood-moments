@@ -6,17 +6,41 @@
              x:Name="TriggerStepRoot"
              >
     <StackLayout>
-        <Label Text="Step 7: Triggers" FontSize="22" FontAttributes="Bold"
+        <Label x:Name="TriggerStepHeaderLabel"
+               Text="Step 7: Triggers"
+               FontSize="22"
+               FontAttributes="Bold"
+               FontAutoScalingEnabled="True"
                SemanticProperties.HeadingLevel="Level1"
                SemanticProperties.Description="Triggers Step Heading" />
-        <CollectionView ItemsSource="{Binding TriggerOptions}" SelectionMode="Single" SemanticProperties.Description="Trigger options list">
+        <Label Text="Select all triggers that apply."
+               FontSize="14"
+               FontAutoScalingEnabled="True"
+               SemanticProperties.Hint="You can select multiple triggers. Use spacebar or tap to toggle."
+               IsVisible="True" />
+        <CollectionView ItemsSource="{Binding GroupedTriggers}"
+                        IsGrouped="True"
+                        AutomationProperties.LabeledBy="{x:Reference TriggerStepHeaderLabel}"
+                        SemanticProperties.Description="Trigger options grouped list"
+                        SemanticProperties.Hint="Select one or more triggers. Use spacebar or tap to toggle.">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="8,4">
+                        <Label Text="{Binding Category}" FontAttributes="Bold" FontAutoScalingEnabled="True" />
+                        <Label Text="({Binding Triggers.Count})" FontSize="12" Margin="8,0,0,0" FontAutoScalingEnabled="True" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                    <Button Text="{Binding .}"
-                            Command="{Binding BindingContext.SelectTriggerCommand, Source={x:Reference TriggerStepRoot}}"
-                            CommandParameter="{Binding .}"
-                            SemanticProperties.Description="Trigger option"
-                            AutomationId="{Binding .}" />
+                <DataTemplate>
+                    <HorizontalStackLayout Spacing="8">
+                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                 AutomationId="TriggerCheckBox"
+                                 SemanticProperties.Description="{Binding Name}"
+                                 SemanticProperties.Hint="Check to select this trigger."
+                                 />
+                        <Label Text="{Binding Name}" FontSize="14" VerticalOptions="Center" FontAutoScalingEnabled="True" />
+                    </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
