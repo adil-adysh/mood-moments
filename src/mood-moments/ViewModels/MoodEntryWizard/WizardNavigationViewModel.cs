@@ -9,7 +9,7 @@ namespace mood_moments.ViewModels.MoodEntryWizard
         [ObservableProperty]
         private int currentStep = 0;
 
-        public int StepCount { get; set; } = 7;
+        public int StepCount { get; set; } = 8;
         public event Action? WizardFinished;
 
         [RelayCommand]

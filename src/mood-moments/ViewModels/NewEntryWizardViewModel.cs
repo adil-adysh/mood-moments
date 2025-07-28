@@ -64,6 +64,7 @@ namespace mood_moments.ViewModels
                 {
                     _selectedContextName = value;
                     OnPropertyChanged(nameof(SelectedContextName));
+                    OnPropertyChanged(nameof(CanGoNext));
                 }
             }
         }
@@ -121,8 +122,9 @@ namespace mood_moments.ViewModels
         {
             get
             {
-                // TODO: Add per-step validation logic here
-                // For now, always true except last step
+                // Only allow next if a context is selected on the context step (step 6)
+                if (CurrentStep == 6)
+                    return !string.IsNullOrEmpty(SelectedContextName) && ShowNextButton;
                 return ShowNextButton;
             }
         }

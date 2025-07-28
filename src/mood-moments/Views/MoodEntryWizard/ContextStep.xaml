@@ -19,18 +19,17 @@
                SemanticProperties.Hint="This is a required step. Use arrow keys or touch to select."
                IsVisible="True" />
         <CollectionView ItemsSource="{Binding ContextOptions}"
-                        SelectionMode="Single"
                         SelectedItem="{Binding Context, Mode=TwoWay}"
-                        AutomationId="ContextOptionsCollection"
-                        SemanticProperties.Hint="Select one context option. Only one can be selected.">
+                        SelectionMode="Single"
+                        AutomationId="ContextOptionsCollectionView">
+            <CollectionView.EmptyView>
+                <Label Text="No context options available." FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                    <RadioButton Content="{Binding .}"
-                                 GroupName="ContextGroup"
-                                 FontAutoScalingEnabled="True"
-                                 SemanticProperties.Description="{Binding .}"
-                                 SemanticProperties.Hint="Select this context."
-                                 AutomationId="{Binding .}" />
+                <DataTemplate x:DataType="viewModels:ContextOptionViewModel">
+                    <Grid Padding="8">
+                        <Label Text="{Binding Name}" FontSize="16" VerticalOptions="Center" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

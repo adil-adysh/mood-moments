@@ -116,6 +116,11 @@ namespace mood_moments.Views
                     content = new mood_moments.Views.MoodEntryWizard.DomainSelectionStep { BindingContext = _domainVM };
                     break;
                 case 6:
+                    // If no domain is selected, force user to select one before context
+                    if (string.IsNullOrEmpty(ViewModel.SelectedDomainFile) && _domainVM != null && _domainVM.SelectedDomain != null)
+                    {
+                        ViewModel.SelectedDomainFile = _domainVM.SelectedDomain.FileName;
+                    }
                     if (_contextStepVM == null || _contextStepVM.DomainFileName != ViewModel.SelectedDomainFile)
                     {
                         _contextStepVM = new mood_moments.ViewModels.MoodEntryWizard.ContextStepViewModel(_contextService, ViewModel.SelectedDomainFile);
@@ -123,7 +128,7 @@ namespace mood_moments.Views
                         {
                             if (e.PropertyName == nameof(mood_moments.ViewModels.MoodEntryWizard.ContextStepViewModel.Context))
                             {
-                                ViewModel.SelectedContextName = _contextStepVM.Context;
+                                ViewModel.SelectedContextName = _contextStepVM.Context?.Name;
                                 _triggerStepVM = null;
                             }
                         };
@@ -131,6 +136,12 @@ namespace mood_moments.Views
                     content = new ContextStep { BindingContext = _contextStepVM };
                     break;
                 case 7:
+                    // If no domain is selected, do not proceed
+                    if (string.IsNullOrEmpty(ViewModel.SelectedDomainFile))
+                    {
+                        content = null;
+                        break;
+                    }
                     if (_triggerStepVM == null || _triggerStepVM.DomainFileName != ViewModel.SelectedDomainFile || _triggerStepVM.SelectedContext != ViewModel.SelectedContextName)
                     {
                         _triggerStepVM = new mood_moments.ViewModels.MoodEntryWizard.TriggerStepViewModel(_contextService, ViewModel.SelectedDomainFile, ViewModel.SelectedContextName);

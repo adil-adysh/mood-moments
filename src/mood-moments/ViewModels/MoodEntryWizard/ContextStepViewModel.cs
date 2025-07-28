@@ -11,9 +11,21 @@ namespace mood_moments.ViewModels.MoodEntryWizard
     {
         private readonly ContextAndTriggersService _contextService;
         public string DomainFileName { get; }
-        public ObservableCollection<string> ContextOptions { get; } = new();
-        [ObservableProperty]
-        private string? context;
+        public ObservableCollection<ContextOptionViewModel> ContextOptions { get; } = new();
+        private ContextOptionViewModel? _context;
+        public ContextOptionViewModel? Context
+        {
+            get => _context;
+            set
+            {
+                if (_context != value)
+                {
+                    _context = value;
+                    System.Diagnostics.Debug.WriteLine($"[ContextStepViewModel] Context set to: '{_context?.Name}'");
+                    OnPropertyChanged(nameof(Context));
+                }
+            }
+        }
         // Error message for UI binding
         [ObservableProperty]
         private string? errorMessage;
@@ -36,7 +48,7 @@ namespace mood_moments.ViewModels.MoodEntryWizard
                     foreach (var ctx in domain.Contexts)
                     {
                         if (!string.IsNullOrEmpty(ctx?.Name))
-                            ContextOptions.Add(ctx.Name!);
+                            ContextOptions.Add(new ContextOptionViewModel(ctx.Name!));
                     }
                 }
                 ErrorMessage = null;
